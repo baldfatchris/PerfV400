@@ -1,0 +1,2 @@
+﻿@model System.DateTime?
+@Html.TextBox("", (Model.HasValue ? Model.Value.ToLongDateString() : string.Empty), new { @class = "datepicker" }) 

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<PerfV400.Models.Role>
+
+@{
+    int nextPage = 1;
+    if (ViewBag.page != null)
+    {
+        nextPage = ViewBag.page +1 ;
+    }
+    string nextDiv = string.Format("moreRoles{0}", nextPage);
+}
+
+
+@foreach (var item in Model)
+{
+    @Html.Partial("DetailsRole", item) 
+}
+
+
+@if (ViewBag.recordCount - 60 * ViewBag.page > 60)
+{
+<div id="@nextDiv">
+
+    @Ajax.ActionLink("more...", "MoreRoles",
+        new
+        {
+            filter_Piece_Id = ViewBag.Piece_Id,
+            page = nextPage
+        },
+        new AjaxOptions
+        {
+            UpdateTargetId = nextDiv,
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            LoadingElementId = "moreRolesajaxloader"
+        })
+    <div style="clear:both"></div>
+
+    <img id="moreRolesajaxloader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
+
+</div>
+}
+
+

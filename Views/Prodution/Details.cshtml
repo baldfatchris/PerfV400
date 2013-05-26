@@ -1,0 +1,57 @@
+﻿@model PerfV400.Models.Production
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Production</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Production_Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Production_Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Piece.Piece_Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Piece.Piece_Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Production_Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Production_Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Production_Date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Production_Date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Production_PhotoFileName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Production_PhotoFileName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Production_PhotoMimeType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Production_PhotoMimeType)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

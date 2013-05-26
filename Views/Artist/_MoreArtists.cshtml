@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PerfV400.Models.Artist>
+
+@{
+    int nextPage = 1;
+    if (ViewBag.page != null)
+    {
+        nextPage = ViewBag.page +1 ;
+    }
+    string nextDiv = string.Format("more{0}", nextPage);
+}
+
+
+@foreach (var item in Model)
+{
+<div class="Photo">
+    <div class="PhotoImage">
+        @if (item.Artist_Photo != null)
+        {
+            <a href="@Url.Action("Details", "Artist", new { id = item.Artist_Id }, null)">
+                <img  class="thumb" width="200" src="@Url.Action("GetArtistImage", "Artist", new { id = item.Artist_Id })" alt="" border="0" style="border:0"/>
+            </a>
+    
+        }
+    </div>
+    <div class="UserStatus">
+    </div>
+    <div class="PhotoCaption">
+        <div class="PhotoCaptionText">
+            <a href="@Url.Action("Details", "Artist", new { id = item.Artist_Id }, null)">
+                <strong>@Html.DisplayFor(modelItem => item.Artist_FirstName) @Html.DisplayFor(modelItem => item.Artist_LastName)</strong> - 
+                @Html.DisplayFor(modelItem => item.Type.Type_Name) 
+            </a>
+        </div>
+    </div>
+</div>        
+   
+}
+
+
+@if (ViewBag.recordCount - 60 * ViewBag.page > 60)
+{
+<div id="@nextDiv">
+    <div style="width:200px">&nbsp;</div> 
+
+
+    <img id="ajax-loader1" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
+
+    @Ajax.ActionLink("more...", "MoreArtists",
+        new
+        {
+            filter_search = HttpUtility.UrlEncode((string)ViewBag.filter_search),
+            filter_Artist_TypeId = ViewBag.filter_Artist_TypeId,
+            filter_Artist_CountryId = ViewBag.filter_Artist_CountryId,
+            page = nextPage
+        },
+        new AjaxOptions
+        {
+            UpdateTargetId = nextDiv,
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            LoadingElementId = "ajax-loader1"
+        })
+</div>
+}

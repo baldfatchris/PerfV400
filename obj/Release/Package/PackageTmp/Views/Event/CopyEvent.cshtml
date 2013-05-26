@@ -1,0 +1,123 @@
+﻿@model PerfV400.Models.Event
+
+@{
+    ViewBag.Title = "Copy Event";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Ajax.BeginForm("CopyEvent", "Event", null,
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST",
+        OnFailure = "searchFailed",
+        OnSuccess = "copySuccess",
+        UpdateTargetId = "EventDetails"
+    },
+    new { @id = "CopyForm" }
+
+    
+    )) 
+
+{   
+    
+    @Html.ValidationSummary(true)
+
+    <div id="update-message" class="error invisible"></div>
+    
+    <fieldset>
+        <legend>Event</legend>
+
+        @Html.HiddenFor(model => model.Event_Id)
+        @Html.HiddenFor(model => model.Event_Photo)
+        @Html.HiddenFor(model => model.Event_PhotoFileName)
+        @Html.HiddenFor(model => model.Event_PhotoMimeType)
+
+        <input type="hidden" name="oldEventId" value="@ViewBag.oldEventId" />        
+
+        <div>
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.Event_GenreId)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("Event_GenreId", String.Empty)
+                @Html.ValidationMessageFor(model => model.Event_GenreId)
+            </div>
+        </div>
+        <div>
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.Event_Name)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Event_Name, new { style = "width:40em" }) 
+                @Html.ValidationMessageFor(model => model.Event_Name)
+            </div>
+        </div>
+
+@{
+    string strVenueName = ViewBag.VenueName;    
+}
+
+        <div>
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.Event_VenueId)
+            </div>
+            <div class="editor-field">
+                @Html.TextBox("VenueName", strVenueName)
+                @Html.ValidationMessageFor(model => model.Event_VenueId)
+            </div>
+        </div>
+        <div>
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.Event_Date)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Event_Date, null, new { @class = "date" })
+                @Html.ValidationMessageFor(model => model.Event_Date)
+            </div>
+        </div>
+        <div>
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.Event_StartTime)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Event_StartTime, "Time")
+                @Html.ValidationMessageFor(model => model.Event_StartTime)
+            </div>
+        </div>
+        <div>
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.Event_EndTime)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Event_EndTime, "Time")
+                @Html.ValidationMessageFor(model => model.Event_EndTime)
+            </div>
+        </div>
+        <div>
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.Event_Description)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.Event_Description)
+                @Html.ValidationMessageFor(model => model.Event_Description)
+            </div>
+        </div>
+
+        
+    </fieldset>
+}
+
+
+<script type="text/javascript">
+
+    $(function () {
+        $('input#Event_Date').datepicker({ dateFormat: "dd MM yy", autoSize: true });
+    });
+
+    $("#VenueName").autocomplete({
+        source: "@Url.Action("Autocomplete_Event_VenueName")",
+    });
+</script>

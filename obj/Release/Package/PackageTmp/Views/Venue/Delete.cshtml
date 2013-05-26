@@ -1,0 +1,151 @@
+﻿@model PerfV400.Models.Venue
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Venue</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_AddressLine1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_AddressLine1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_AddressLine2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_AddressLine2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_City)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_City)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_PostalCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_PostalCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StateProvince.StateProvince_Code)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StateProvince.StateProvince_Code)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CountryRegion.CountryRegion_Code)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CountryRegion.CountryRegion_Code)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_PhotoFileName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_PhotoFileName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_PhotoMimeType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_PhotoMimeType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_Long)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_Long)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_Lat)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_Lat)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_URL)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_URL)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_Major)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_Major)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_Capacity)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_Capacity)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_Architect)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_Architect)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_CreatedBy)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_CreatedBy)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue_CreatedDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue_CreatedDate)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

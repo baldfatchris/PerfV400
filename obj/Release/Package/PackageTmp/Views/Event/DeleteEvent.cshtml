@@ -1,0 +1,86 @@
+﻿@model PerfV400.Models.Event
+
+@{
+    ViewBag.Title = "Delete Event";
+}
+
+@using (Ajax.BeginForm("DeleteEvent", "Event", null,
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST",
+        OnFailure = "searchFailed",
+        OnSuccess = "deleteSuccess",
+        UpdateTargetId = "DeleteEventDetails"
+    },
+    new { @id = "DeleteForm" }
+
+    
+    )) 
+
+{   
+    
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Event</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Event_Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Event_Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Event_Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Event_Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Event_Date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Event_Date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Event_StartTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Event_StartTime)
+    </div>
+
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Event_EndTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Event_EndTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Band.Band_Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Band.Band_Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Venue.Venue_Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Venue.Venue_Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Genre.Genre_Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Genre.Genre_Name)
+    </div>
+
+</fieldset>
+}

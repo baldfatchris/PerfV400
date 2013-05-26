@@ -1,0 +1,69 @@
+﻿@model PerfV400.Models.EventUser
+
+@{
+    ViewBag.Title = "Edit User Event Status";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Ajax.BeginForm("UserEventStatus", "Event", null,
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST",
+        OnFailure = "searchFailed",
+        OnSuccess = "updateSuccess",
+        UpdateTargetId = "UserEventStatus"
+    },
+    new { @id = "EditForm" }
+
+    
+    )) 
+
+{   
+    
+    @Html.ValidationSummary(true)
+
+    <div id="update-message" class="error invisible"></div>
+    
+    <fieldset>
+        <legend>My Status</legend>
+
+        @Html.HiddenFor(model => model.EventUser_Id)
+        @Html.HiddenFor(model => model.EventUser_EventId)
+        @Html.HiddenFor(model => model.EventUser_UserId)
+
+
+        <div>
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.EventUser_StatusId)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("EventUser_StatusId", String.Empty)
+                @Html.ValidationMessageFor(model => model.EventUser_StatusId)
+            </div>
+        </div>
+        <div>
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.EventUser_UserRating)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.EventUser_UserRating, new { style = "width:40em" }) 
+                @Html.ValidationMessageFor(model => model.EventUser_UserRating)
+            </div>
+        </div>
+        <div>
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.EventUser_Note)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.EventUser_Note)
+                @Html.ValidationMessageFor(model => model.EventUser_Note)
+            </div>
+        </div>
+        
+
+    </fieldset>
+}
+

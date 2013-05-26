@@ -1,0 +1,99 @@
+﻿@model PerfV400.Models.Performance
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Performance</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Performance_Id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Performance_Id)
+            @Html.ValidationMessageFor(model => model.Performance_Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Performance_EventId, "Event")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Performance_EventId", String.Empty)
+            @Html.ValidationMessageFor(model => model.Performance_EventId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Performance_PieceId, "Piece")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Performance_PieceId", String.Empty)
+            @Html.ValidationMessageFor(model => model.Performance_PieceId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Performance_ProductionId, "Production")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Performance_ProductionId", String.Empty)
+            @Html.ValidationMessageFor(model => model.Performance_ProductionId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Performance_Order)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Performance_Order)
+            @Html.ValidationMessageFor(model => model.Performance_Order)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Performance_PhotoFileName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Performance_PhotoFileName)
+            @Html.ValidationMessageFor(model => model.Performance_PhotoFileName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Performance_PhotoMimeType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Performance_PhotoMimeType)
+            @Html.ValidationMessageFor(model => model.Performance_PhotoMimeType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Performance_CreatedBy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Performance_CreatedBy)
+            @Html.ValidationMessageFor(model => model.Performance_CreatedBy)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Performance_CreatedDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Performance_CreatedDate)
+            @Html.ValidationMessageFor(model => model.Performance_CreatedDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

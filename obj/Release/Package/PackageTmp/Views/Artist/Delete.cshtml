@@ -1,0 +1,179 @@
+﻿@model PerfV400.Models.Artist
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Artist</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_Middle_Names)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_Middle_Names)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_LastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_LastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Type.Type_Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Type.Type_Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_Notes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_Notes)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_Wiki)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_Wiki)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_PhotoFileName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_PhotoFileName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_PhotoMimeType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_PhotoMimeType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_UserId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_UserId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Agent.Agent_Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Agent.Agent_Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_WebPage)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_WebPage)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_Born)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_Born)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_Died)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_Died)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_Phone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_Phone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CountryRegion.CountryRegion_Code)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CountryRegion.CountryRegion_Code)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StateProvince.StateProvince_Code)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StateProvince.StateProvince_Code)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_City)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_City)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_TwitterName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_TwitterName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_FacebookId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_FacebookId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_CreatedBy)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_CreatedBy)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist_CreatedDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist_CreatedDate)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

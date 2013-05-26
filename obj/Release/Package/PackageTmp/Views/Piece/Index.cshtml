@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PerfV400.Models.Piece>
+
+@{
+    ViewBag.Title = "Pieces";
+}
+
+<p>
+    @Html.ActionLink("Create New Piece", "CreatePiece")
+</p>
+
+@using (Ajax.BeginForm("MorePieces", "Piece",
+    new     {page = 0}, 
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET",
+        OnFailure = "searchFailed",
+        LoadingElementId = "ajax-loader",
+        UpdateTargetId = "searchresults"
+    }))
+{
+
+    <div class="filter">
+        <div class="filter-label">
+            Search
+        </div>
+        <div class="filter-field">
+            @Html.TextBox("filter_search", null)
+            <input id="fs" type="submit" value="Search" />
+        </div>
+    </div>
+    <div class="filter">
+        <div class="filter-label">
+            Genre
+        </div>
+        <div class="filter-field">
+            @Html.DropDownList("filter_Piece_GenreId", (IEnumerable<SelectListItem>)ViewBag.Genres, "All Genres", new { onchange = "$(\"#fs\").click();" })
+        </div>
+    </div>
+
+    <div class="filter">
+       <div class="filter-label">
+            Artist
+        </div>
+        <div class="filter-field">
+            @Html.TextBox("filter_Artist_FullName", null, new { onchange = "$(\"#fs\").click();" })
+        </div>
+    </div>
+ 
+    <img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
+
+    <div id="searchresults">
+
+        @Html.Partial("_MorePieces")
+
+    </div>    
+    
+}
+<script type="text/javascript">
+    $("#filter_Artist_FullName").autocomplete({
+    source:"@Url.Action("Autocomplete_Artist_FullName")",  
+});  
+</script>

@@ -1,0 +1,71 @@
+﻿@model PerfV400.Models.Performance
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Performance</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Performance_Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Performance_Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Piece.Piece_Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Piece.Piece_Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Production.Production_Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Production.Production_Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Performance_Order)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Performance_Order)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Performance_PhotoFileName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Performance_PhotoFileName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Performance_PhotoMimeType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Performance_PhotoMimeType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Performance_CreatedBy)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Performance_CreatedBy)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Performance_CreatedDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Performance_CreatedDate)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,27 @@
+﻿@model PerfV400.Models.Role
+
+<div id="@string.Format("RoleDetails{0}", Model.Role_Id)" class="Photo150 toggle-toolbar" data-rank="@Model.Role_Rank">
+
+    <div class="artist-toolbar">
+        <ul class="toolbar">
+            <li class="edit">@Html.ActionLink("Edit", "EditRole", new { id = Model.Role_Id }, htmlAttributes: new { @class = "editLink", data_dialog_title = "Edit Role Details" })</li>
+            <li class="delete">@Html.ActionLink("Delete", "DeleteRole", new { id = Model.Role_Id }, htmlAttributes: new { @class = "deleteLink", data_dialog_title = "Delete Role" })</li>
+        </ul>
+    </div>
+
+    <div class="PhotoImage">
+        <a href="@Url.Action("Details", "Role", new { id = Model.Role_Id }, null)">
+            <img  class="thumb" width="150" src="@Url.Action("GetRoleImage", "Role", new { id = Model.Role_Id })" alt="" border="0" style="border:0"/>
+        </a>    
+    </div>
+
+    <div class="PhotoCaption">
+        <div class="PhotoCaptionText">
+            <a href="@Url.Action("Details", "Role", new { id = Model.Role_Id }, null)">
+                <strong>@Model.Role_Name</strong> 
+            </a>
+        </div>
+    </div>
+
+</div>
+

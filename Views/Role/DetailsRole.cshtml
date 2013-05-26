@@ -1,0 +1,60 @@
+﻿@model PerfV400.Models.Role
+
+<div id="@string.Format("RoleDetails{0}", Model.Role_Id)">
+
+    <h2>@Html.DisplayFor(model => model.Role_Name)</h2>
+
+    <div class="display-image EditPhotoDiv toggle-upload">
+
+         <div id="@string.Format("PhotoRole{0}",Model.Role_Id)">
+
+
+                <img class="pic" src="@Url.Action("GetRoleImage", "Role", new { id = Model.Role_Id })" alt="@Html.DisplayFor(a => a.Role_Name)" border="0" style="border:0"/>
+                
+                <script type="text/javascript">
+                    $(function () {
+                        $('.EditPhotoDiv').hover(function () {
+                            $(this).removeClass('toggle-upload');
+                        }, function () {
+                            $(this).addClass('toggle-upload');
+                        });
+                    });
+                </script>
+
+        </div>
+       
+        @using (Html.BeginForm("EditRolePhoto", "Role", FormMethod.Post,
+            new { enctype = "multipart/form-data", id = string.Format("EditPhotoFormRole{0}", Model.Role_Id), target = string.Format("EditPhotoTargetRole{0}", Model.Role_Id) }))
+        {
+            @Html.HiddenFor(model => model.Role_Id)
+            <input type="file" name="imageFile" onchange="EditPhoto('Role',@Model.Role_Id);" />
+        }
+        <iframe id="@string.Format("EditPhotoTargetRole{0}", Model.Role_Id)" name="@string.Format("EditPhotoTargetRole{0}", Model.Role_Id)" onload="EditPhotoComplete('Role',@Model.Role_Id);" 
+            style="position: absolute; left: -999em; top: -999em;"></iframe>
+
+        <script type="text/javascript">
+            var isFirstLoad = true;
+        </script>
+ 
+    </div>
+
+    @if (Model.Piece != null)
+    {
+        <div class="display-label">@Html.DisplayNameFor(model => model.Piece.Piece_Name)</div>
+        <div class="display-field">@Html.ActionLink(Model.Piece.Piece_Name, "Details", "Piece", new { id = Model.Role_PieceId }, null)</div>
+    }
+
+    <div class="display-label">@Html.DisplayNameFor(model => model.Role_Name)</div>
+    <div class="display-field">@Html.DisplayFor(model => model.Role_Name)</div>
+
+    <div class="display-label">@Html.DisplayNameFor(model => model.Type.Type_Name)</div>
+    <div class="display-field">@Html.DisplayFor(model => model.Type.Type_Name)</div>
+
+    <div class="display-label">@Html.DisplayNameFor(model => model.Role_Notes)</div>
+    <div class="display-field">@Html.DisplayFor(model => model.Role_Notes)</div>
+
+
+
+</div>
+      
+ 

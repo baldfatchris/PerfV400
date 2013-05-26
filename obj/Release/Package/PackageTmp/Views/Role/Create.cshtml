@@ -1,0 +1,83 @@
+﻿@model PerfV400.Models.Role
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Role</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Role_Id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Role_Id)
+            @Html.ValidationMessageFor(model => model.Role_Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Role_PieceId, "Piece")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Role_PieceId", String.Empty)
+            @Html.ValidationMessageFor(model => model.Role_PieceId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Role_GenreId, "Genre")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Role_GenreId", String.Empty)
+            @Html.ValidationMessageFor(model => model.Role_GenreId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Role_Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Role_Name)
+            @Html.ValidationMessageFor(model => model.Role_Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Role_Notes)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Role_Notes)
+            @Html.ValidationMessageFor(model => model.Role_Notes)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Role_TypeId, "Type")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Role_TypeId", String.Empty)
+            @Html.ValidationMessageFor(model => model.Role_TypeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Role_Rank)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Role_Rank)
+            @Html.ValidationMessageFor(model => model.Role_Rank)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

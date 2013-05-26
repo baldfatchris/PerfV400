@@ -1,0 +1,46 @@
+﻿@model PerfV400.Models.Role
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+@using (Ajax.BeginForm("DeleteRole", "Piece", null,
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST",
+        OnFailure = "searchFailed",
+        OnSuccess = "deleteSuccess",
+        UpdateTargetId = string.Format("RoleDetails{0}", Model.Role_Id)
+    },
+    new { @id = "DeleteForm" }
+
+    
+    )) 
+
+{   
+    
+
+    <fieldset>
+        <legend>Piece</legend>
+
+        @Html.HiddenFor(model => model.Role_Id)
+        @Html.HiddenFor(model => model.Role_PieceId)
+
+        <div class="display-label">@Html.DisplayNameFor(model => model.Piece.Piece_Name)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Piece.Piece_Name)</div>
+
+        <div class="display-label">@Html.DisplayNameFor(model => model.Role_Name)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Role_Name)</div>
+
+        <div class="display-label">@Html.DisplayNameFor(model => model.Type.Type_Name)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Type.Type_Name)</div>
+
+        <div class="display-label">@Html.DisplayNameFor(model => model.Role_Notes)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Role_Notes)</div>
+
+
+        
+    </fieldset>
+}

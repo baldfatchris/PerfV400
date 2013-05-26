@@ -1,0 +1,71 @@
+﻿@model PerfV400.Models.PieceArtist
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+
+@using (Ajax.BeginForm("NewPieceArtist", "Piece", null,
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.InsertBefore,
+        HttpMethod = "POST",
+        OnFailure = "searchFailed",
+        OnSuccess = "createSuccess",
+        UpdateTargetId = "NewPieceArtistDetails"
+    },
+    new { @id = "CreateForm" }
+
+    
+    )) 
+
+{   
+    
+    @Html.ValidationSummary(true)
+
+    <div id="update-message" class="error invisible"></div>
+    
+    <fieldset>
+        <legend>Piece</legend>
+
+        @Html.HiddenFor(model => model.PieceArtist_PieceId)
+
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.PieceArtist_ArtistId)
+        </div>
+        <div class="editor-field">
+            @Html.Editor("PieceArtist_ArtistFullName")
+            @Html.ValidationMessageFor(model => model.PieceArtist_ArtistId)
+        </div>
+       
+         <div class="editor-label">
+            @Html.DisplayNameFor(model => model.PieceArtist_PieceArtistTypeId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PieceArtist_PieceArtistTypeId", String.Empty)
+            @Html.ValidationMessageFor(model => model.PieceArtist_PieceArtistTypeId)
+        </div>
+
+       <div>
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.PieceArtist_Comments)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.PieceArtist_Comments)
+                @Html.ValidationMessageFor(model => model.PieceArtist_Comments)
+            </div>
+        </div>
+
+    </fieldset>
+}
+
+
+<script type="text/javascript">
+$("#PieceArtist_ArtistFullName").autocomplete({
+    source:"@Url.Action("Autocomplete_Artist_FullName")",  
+});  
+</script>

@@ -1,0 +1,175 @@
+﻿@model PerfV400.Models.Artist
+
+@{
+    ViewBag.Title = "Artist Details";
+}
+
+<div id="ArtistDetails">
+    
+    <fieldset>
+        <legend>Artist</legend>
+
+        <ul class="toolbar">
+            <li class="edit">@Html.ActionLink("Edit Artist Details", "EditArtist", new { id = Model.Artist_Id }, htmlAttributes: new { @class = "editLink", data_dialog_title = "Edit Artist Details" })</li>
+            <li class="delete">@Html.ActionLink("Delete Artist", "DeleteArtist", new { id = Model.Artist_Id }, htmlAttributes: new { @class = "deleteLink", data_dialog_title = "Delete Artist" })</li>
+        @if (ViewBag.CouldIBeTheArtist) {
+            <li class="edit">@Html.ActionLink("This is me!", "ThisIsMe", new { id = Model.Artist_Id }, htmlAttributes: new { @class = "editLink", data_dialog_title = "This is me!" })</li>      
+        }
+        </ul>
+        @Html.Partial("DetailsArtist")
+    </fieldset>
+
+    
+@if (Model.PerformanceArtists.Count > 0)
+{
+<fieldset>
+    <legend>Performances</legend>
+
+
+@using (Ajax.BeginForm("MoreArtistEvents", "Artist",
+    new     {page = 0}, 
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET",
+        OnFailure = "searchFailed",
+        LoadingElementId = "ajax-loader",
+        UpdateTargetId = "artisteventsearchresults"
+    }))
+{
+
+    <div class="filter">
+
+    @Html.Hidden("filter_Artist_Id", Model.Artist_Id)
+
+    <table>
+        <tr>
+            <td class="filter-label">
+                Search
+            </td>
+            <td class="filter-field">
+                @Html.TextBox("filter_search", null)
+                <input id="fs" type="submit" value="Search" />
+            </td>
+        </tr>
+        <tr>
+            <td class="filter-label">
+                Genre
+            </td>
+            <td class="filter-field">
+                @Html.DropDownList("filter_Event_GenreId", (IEnumerable<SelectListItem>)ViewBag.Genres, "All Genres", new { onchange = "$(\"#fs\").click();" }) 
+            </td>
+        </tr>
+        <tr>
+            <td class="filter-label">
+                Piece
+            </td>
+            <td class="filter-field">
+                @Html.DropDownList("filter_Performance_Piece", (IEnumerable<SelectListItem>)ViewBag.Pieces, "All Pieces", new { onchange = "$(\"#fs\").click();" }) 
+            </td>
+        </tr>
+        <tr>
+            <td class="filter-label">
+                Venue
+            </td>
+            <td class="filter-field">
+                @Html.DropDownList("filter_Event_VenueId", (IEnumerable<SelectListItem>)ViewBag.Venues, "All Venues", new { onchange = "$(\"#fs\").click();" }) 
+                @Html.TextBox("filter_Event_Venue", null)        
+            </td>
+        </tr>
+        <tr>
+            <td class="filter-label">
+                City
+            </td>
+            <td class="filter-field">
+                @Html.DropDownList("filter_Venue_City", (IEnumerable<SelectListItem>)ViewBag.Cities, "All Cities", new { onchange = "$(\"#fs\").click();" }) 
+            </td>
+        </tr>
+        <tr>
+            <td class="filter-label">
+                Country
+            </td>
+            <td class="filter-field">
+                @Html.DropDownList("filter_Venue_CountryId", (IEnumerable<SelectListItem>)ViewBag.Countries, "All Countries", new { onchange = "$(\"#fs\").click();" }) 
+            </td>
+        </tr>
+        <tr>
+            <td class="filter-label">
+                Date
+            </td>
+            <td class="filter-field">
+                @Html.TextBox("filter_From_Event_Date", null, new { onchange = "$(\"#fs\").click();", @class = "datepicker", @style = "width:8em" })
+                to
+                @Html.TextBox("filter_To_Event_Date", null, new { onchange = "$(\"#fs\").click();", @class = "datepicker", @style = "width:8em" })
+            </td>
+            <td class="filter-field">
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+
+    
+<img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
+
+<div id="artisteventsearchresults">
+    
+    @{
+        ViewBag.Artist_Id = Model.Artist_Id;
+        IEnumerable<PerfV400.Models.Event> events = ViewBag.events;
+    }
+    @Html.Partial("_MoreArtistEvents", events)
+
+</div>
+    
+}    
+
+
+
+
+        
+
+</fieldset>        
+}
+
+
+@if (Model.PieceArtists.Count > 0)
+{
+ <fieldset>
+    <legend>Pieces</legend>
+
+        <table border="0">
+
+        @foreach (PerfV400.Models.PieceArtist pieceArtist in Model.PieceArtists.OrderBy(pa => pa.Piece.Piece_Year).ThenBy(pa => pa.Piece.Piece_Name))
+        {
+
+            <tr>
+                <td class="cell-thumb">
+                    <img height="50" src="@Url.Action("GetPieceImage", "Artist", new { id = pieceArtist.PieceArtist_PieceId })" alt="" border="0" style="border:0"/>
+                </td>
+                <td class="cell-field">
+                    @Html.ActionLink(@pieceArtist.Piece.Piece_Name, "Details", "Piece", new { id = pieceArtist.PieceArtist_PieceId }, null)
+                    -
+                    @pieceArtist.Piece.Genre.Genre_Name
+                    -
+                    @pieceArtist.Piece.Piece_Year
+                </td>
+
+            </tr>
+        }
+
+        </table>
+</fieldset>
+        
+}
+
+
+
+</div>
+
+<script type="text/javascript">
+    $("#filter_Event_Venue").autocomplete({
+        source: "@Url.Action("Autocomplete_Event_VenueName")",
+    });
+</script>

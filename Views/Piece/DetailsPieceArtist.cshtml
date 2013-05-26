@@ -1,0 +1,48 @@
+﻿@model PerfV400.Models.PieceArtist
+
+@{
+    string artistFullName = "";
+    if (Model.Artist != null)
+    {
+        artistFullName = string.Format("{0} {1}", Model.Artist.Artist_FirstName, Model.Artist.Artist_LastName);
+    }
+    else if (ViewBag.artist != null)
+    {
+        artistFullName = string.Format("{0} {1}", ViewBag.artist.Artist_FirstName, ViewBag.artist.Artist_LastName);
+    }
+
+    string roleName = "";
+    if (Model.PieceArtistType != null)
+    {
+        roleName = Model.PieceArtistType.PieceArtistType_Name;
+    }
+    else if (ViewBag.pieceArtistType != null)
+
+    {
+        roleName = ViewBag.pieceArtistType.PieceArtistType_Name;
+    }     
+}
+<div id="@string.Format("PieceArtistDetails{0}", Model.PieceArtist_Id)" class="Photo150 toggle-toolbar">
+
+    <div class="artist-toolbar">
+        <ul class="toolbar">
+            <li class="edit">@Html.ActionLink("Edit", "EditPieceArtist", new { id = Model.PieceArtist_Id }, htmlAttributes: new { @class = "editLink", data_dialog_title = "Edit Artist Details" })</li>
+            <li class="delete">@Html.ActionLink("Delete", "DeletePieceArtist", new { id = Model.PieceArtist_Id }, htmlAttributes: new { @class = "deleteLink", data_dialog_title = "Delete Person" })</li>
+        </ul>
+    </div>
+
+    <div class="PhotoImage">
+        <a href="@Url.Action("Details", "Artist", new { id = Model.Artist.Artist_Id }, null)">
+            <img  class="thumb" width="150" src="@Url.Action("GetArtistImage", "Artist", new { id = Model.Artist.Artist_Id })" alt="@artistFullName" border="0" style="border:0"/>
+        </a>    
+    </div>
+
+    <div class="PhotoCaption">
+        <div class="PhotoCaptionText">
+            <a href="@Url.Action("Details", "Artist", new { id = Model.PieceArtist_ArtistId }, null)">
+                <strong>@artistFullName</strong> - @roleName
+            </a>
+        </div>
+    </div>
+
+</div>

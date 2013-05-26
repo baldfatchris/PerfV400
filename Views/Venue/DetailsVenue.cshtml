@@ -1,0 +1,105 @@
+﻿@model PerfV400.Models.Venue
+
+<div id="@string.Format("VenueDetails{0}", Model.Venue_Id)">
+
+    <h2>@Html.DisplayFor(model => model.Venue_Name)</h2>
+        
+
+
+
+
+
+
+    <div class="display-image EditPhotoDiv toggle-upload">
+
+         <div id="@string.Format("PhotoVenue{0}",Model.Venue_Id)">
+            <img class="pic" src="@Url.Action("GetVenueImage", "Venue", new { id = Model.Venue_Id })" alt="@Html.DisplayFor(e => e.Venue_Name)" border="0" style="border:0"/>
+                
+            <script type="text/javascript">
+                $(function () {
+                    $('.EditPhotoDiv').hover(function () {
+                        $(this).removeClass('toggle-upload');
+                    }, function () {
+                        $(this).addClass('toggle-upload');
+                    });
+                });
+            </script>
+        </div>
+       
+        @using (Html.BeginForm("EditVenuePhoto", "Venue", FormMethod.Post,
+            new { enctype = "multipart/form-data", id = string.Format("EditPhotoFormVenue{0}", Model.Venue_Id), target = string.Format("EditPhotoTargetVenue{0}", Model.Venue_Id) }))
+        {
+            @Html.HiddenFor(model => model.Venue_Id)
+            <input type="file" name="imageFile" onchange="EditPhoto('Venue',@Model.Venue_Id);" />
+        }
+        <iframe id="@string.Format("EditPhotoTargetVenue{0}", Model.Venue_Id)" name="@string.Format("EditPhotoTargetVenue{0}", Model.Venue_Id)" onload="EditPhotoComplete('Venue',@Model.Venue_Id);" 
+            style="position: absolute; left: -999em; top: -999em;"></iframe>
+
+        <script type="text/javascript">
+            var isFirstLoad = true;
+        </script>
+ 
+    </div>
+
+
+
+    <div class="display-label">Venue</div>
+    <div class="display-field">@Html.DisplayFor(model => model.Venue_Name)</div>
+
+    @if (Model.Venue_AddressLine1 != null) {
+        <div class="display-label">Address Line 1</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Venue_AddressLine1)</div>
+    }
+
+    @if (Model.Venue_AddressLine2 != null) {
+        <div class="display-label">Address Line 2</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Venue_AddressLine2)</div>
+    }
+
+    @if (Model.Venue_City != null) {
+        <div class="display-label">City</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Venue_City)</div>
+    }
+
+    @if (Model.Venue_PostalCode != null) {
+        <div class="display-label">Zip/Post Code</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Venue_PostalCode)</div>
+    }
+
+
+        <div class="display-label">State/Province</div>
+        <div class="display-field">@Html.DisplayFor(model => model.StateProvince.StateProvince_Name)</div>
+
+
+        <div class="display-label">Country/Region</div>
+        <div class="display-field">@Html.DisplayFor(model => model.CountryRegion.CountryRegion_Name)</div>
+
+
+    @if (Model.Venue_URL != null) {
+        <div class="display-label">Website</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Venue_URL)</div>
+    }
+
+    @if (Model.Venue_Description != null) {
+        <div class="display-label">Description</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Venue_Description)</div>
+    }
+
+    @if (Model.Venue_Major != null) {
+        <div class="display-label">Major Venue</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Venue_Major)</div>
+    }
+
+    @if (Model.Venue_Capacity != null) {
+        <div class="display-label">Capacity</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Venue_Capacity)</div>
+    }
+
+    @if (Model.Venue_Architect != null) {
+        <div class="display-label">Architect</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Venue_Architect)</div>
+    }
+
+
+
+</div>

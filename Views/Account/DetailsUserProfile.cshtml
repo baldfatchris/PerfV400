@@ -1,0 +1,19 @@
+﻿@model PerfV400.Models.UserProfile
+
+<div id="@string.Format("UserProfileDetails{0}", Model.User_Id)">
+
+    <h2>@Html.DisplayFor(model => model.User_FirstName) @Html.DisplayFor(model => model.User_LastName)</h2>
+
+    <div class="display-label">@Html.DisplayNameFor(model => model.User_FirstName)</div>
+    <div class="display-field">@Html.DisplayFor(model => model.User_FirstName)</div>
+
+    <div class="display-label">@Html.DisplayNameFor(model => model.User_MiddleNames)</div>
+    <div class="display-field">@Html.DisplayFor(model => model.User_MiddleNames)</div>
+
+    <div class="display-label">@Html.DisplayNameFor(model => model.User_LastName)</div>
+    <div class="display-field">@Html.DisplayFor(model => model.User_LastName)</div>
+
+
+</div>
+      
+ 

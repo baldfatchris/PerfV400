@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PerfV400.Models.PieceArtist>
+
+@{
+    int nextPage = 1;
+    if (ViewBag.page != null)
+    {
+        nextPage = ViewBag.page +1 ;
+    }
+    string nextDiv = string.Format("morepieceartists{0}", nextPage);
+}
+
+
+@foreach (var item in Model)
+{
+<div id="@string.Format("PieceArtistDetails{0}", item.PieceArtist_Id)" class="Photo150 toggle-toolbar">
+    <div class="artist-toolbar">
+        <ul class="toolbar">
+            <li class="edit">@Html.ActionLink("Edit", "EditPieceArtist", new { id = item.PieceArtist_Id }, htmlAttributes: new { @class = "editLink", data_dialog_title = "Edit Artist" })</li>
+            <li class="delete">@Html.ActionLink("Delete", "DeletePieceArtist", new { id = item.PieceArtist_Id }, htmlAttributes: new { @class = "deleteLink", data_dialog_title = "Delete Artist" })</li>
+        </ul>
+    </div>
+    <div class="PhotoImage">
+        <a href="@Url.Action("Details", "Artist", new { id = item.PieceArtist_ArtistId }, null)">
+            <img class="thumb" width="150" src="@Url.Action("GetArtistImage", "Artist", new { id = item.PieceArtist_ArtistId })" alt="" border="0" style="border:0"/>
+        </a>
+    </div>
+    <div class="PhotoCaption">
+        <div class="PhotoCaptionText">
+            <a href="@Url.Action("Details", "Artist", new { id = item.PieceArtist_ArtistId }, null)">
+                <strong>@Html.DisplayFor(modelItem => item.Artist.Artist_FirstName) @Html.DisplayFor(modelItem => item.Artist.Artist_LastName)</strong> - 
+                @Html.DisplayFor(modelItem => item.PieceArtistType.PieceArtistType_Name)
+            </a>
+        </div>
+    </div>
+</div>        
+ 
+}
+
+
+@if (ViewBag.recordCount - 60 * ViewBag.page > 60)
+{
+<div id="@nextDiv">
+
+    @Ajax.ActionLink("more...", "MorePieceArtists",
+        new
+        {
+            filter_Piece_Id = ViewBag.Piece_Id,
+            page = nextPage
+        },
+        new AjaxOptions
+        {
+            UpdateTargetId = nextDiv,
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            LoadingElementId = "morepieceartistsajaxloader"
+        })
+    <div style="clear:both"></div>
+
+    <img id="morepieceartistsajaxloader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
+
+</div>
+}
+
+

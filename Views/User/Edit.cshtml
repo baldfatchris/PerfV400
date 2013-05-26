@@ -1,0 +1,147 @@
+﻿@model PerfV400.Models.User
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>User</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User_Id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.User_Id)
+            @Html.ValidationMessageFor(model => model.User_Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User_Active)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.User_Active)
+            @Html.ValidationMessageFor(model => model.User_Active)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User_FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.User_FirstName)
+            @Html.ValidationMessageFor(model => model.User_FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User_LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.User_LastName)
+            @Html.ValidationMessageFor(model => model.User_LastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User_DateOfBirth)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.User_DateOfBirth)
+            @Html.ValidationMessageFor(model => model.User_DateOfBirth)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User_Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.User_Email)
+            @Html.ValidationMessageFor(model => model.User_Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User_ConfirmEmail)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.User_ConfirmEmail)
+            @Html.ValidationMessageFor(model => model.User_ConfirmEmail)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User_Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.User_Password)
+            @Html.ValidationMessageFor(model => model.User_Password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User_ConfirmPassword)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.User_ConfirmPassword)
+            @Html.ValidationMessageFor(model => model.User_ConfirmPassword)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User_LanguageId, "Language")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("User_LanguageId", String.Empty)
+            @Html.ValidationMessageFor(model => model.User_LanguageId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User_ArtistId, "Artist")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("User_ArtistId", String.Empty)
+            @Html.ValidationMessageFor(model => model.User_ArtistId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User_CountryId, "CountryRegion")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("User_CountryId", String.Empty)
+            @Html.ValidationMessageFor(model => model.User_CountryId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User_ConfirmationCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.User_ConfirmationCode)
+            @Html.ValidationMessageFor(model => model.User_ConfirmationCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User_Confirmed)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.User_Confirmed)
+            @Html.ValidationMessageFor(model => model.User_Confirmed)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User_FacebookId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.User_FacebookId)
+            @Html.ValidationMessageFor(model => model.User_FacebookId)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

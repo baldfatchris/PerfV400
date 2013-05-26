@@ -1,0 +1,107 @@
+﻿@model PerfV400.Models.Piece
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Piece</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Piece_Id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Piece_Id)
+            @Html.ValidationMessageFor(model => model.Piece_Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Piece_Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Piece_Name)
+            @Html.ValidationMessageFor(model => model.Piece_Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Piece_Year)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Piece_Year)
+            @Html.ValidationMessageFor(model => model.Piece_Year)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Piece_Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Piece_Description)
+            @Html.ValidationMessageFor(model => model.Piece_Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Piece_Wiki)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Piece_Wiki)
+            @Html.ValidationMessageFor(model => model.Piece_Wiki)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Piece_PhotoFileName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Piece_PhotoFileName)
+            @Html.ValidationMessageFor(model => model.Piece_PhotoFileName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Piece_PhotoMimeType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Piece_PhotoMimeType)
+            @Html.ValidationMessageFor(model => model.Piece_PhotoMimeType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Piece_GenreId, "Genre")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Piece_GenreId", String.Empty)
+            @Html.ValidationMessageFor(model => model.Piece_GenreId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Piece_CreatedBy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Piece_CreatedBy)
+            @Html.ValidationMessageFor(model => model.Piece_CreatedBy)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Piece_CreatedDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Piece_CreatedDate)
+            @Html.ValidationMessageFor(model => model.Piece_CreatedDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,60 @@
+﻿@model PerfV400.Models.Production
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Production</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Production_Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Production_Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Piece.Piece_Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Piece.Piece_Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Production_Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Production_Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Production_Date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Production_Date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Production_PhotoFileName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Production_PhotoFileName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Production_PhotoMimeType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Production_PhotoMimeType)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

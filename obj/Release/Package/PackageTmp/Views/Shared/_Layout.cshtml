@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - Amovada</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/themes/base/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/Perf400")
+
+
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                   <a href="event"><img src="@Url.Content("~/Content/logo.png")" alt="logo" /></a>
+                 </div>
+                <div class="float-right">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Events", "Index", "Event")</li>
+                            <li>@Html.ActionLink("Artists", "Index", "Artist")</li>
+                            <li>@Html.ActionLink("Pieces", "Index", "Piece")</li>
+                            <li>@Html.ActionLink("Venues", "Index", "Venue")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Profile", "Details", "Account")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+
+            <div id="EditDialogue" title="Edit Details"></div>
+            <div id="CopyDialogue" title="Copy Details"></div>
+            <div id="CreateDialogue" title="Create Details"></div>
+            <div id="DeleteDialogue" title="Delete Details"></div>
+            <div id="commonMessage"></div>
+
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - Amovada</p>
+                </div>
+            </div>
+        </footer>
+
+
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

@@ -1,0 +1,107 @@
+﻿@model PerfV400.Models.Performance
+@{
+    int intPieceId;
+    if (ViewBag.Piece == null)
+    {
+        intPieceId = Model.Performance_PieceId;
+    }
+    else
+    {
+        intPieceId = ViewBag.Piece.Piece_Id;
+    }
+    
+}
+<div id="@string.Format("PerformanceDetails{0}", Model.Performance_Id)"> 
+    <fieldset>
+        <legend>Performance</legend>
+
+@if (ViewBag.UserCanEditEvent){
+        <ul class="toolbar">
+            <li class="edit">@Html.ActionLink("Edit Performance Details", "EditPerformance", new { id = Model.Performance_Id }, htmlAttributes: new { @class = "editLink", data_dialog_title = "Edit Performance Details" })</li>
+            <li class="delete">@Html.ActionLink("Delete Performance", "DeletePerformance", new { id = Model.Performance_Id }, htmlAttributes: new { @class = "deleteLink", data_dialog_title = "Delete Performance" })</li>
+        </ul>
+}
+
+        <h2>@Html.DisplayFor(model => model.Piece.Piece_Name)</h2>
+
+        <div class="display-image">
+            @if (Model.Performance_Photo != null) {
+                <img class="pic" src="@Url.Action("GetPerformanceImage", "Performance", new { id = Model.Performance_Id })" alt="@Html.DisplayFor(p => p.Piece.Piece_Name)" border="0" style="border:0"/>
+            }
+        </div>
+
+        @if (Model.Piece != null)
+        {
+        <div class="display-label">@Html.LabelFor(model => model.Piece.Piece_Name, "Piece")</div>
+        
+        <div class="display-field">
+                @Html.ActionLink(Model.Piece.Piece_Name, "Details", "Piece", new { id = intPieceId }, null) (
+
+                @{
+                    int lineCount = 0;
+                }
+
+                @foreach (PerfV400.Models.PieceArtist pieceArtist in Model.Piece.PieceArtists)
+                {
+
+                    if (lineCount > 0)
+                    {
+                        <span>,</span>
+                    }
+
+                    string artistFullName = string.Format("{0} {1}", pieceArtist.Artist.Artist_FirstName, pieceArtist.Artist.Artist_LastName);
+
+                    @Html.ActionLink(@artistFullName, "Details", "Artist", new { id = pieceArtist.PieceArtist_ArtistId }, null)
+
+                    if (pieceArtist.PieceArtistType != null)
+                    {
+                        string.Format(" {0} ", pieceArtist.PieceArtistType.PieceArtistType_Name);
+                    }
+
+                    lineCount = lineCount + 1;
+
+                }
+                )
+        </div>
+        }
+
+        @if (Model.Production != null)
+        {
+            <div class="display-label">@Html.DisplayNameFor(model => model.Production.Production_Name)</div>
+            <div class="display-field">@Html.DisplayFor(model => model.Production.Production_Name)</div>
+        }
+        @if (Model.Performance_Order != null && Model.Performance_Order > 0)
+        {
+            <div class="display-label">@Html.DisplayNameFor(model => model.Performance_Order)</div>
+            <div class="display-field">@Html.DisplayFor(model => model.Performance_Order)</div>
+        }
+
+
+
+        <br/><br/><br/><br/>
+        
+        <fieldset>
+            <legend>Cast &amp; Crew</legend>
+
+                @if (ViewBag.UserCanEditEvent){
+                <ul class="toolbar">
+                    <li class="add">@Html.ActionLink("Add New Person", "NewPerformanceArtist", new { PerformanceId = Model.Performance_Id }, htmlAttributes: new { @class = "createLink", data_dialog_title = "Add New Person" })</li>
+
+                    <li class="add">@Html.ActionLink("I'm in this", "ImInThis", new { PerformanceId = Model.Performance_Id }, htmlAttributes: new { @class = "createLink", data_dialog_title = "I'm in this!" })</li>
+
+                </ul>
+                }
+    
+                @foreach (PerfV400.Models.PerformanceArtist performanceArtist in Model.PerformanceArtists.OrderBy(pa => pa.Role.Role_Rank))
+                {
+                    @Html.Partial("DetailsPerformanceArtist", performanceArtist)
+                }
+
+            
+                <div id="@string.Format("NewPerformanceArtistDetails{0}", Model.Performance_Id)" /> 
+
+
+        </fieldset>
+    </fieldset>
+
+</div>

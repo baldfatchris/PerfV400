@@ -1,0 +1,120 @@
+﻿@model PerfV400.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>User</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.User_Id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User_Id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.User_Active)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User_Active)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.User_FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User_FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.User_LastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User_LastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.User_DateOfBirth)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User_DateOfBirth)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.User_Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User_Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.User_ConfirmEmail)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User_ConfirmEmail)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.User_Password)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User_Password)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.User_ConfirmPassword)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User_ConfirmPassword)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Language.Language_Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Language.Language_Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Artist.Artist_FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Artist.Artist_FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CountryRegion.CountryRegion_Code)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CountryRegion.CountryRegion_Code)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.User_ConfirmationCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User_ConfirmationCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.User_Confirmed)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User_Confirmed)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.User_FacebookId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User_FacebookId)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

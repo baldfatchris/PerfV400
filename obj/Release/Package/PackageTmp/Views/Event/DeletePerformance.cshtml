@@ -1,0 +1,41 @@
+﻿@model PerfV400.Models.Performance
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+@using (Ajax.BeginForm("DeletePerformance", "Event", null,
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST",
+        OnFailure = "searchFailed",
+        OnSuccess = "deleteSuccess",
+        UpdateTargetId = string.Format("PerformanceDetails{0}", Model.Performance_Id)
+    },
+    new { @id = "DeleteForm" }
+
+    
+    )) 
+
+{   
+    
+
+    <fieldset>
+        <legend>Performance</legend>
+
+        @Html.HiddenFor(model => model.Performance_Id)
+        @Html.HiddenFor(model => model.Performance_EventId)
+
+        <div class="display-label">@Html.DisplayNameFor(model => model.Piece.Piece_Name)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Piece.Piece_Name)</div>
+
+
+        <div class="display-label">@Html.DisplayNameFor(model => model.Production.Production_Name)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Production.Production_Name)</div>
+
+        <div class="display-label">@Html.DisplayNameFor(model => model.Performance_Order)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Performance_Order)</div>
+        
+    </fieldset>
+}

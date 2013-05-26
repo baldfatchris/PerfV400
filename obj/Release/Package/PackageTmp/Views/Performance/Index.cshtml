@@ -1,0 +1,75 @@
+﻿@model IEnumerable<PerfV400.Models.Performance>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Performance_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Piece.Piece_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Production.Production_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Performance_Order)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Performance_PhotoFileName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Performance_PhotoMimeType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Performance_CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Performance_CreatedDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Performance_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Piece.Piece_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Production.Production_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Performance_Order)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Performance_PhotoFileName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Performance_PhotoMimeType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Performance_CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Performance_CreatedDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

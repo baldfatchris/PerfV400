@@ -1,0 +1,19 @@
+﻿@model PerfV400.Models.UserProfile
+
+@{
+    ViewBag.Title = "User Details";
+}
+
+<div id="UserProfileDetails">
+    
+    <fieldset>
+        <legend>User Profile</legend>
+
+        <ul class="toolbar">
+            <li class="edit">@Html.ActionLink("Edit Profile", "EditUserProfile", new { id = Model.User_Id}, htmlAttributes: new { @class = "editLink", data_dialog_title = "Edit Profile Details" })</li>
+        </ul>
+        @Html.Partial("DetailsUserProfile")
+    </fieldset>
+
+    
+</div>

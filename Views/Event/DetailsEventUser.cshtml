@@ -1,0 +1,76 @@
+﻿
+
+
+
+<div class="display-label">My Status</div>
+<div class="display-field">
+
+@using (Ajax.BeginForm("Update_EventUser_StatusId", "Event",
+    new { EventUser_UserId = ViewBag.EventUser_UserId, EventUser_EventId = ViewBag.EventUser_EventId },
+    new AjaxOptions
+    {
+        HttpMethod = "POST"
+    }))
+{
+    @Html.DropDownList("EventUser_StatusId", (IEnumerable<SelectListItem>)ViewBag.MyStatus, null, new { onchange = "$(\"#fs1\").click();"})
+    <input id="fs1" type="submit" value="Update Status" style="display: none;"/>
+}
+
+</div>
+
+@if (ViewBag.Event_Date < DateTime.Today)
+{
+    
+<div class="display-label">My Rating</div>
+<div class="display-field">
+
+@using (Ajax.BeginForm("Update_EventUser_UserRating", "Event",
+    new { EventUser_UserId = ViewBag.EventUser_UserId, EventUser_EventId = ViewBag.EventUser_EventId },
+    new AjaxOptions
+    {
+        HttpMethod = "POST"
+    }))
+{
+    
+    <div class="stars" data-value="@ViewBag.EventUser_UserRating">
+
+        <label for="rating-1"><input id="rating-1" name="EventUser_UserRating" type="radio" value="1"/>0.5 Stars</label>
+        <label for="rating-2"><input id="rating-2" name="EventUser_UserRating" type="radio" value="2"/>1 Star</label>
+        <label for="rating-3"><input id="rating-3" name="EventUser_UserRating" type="radio" value="3"/>1.5 Stars</label>
+        <label for="rating-4"><input id="rating-4" name="EventUser_UserRating" type="radio" value="4"/>2 Stars</label>
+        <label for="rating-5"><input id="rating-5" name="EventUser_UserRating" type="radio" value="5"/>2.5 Stars</label>
+        <label for="rating-6"><input id="rating-6" name="EventUser_UserRating" type="radio" value="6"/>3 Stars</label>
+        <label for="rating-7"><input id="rating-7" name="EventUser_UserRating" type="radio" value="7"/>3.5 Stars</label>
+        <label for="rating-8"><input id="rating-8" name="EventUser_UserRating" type="radio" value="8"/>4 Stars</label>
+        <label for="rating-9"><input id="rating-9" name="EventUser_UserRating" type="radio" value="9"/>4.5 Stars</label>
+        <label for="rating-10"><input id="rating-10" name="EventUser_UserRating" type="radio" value="10"/>5 Stars</label>
+    </div>
+    <div>
+        <input id="fs2" type="submit" value="Submit Rating" style="display: none;"/>
+    </div>
+    
+    
+    
+}
+
+</div>
+    
+}    
+    
+<div class="display-label">Comments</div>
+<div class="display-field">
+
+@using (Ajax.BeginForm("Update_EventUser_Note", "Event",
+    new { EventUser_UserId = ViewBag.EventUser_UserId, EventUser_EventId = ViewBag.EventUser_EventId },
+    new AjaxOptions
+    {
+        HttpMethod = "POST"
+    }))
+{
+    string strNote = ViewBag.EventUser_Note;
+    @Html.TextArea("EventUser_Note", strNote, new {style="font-size:1em;", onchange = "$(\"#fs3\").click();"})
+    <input id="fs3" type="submit" value="Update Status" style="display: none;"/>
+}
+
+</div>
+

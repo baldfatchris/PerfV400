@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PerfV400.Models.Artist>
+
+@{
+    ViewBag.Title = "Artists";
+}
+
+<p>
+    @Html.ActionLink("Create New Artist", "Create")
+</p>
+
+@using (Ajax.BeginForm("MoreArtists", "Artist",
+    new     {page = 0}, 
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET",
+        OnFailure = "searchFailed",
+        LoadingElementId = "ajax-loader",
+        UpdateTargetId = "searchresults"
+    }))
+{
+
+<div class="filter">
+    <table>
+        <tr>
+            <td class="filter-label">
+                Search
+            </td>
+            <td class="filter-field">
+                @Html.TextBox("filter_search", null)
+                <input id="fs" type="submit" value="Search" />
+            </td>
+        </tr>
+        <tr>
+            <td class="filter-label">
+                Type
+            </td>
+            <td class="filter-field">
+                @Html.DropDownList("filter_Artist_TypeId", (IEnumerable<SelectListItem>)ViewBag.Types, "All Types", new { onchange = "$(\"#fs\").click();" }) 
+            </td>
+        </tr>
+        <tr>
+            <td class="filter-label">
+                Country
+            </td>
+            <td class="filter-field">
+                @Html.DropDownList("filter_Artist_CountryId", (IEnumerable<SelectListItem>)ViewBag.Countries, "All Countries", new { onchange = "$(\"#fs\").click();" }) 
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
+
+<div id="searchresults">
+
+    @Html.Partial("_MoreArtists")
+
+</div>    
+    
+}
+

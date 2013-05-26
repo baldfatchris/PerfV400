@@ -1,0 +1,76 @@
+﻿@model PerfV400.Models.Event
+
+@{
+    string strVenue = ViewBag.Venue.Venue_Name;
+    if (ViewBag.Venue.Venue_City != null) { strVenue = string.Format("{0} - {1}", strVenue, ViewBag.Venue.Venue_City); }
+    if (ViewBag.Venue.CountryRegion != null && ViewBag.Venue.CountryRegion.CountryRegion_Name != null) { strVenue = string.Format("{0} - {1}", strVenue, ViewBag.Venue.CountryRegion.CountryRegion_Name); }
+
+    string strGenre = ViewBag.Genre.Genre_Name;
+}
+
+<div id="@string.Format("EventDetails{0}", Model.Event_Id)">
+
+    <h2>@Html.DisplayFor(model => model.Event_Name) - @strVenue - @Html.DisplayFor(model => model.Event_Date)</h2>
+
+    <div class="display-image EditPhotoDiv toggle-upload">
+
+         <div id="@string.Format("PhotoEvent{0}",Model.Event_Id)">
+            <img class="pic" src="@Url.Action("GetEventImage", "Event", new { id = Model.Event_Id })" alt="@Html.DisplayFor(e => e.Event_Name)" border="0" style="border:0"/>
+                
+            <script type="text/javascript">
+                $(function () {
+                    $('.EditPhotoDiv').hover(function () {
+                        $(this).removeClass('toggle-upload');
+                    }, function () {
+                        $(this).addClass('toggle-upload');
+                    });
+                });
+            </script>
+        </div>
+       
+        @using (Html.BeginForm("EditEventPhoto", "Event", FormMethod.Post,
+            new { enctype = "multipart/form-data", id = string.Format("EditPhotoFormEvent{0}", Model.Event_Id), target = string.Format("EditPhotoTargetEvent{0}", Model.Event_Id) }))
+        {
+            @Html.HiddenFor(model => model.Event_Id)
+            <input type="file" name="imageFile" onchange="EditPhoto('Event',@Model.Event_Id);" />
+        }
+        <iframe id="@string.Format("EditPhotoTargetEvent{0}", Model.Event_Id)" name="@string.Format("EditPhotoTargetEvent{0}", Model.Event_Id)" onload="EditPhotoComplete('Event',@Model.Event_Id);" 
+            style="position: absolute; left: -999em; top: -999em;"></iframe>
+
+        <script type="text/javascript">
+            var isFirstLoad = true;
+        </script>
+ 
+    </div>
+
+
+    <div class="display-label">@Html.DisplayNameFor(model => model.Event_Name)</div>
+    <div class="display-field">@Html.DisplayFor(model => model.Event_Name)</div>
+
+    <div class="display-label">@Html.DisplayNameFor(model => model.Event_VenueId)</div>
+    <div class="display-field">@Html.ActionLink(strVenue, "Details", "Venue", new { id = Model.Event_VenueId }, null)</div>
+
+    <div class="display-label">@Html.DisplayNameFor(model => model.Event_Date)</div>
+    <div class="display-field">@Html.DisplayFor(model => model.Event_Date)</div>
+
+    @if (Model.Event_StartTime != null)
+    {
+        <div class="display-label">@Html.DisplayNameFor(model => model.Event_StartTime)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Event_StartTime)</div>
+    }
+
+    @if (Model.Event_EndTime != null)
+    {
+        <div class="display-label">@Html.DisplayNameFor(model => model.Event_EndTime)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Event_EndTime, "Time")</div>
+    }
+    @if (Model.Event_Description != null)
+    {
+        <div class="display-label">@Html.DisplayNameFor(model => model.Event_Description)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Event_Description)</div>
+    }
+
+    <div class="display-label">@Html.DisplayNameFor(model => model.Genre.Genre_Name)</div>
+    <div class="display-field">@strGenre</div>
+
+</div>

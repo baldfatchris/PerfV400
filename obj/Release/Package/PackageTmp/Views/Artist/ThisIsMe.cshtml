@@ -1,0 +1,192 @@
+﻿@model PerfV400.Models.Artist
+
+@{
+    ViewBag.Title = "Edit Artist";
+
+    Model.Artist_UserId = ViewBag.UserId;
+
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Ajax.BeginForm("ThisIsMe", "Artist", null,
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST",
+        OnFailure = "searchFailed",
+        OnSuccess = "updateSuccess",
+        UpdateTargetId = string.Format("ArtistDetails{0}", Model.Artist_Id)
+    },
+    new { @id = "EditForm" }
+
+    
+    )) 
+
+{   
+    
+    @Html.ValidationSummary(true)
+
+    <div id="update-message" class="error invisible"></div>
+    
+    <fieldset>
+        <legend>Artist</legend>
+
+        @Html.HiddenFor(model => model.Artist_Id)
+        @Html.HiddenFor(model => model.Artist_Photo)
+        @Html.HiddenFor(model => model.Artist_PhotoFileName)
+        @Html.HiddenFor(model => model.Artist_PhotoMimeType)
+
+        @Html.HiddenFor(model => model.Artist_UserId)
+
+
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Artist_FirstName)
+            @Html.ValidationMessageFor(model => model.Artist_FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_Middle_Names)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Artist_Middle_Names)
+            @Html.ValidationMessageFor(model => model.Artist_Middle_Names)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Artist_LastName)
+            @Html.ValidationMessageFor(model => model.Artist_LastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_TypeId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Artist_TypeId", String.Empty)
+            @Html.ValidationMessageFor(model => model.Artist_TypeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_Notes)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Artist_Notes)
+            @Html.ValidationMessageFor(model => model.Artist_Notes)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_Wiki)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Artist_Wiki)
+            @Html.ValidationMessageFor(model => model.Artist_Wiki)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_AgentId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Artist_AgentId", String.Empty)
+            @Html.ValidationMessageFor(model => model.Artist_AgentId)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_WebPage)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Artist_WebPage)
+            @Html.ValidationMessageFor(model => model.Artist_WebPage)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_Born)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Artist_Born)
+            @Html.ValidationMessageFor(model => model.Artist_Born)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_Died)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Artist_Died)
+            @Html.ValidationMessageFor(model => model.Artist_Died)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Artist_Email)
+            @Html.ValidationMessageFor(model => model.Artist_Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_Phone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Artist_Phone)
+            @Html.ValidationMessageFor(model => model.Artist_Phone)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_CountryId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Artist_CountryId", String.Empty)
+            @Html.ValidationMessageFor(model => model.Artist_CountryId)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_StateProvinceId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Artist_StateProvinceId", String.Empty)
+            @Html.ValidationMessageFor(model => model.Artist_StateProvinceId)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_City)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Artist_City)
+            @Html.ValidationMessageFor(model => model.Artist_City)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_TwitterName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Artist_TwitterName)
+            @Html.ValidationMessageFor(model => model.Artist_TwitterName)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.Artist_FacebookId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Artist_FacebookId)
+            @Html.ValidationMessageFor(model => model.Artist_FacebookId)
+        </div>
+     
+    </fieldset>
+}
+
+
+<script type="text/javascript">
+
+    $(function () {
+        $('input.date').datepicker({ dateFormat: "dd MM yy" }); 
+    });
+
+</script>
+

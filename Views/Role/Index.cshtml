@@ -1,0 +1,69 @@
+﻿@model IEnumerable<PerfV400.Models.Role>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Role_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Piece.Piece_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genre.Genre_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Role_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Role_Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type.Type_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Role_Rank)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Piece.Piece_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre.Genre_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role_Notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type.Type_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role_Rank)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

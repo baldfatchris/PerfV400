@@ -1,0 +1,117 @@
+﻿@model PerfV400.Models.Role
+
+@{
+    ViewBag.Title = "Role Details";
+}
+
+<div id="RoleDetails">
+    
+    <fieldset>
+        <legend>Role</legend>
+
+        <ul class="toolbar">
+            <li class="edit">@Html.ActionLink("Edit Role Details", "EditRole", new { id = Model.Role_Id }, htmlAttributes: new { @class = "editLink", data_dialog_title = "Edit Role Details" })</li>
+
+        
+        
+        </ul>
+        @Html.Partial("DetailsRole")
+    </fieldset>
+
+    
+<fieldset>
+    <legend>Artists</legend>
+
+
+@using (Ajax.BeginForm("MoreRoleArtists", "Role",
+    new     {page = 0}, 
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET",
+        OnFailure = "searchFailed",
+        LoadingElementId = "ajax-loader",
+        UpdateTargetId = "artistsearchresults"
+    }))
+{
+
+    <div class="filter">
+
+    @Html.Hidden("filter_Role_Id", Model.Role_Id)
+
+    <table>
+        <tr>
+            <td class="filter-label">
+                Search
+            </td>
+            <td class="filter-field">
+                @Html.TextBox("filter_search", null)
+                <input id="fs" type="submit" value="Search" />
+            </td>
+        </tr>
+        <tr>
+            <td class="filter-label">
+                Venue
+            </td>
+            <td class="filter-field">
+                @Html.DropDownList("filter_Role_VenueId", (IEnumerable<SelectListItem>)ViewBag.Venues, "All Venues", new { onchange = "$(\"#fs\").click();" }) 
+            </td>
+        </tr>
+        <tr>
+            <td class="filter-label">
+                City
+            </td>
+            <td class="filter-field">
+                @Html.DropDownList("filter_Venue_City", (IEnumerable<SelectListItem>)ViewBag.Cities, "All Cities", new { onchange = "$(\"#fs\").click();" }) 
+            </td>
+        </tr>
+        <tr>
+            <td class="filter-label">
+                Country
+            </td>
+            <td class="filter-field">
+                @Html.DropDownList("filter_Venue_CountryId", (IEnumerable<SelectListItem>)ViewBag.Countries, "All Countries", new { onchange = "$(\"#fs\").click();" }) 
+            </td>
+        </tr>
+        <tr>
+            <td class="filter-label">
+                Date
+            </td>
+            <td class="filter-field">
+                @Html.TextBox("filter_From_Artist_Date", null, new { onchange = "$(\"#fs\").click();", @class = "datepicker", @style = "width:8em" })
+                to
+                @Html.TextBox("filter_To_Artist_Date", null, new { onchange = "$(\"#fs\").click();", @class = "datepicker", @style = "width:8em" })
+            </td>
+            <td class="filter-field">
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+
+    
+<img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
+
+<div id="artistsearchresults">
+    
+    @{
+        ViewBag.Role_Id = Model.Role_Id;
+        IEnumerable<PerfV400.Models.Artist> artists = ViewBag.artists;
+    }
+    @Html.Partial("_MoreRoleArtists", artists)
+
+</div>
+    
+}    
+
+
+</fieldset>
+
+</div>
+
+<script type="text/javascript">
+    $("#filter_Event_Venue").autocomplete({
+        source: "@Url.Action("Autocomplete_Event_VenueName")",
+    });
+</script>

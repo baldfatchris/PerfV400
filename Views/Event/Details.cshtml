@@ -1,0 +1,69 @@
+﻿@model PerfV400.Models.Event
+
+@{
+    ViewBag.Title = "Event Details";
+}
+
+
+<div id="EventDetails">
+    
+<div id="DeleteEventDetails">
+</div>    
+        <fieldset>
+        <legend>Event</legend>
+
+@if (ViewBag.UserCanEditEvent){
+        <ul class="toolbar">
+            <li class="edit">@Html.ActionLink("Edit Event Details", "EditEvent", new { id = Model.Event_Id }, htmlAttributes: new { @class = "editLink", data_dialog_title = "Edit Event Details" })</li>
+            <li class="delete">@Html.ActionLink("Delete Event", "DeleteEvent", new { id = Model.Event_Id }, htmlAttributes: new { @class = "deleteLink", data_dialog_title = "Delete Event" })</li>
+            <li class="copy">@Html.ActionLink("Copy Event", "CopyEvent", new { id = Model.Event_Id }, htmlAttributes: new { @class = "copyLink", data_dialog_title = "Copy Event" })</li>
+            <li class="add">@Html.ActionLink("Add New Performance", "NewPerformance", new { EventId = Model.Event_Id }, htmlAttributes: new { @class = "createLink", data_dialog_title = "Add New Performance" })</li>
+        </ul>
+}
+        @Html.Partial("DetailsEvent")
+
+@if (Request.IsAuthenticated)
+{
+    PerfV400.Models.EventUser eventUser = ViewBag.eventUser;
+    @Html.Partial("DetailsEventUser")
+}
+
+    </fieldset>
+
+    @using (Ajax.BeginForm("MoreEventPerformances", "Event",
+        new { page = 0 },
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            OnFailure = "searchFailed",
+            LoadingElementId = "ajax-loader",
+            UpdateTargetId = "eventperformancesearchresults"
+        }))
+    {
+
+        <div class="filter">
+
+        @Html.Hidden("filter_Venue_Id", Model.Event_Id)
+
+        </div>
+
+    
+    <img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
+
+    <div id="eventperformancesearchresults">
+    
+        @{
+        ViewBag.Event_Id = Model.Event_Id;
+        IEnumerable<PerfV400.Models.Performance> performances = ViewBag.performances;
+        }
+        @Html.Partial("_MoreEventPerformances", performances)
+
+    </div>
+    
+    }    
+
+    <div id="NewPerformanceDetails"></div>
+
+
+</div>

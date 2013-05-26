@@ -1,0 +1,179 @@
+﻿@model PerfV400.Models.Venue
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Venue</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_Id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_Id)
+            @Html.ValidationMessageFor(model => model.Venue_Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_Name)
+            @Html.ValidationMessageFor(model => model.Venue_Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_AddressLine1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_AddressLine1)
+            @Html.ValidationMessageFor(model => model.Venue_AddressLine1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_AddressLine2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_AddressLine2)
+            @Html.ValidationMessageFor(model => model.Venue_AddressLine2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_City)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_City)
+            @Html.ValidationMessageFor(model => model.Venue_City)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_PostalCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_PostalCode)
+            @Html.ValidationMessageFor(model => model.Venue_PostalCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_StateProvinceId, "StateProvince")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Venue_StateProvinceId", String.Empty)
+            @Html.ValidationMessageFor(model => model.Venue_StateProvinceId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_CountryId, "CountryRegion")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Venue_CountryId", String.Empty)
+            @Html.ValidationMessageFor(model => model.Venue_CountryId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_PhotoFileName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_PhotoFileName)
+            @Html.ValidationMessageFor(model => model.Venue_PhotoFileName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_PhotoMimeType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_PhotoMimeType)
+            @Html.ValidationMessageFor(model => model.Venue_PhotoMimeType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_Long)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_Long)
+            @Html.ValidationMessageFor(model => model.Venue_Long)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_Lat)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_Lat)
+            @Html.ValidationMessageFor(model => model.Venue_Lat)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_URL)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_URL)
+            @Html.ValidationMessageFor(model => model.Venue_URL)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_Description)
+            @Html.ValidationMessageFor(model => model.Venue_Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_Major)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_Major)
+            @Html.ValidationMessageFor(model => model.Venue_Major)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_Capacity)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_Capacity)
+            @Html.ValidationMessageFor(model => model.Venue_Capacity)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_Architect)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_Architect)
+            @Html.ValidationMessageFor(model => model.Venue_Architect)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_CreatedBy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_CreatedBy)
+            @Html.ValidationMessageFor(model => model.Venue_CreatedBy)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue_CreatedDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue_CreatedDate)
+            @Html.ValidationMessageFor(model => model.Venue_CreatedDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

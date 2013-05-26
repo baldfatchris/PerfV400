@@ -1,0 +1,46 @@
+﻿@model PerfV400.Models.PieceArtist
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+@using (Ajax.BeginForm("DeletePieceArtist", "Piece", null,
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST",
+        OnFailure = "searchFailed",
+        OnSuccess = "deleteSuccess",
+        UpdateTargetId = string.Format("PieceArtistDetails{0}", Model.PieceArtist_Id)
+    },
+    new { @id = "DeleteForm" }
+
+    
+    )) 
+
+{   
+    
+
+    <fieldset>
+        <legend>Piece</legend>
+
+        @Html.HiddenFor(model => model.PieceArtist_Id)
+        @Html.HiddenFor(model => model.PieceArtist_PieceId)
+
+        <div class="display-label">@Html.DisplayNameFor(model => model.Piece.Piece_Name)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Piece.Piece_Name)</div>
+
+        <div class="display-label">@Html.DisplayNameFor(model => model.Artist.Artist_FirstName)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Artist.Artist_FirstName) @Html.DisplayFor(model => model.Artist.Artist_LastName)</div>
+
+        <div class="display-label">@Html.DisplayNameFor(model => model.PieceArtistType.PieceArtistType_Name)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.PieceArtistType.PieceArtistType_Name)</div>
+
+        <div class="display-label">@Html.DisplayNameFor(model => model.PieceArtist_Comments)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.PieceArtist_Comments)</div>
+
+
+        
+    </fieldset>
+}

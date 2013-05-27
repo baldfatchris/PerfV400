@@ -865,6 +865,9 @@ namespace PerfV400.Controllers
                 // data for the genre
                 ViewBag.Genre = db.Genres.FirstOrDefault(g => g.Genre_Id == xEvent.Event_GenreId);
 
+                // Can the current user edit this event?
+                ViewBag.UserCanEditEvent = true;
+
                 return PartialView("Details", xEvent);
 
             }

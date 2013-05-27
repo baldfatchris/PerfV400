@@ -412,6 +412,20 @@ namespace PerfV400.Controllers
                 ViewBag.CountryRegion = db.CountryRegions.FirstOrDefault(c => c.CountryRegion_Id == artist.Artist_CountryId);
                 ViewBag.StateProvince = db.StateProvinces.FirstOrDefault(c => c.StateProvince_Id == artist.Artist_StateProvinceId);
 
+                // Am I the artist?
+                ViewBag.AmITheArtist = false;
+                if (Request.IsAuthenticated && artist.Artist_UserId == (int)Membership.GetUser().ProviderUserKey)
+                {
+                    ViewBag.AmITheArtist = true;
+                }
+
+                // Could I be the artist?
+                ViewBag.CouldIBeTheArtist = false;
+                if (Request.IsAuthenticated && artist.Artist_UserId == null)
+                {
+                    ViewBag.CouldIBeTheArtist = true;
+                }
+
 
                 return PartialView("DetailsArtist", artist);
             }

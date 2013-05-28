@@ -868,6 +868,33 @@ namespace PerfV400.Controllers
                 // Can the current user edit this event?
                 ViewBag.UserCanEditEvent = true;
 
+
+                // data for the MyStatus dropdown
+                if (xEvent.Event_Date < DateTime.Today)
+                {
+                    var query = db.EventUserStatus.OrderBy(c => c.EventUserStatus_Id)
+                        .Select(c => new
+                        {
+                            c.EventUserStatus_Id,
+                            c.EventUserStatus_Past
+                        });
+
+                    ViewBag.MyStatus = new SelectList(query.AsEnumerable(), "EventUserStatus_Id", "EventUserStatus_Past", ViewBag.EventUser_StatusId);
+                }
+                else
+                {
+                    var query = db.EventUserStatus.OrderBy(c => c.EventUserStatus_Id)
+                        .Select(c => new
+                        {
+                            c.EventUserStatus_Id,
+                            c.EventUserStatus_Future
+                        });
+
+                    ViewBag.MyStatus = new SelectList(query.AsEnumerable(), "EventUserStatus_Id", "EventUserStatus_Future", ViewBag.EventUser_StatusId);
+                }
+
+
+
                 return PartialView("Details", xEvent);
 
             }

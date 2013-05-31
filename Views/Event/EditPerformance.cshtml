@@ -38,7 +38,7 @@
             @Html.DisplayNameFor(model => model.Performance_PieceId)
         </div>
         <div class="editor-field">
-            @Html.TextBox("PieceName", Model.Piece.Piece_Name)
+            @Html.Editor("PieceName", Model.Piece.Piece_Name)
             @Html.ValidationMessageFor(model => model.Performance_PieceId)
         </div>
 

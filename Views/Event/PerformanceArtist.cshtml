@@ -1,0 +1,30 @@
+﻿@model PerfV400.Models.PerformanceArtist
+
+<div id="@string.Format("DeletePerformanceArtist{0}", Model.PerformanceArtist_Id)" class="Photo150 toggle-toolbar">
+@if (ViewBag.UserCanEditEvent){
+    <div class="artist-toolbar">
+        <ul class="toolbar">
+            <li class="edit">@Html.ActionLink("Edit", "EditPerformanceArtist", new { id = Model.PerformanceArtist_Id }, htmlAttributes: new { @class = "editLink", data_dialog_title = "Edit Person" })</li>
+            <li class="delete">@Html.ActionLink("Delete", "DeletePerformanceArtist", new { id = Model.PerformanceArtist_Id }, htmlAttributes: new { @class = "deleteLink", data_dialog_title = "Delete Person" })</li>
+        </ul>
+    </div>
+}
+
+    <div id="@string.Format("PerformanceArtistDetails{0}", Model.PerformanceArtist_Id)">
+        @Html.Partial("DetailsPerformanceArtist", Model)
+    </div>
+</div>
+
+@if (ViewBag.UserCanEditEvent){
+<script type="text/javascript">
+    /*! artist - toolbar */
+    $(function () {
+        $('.Photo150').hover(function () {
+            $(this).removeClass('toggle-toolbar');
+        }, function () {
+            $(this).addClass('toggle-toolbar');
+        });
+
+    });
+</script>
+}

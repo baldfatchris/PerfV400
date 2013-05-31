@@ -12,7 +12,7 @@
         HttpMethod = "POST",
         OnFailure = "searchFailed",
         OnSuccess = "deleteSuccess",
-        UpdateTargetId = string.Format("PerformanceArtistDetails{0}", Model.PerformanceArtist_Id)
+        UpdateTargetId = string.Format("DeletePerformanceArtist{0}", Model.PerformanceArtist_Id)
     },
     new { @id = "DeleteForm" }
 

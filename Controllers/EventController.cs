@@ -1181,7 +1181,7 @@ namespace PerfV400.Controllers
                 // Can the current user edit this event?
                 ViewBag.UserCanEditEvent = true;
 
-                return PartialView("DetailsPerformanceArtist", performanceArtist);
+                return PartialView("PerformanceArtist", performanceArtist);
             }
             else
             {

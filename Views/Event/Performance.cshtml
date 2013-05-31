@@ -32,7 +32,7 @@
     
                 @foreach (PerfV400.Models.PerformanceArtist performanceArtist in Model.PerformanceArtists.OrderBy(pa => pa.Role.Role_Rank))
                 {
-                    @Html.Partial("DetailsPerformanceArtist", performanceArtist)
+                    @Html.Partial("PerformanceArtist", performanceArtist)
                 }
 
             

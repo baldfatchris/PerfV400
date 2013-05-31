@@ -26,6 +26,7 @@
 @if (ViewBag.UserCanEditEvent){
     <div class="artist-toolbar">
         <ul class="toolbar">
+            <li class="edit">@Html.ActionLink("Edit", "EditPerformanceArtist", new { id = Model.PerformanceArtist_Id }, htmlAttributes: new { @class = "editLink", data_dialog_title = "Edit Person" })</li>
             <li class="delete">@Html.ActionLink("Delete", "DeletePerformanceArtist", new { id = Model.PerformanceArtist_Id }, htmlAttributes: new { @class = "deleteLink", data_dialog_title = "Delete Person" })</li>
         </ul>
     </div>

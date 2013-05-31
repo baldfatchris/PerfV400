@@ -23,8 +23,13 @@ namespace PerfV400
             //    consumerSecret: "");
 
             OAuthWebSecurity.RegisterFacebookClient(
-                appId: "219955008083494",
-                appSecret: "92f8af70f21b76bcaf829685630326ac");
+                // Amovada
+                 //appId: "219955008083494",
+                 //appSecret: "92f8af70f21b76bcaf829685630326ac");
+
+                // LEDB
+                appId: "318328708209008",
+                appSecret: "b3cfb8ffc2016c80b1ee4ec4ddac4791");
 
             //OAuthWebSecurity.RegisterGoogleClient();
         }

@@ -465,6 +465,7 @@
     <None Include="Properties\PublishProfiles\amovada - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\amovada - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Azure - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\Dummy.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -611,6 +612,7 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\Event\EditPerformanceArtist.cshtml" />
+    <Content Include="Views\Event\Performance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

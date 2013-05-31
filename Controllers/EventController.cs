@@ -974,7 +974,7 @@ namespace PerfV400.Controllers
                 // Can the current user edit this event?
                 ViewBag.UserCanEditEvent = true;
 
-                return PartialView("DetailsPerformance", performance);
+                return PartialView("Performance", performance);
             }
             else
             {
@@ -1038,6 +1038,11 @@ namespace PerfV400.Controllers
 
                 db.Entry(performance).State = EntityState.Modified;
                 db.SaveChanges();
+
+
+                // Can the current user edit this event?
+                ViewBag.UserCanEditEvent = true;
+
 
                 return PartialView("DetailsPerformance", performance);
             }
@@ -1444,8 +1449,9 @@ namespace PerfV400.Controllers
                 .ToList()
                 .Select(a => new { value = string.Format("{0} (facebook)", a.UserFriend_Name) })
                 .Distinct();
-            
+
             return Json(artists1.Concat(artists2.OrderBy(v => v.value)), JsonRequestBehavior.AllowGet);
+            //return Json(artists1, JsonRequestBehavior.AllowGet);
             
         }
 

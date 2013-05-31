@@ -130,6 +130,10 @@
       <End Role="EventUserStatus" EntitySet="EventUserStatus" />
       <End Role="EventUser" EntitySet="EventUser" />
     </AssociationSet>
+    <AssociationSet Name="FK_EventUser_User" Association="PerfV100Model.Store.FK_EventUser_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="EventUser" EntitySet="EventUser" />
+    </AssociationSet>
     <AssociationSet Name="FK_Genre_Genre" Association="PerfV100Model.Store.FK_Genre_Genre">
       <End Role="Genre" EntitySet="Genre" />
       <End Role="Genre1" EntitySet="Genre" />
@@ -879,7 +883,7 @@
     <Property Name="UserFriend_Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="UserFriend_UserFacebookId" Type="bigint" Nullable="false" />
     <Property Name="UserFriend_FriendFacebookId" Type="bigint" Nullable="false" />
-    <Property Name="UserFriend_Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="UserFriend_Name" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="UserGroup">
     <Key>
@@ -1188,6 +1192,20 @@
       </Principal>
       <Dependent Role="EventUser">
         <PropertyRef Name="EventUser_StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventUser_User">
+    <End Role="User" Type="PerfV100Model.Store.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="EventUser" Type="PerfV100Model.Store.EventUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_Id" />
+      </Principal>
+      <Dependent Role="EventUser">
+        <PropertyRef Name="EventUser_UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

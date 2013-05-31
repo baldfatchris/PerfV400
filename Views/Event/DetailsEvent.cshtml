@@ -8,6 +8,9 @@
     string strGenre = ViewBag.Genre.Genre_Name;
 }
 
+
+
+
 <div id="@string.Format("EventDetails{0}", Model.Event_Id)">
 
     <h2>@Html.DisplayFor(model => model.Event_Name) - @strVenue - @Html.DisplayFor(model => model.Event_Date)</h2>

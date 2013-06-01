@@ -1129,10 +1129,39 @@ namespace PerfV400.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult NewPerformanceArtist(PerformanceArtist performanceArtist, string PerformanceArtist_ArtistFullName)
+        public ActionResult NewPerformanceArtist(PerformanceArtist performanceArtist, string OtherRole, string PerformanceArtist_ArtistFullName)
         {
             if (ModelState.IsValid)
             {
+                // Role
+                if (OtherRole != null && OtherRole.Length > 0)
+                {
+                    
+                    //Check the Role
+                    Role role = db.Roles.FirstOrDefault(r => r.Role_Id == performanceArtist.PerformanceArtist_RoleId);
+                    if (role.Role_Name == "Other")
+                    {
+                        // Create a new Role
+
+                        // remove any unnecessary spaces
+                        OtherRole = OtherRole.Replace("  ", " ").Trim();
+
+                        Role newRole = new Role();
+                        newRole.Role_Name = OtherRole;
+
+                        Performance performance = db.Performances.FirstOrDefault(p => p.Performance_Id == performanceArtist.PerformanceArtist_PerformanceId);
+                        newRole.Role_PieceId = performance.Performance_PieceId;
+
+                        newRole.Role_Rank = db.Roles.Where(r => r.Role_PieceId == performance.Performance_PieceId).Select(r => r.Role_Rank).Max() + 1;
+
+                        db.Roles.Add(newRole);
+
+                        performanceArtist.PerformanceArtist_RoleId = newRole.Role_Id;
+                    }
+                }
+
+
+                // Artist
                 Artist artist = db.Artists.FirstOrDefault(a => string.Concat(a.Artist_FirstName, " ", a.Artist_LastName).Equals(PerformanceArtist_ArtistFullName));
                 if (artist != null)
                 {
@@ -1221,10 +1250,40 @@ namespace PerfV400.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult EditPerformanceArtist(PerformanceArtist performanceArtist, string PerformanceArtist_ArtistFullName)
+        public ActionResult EditPerformanceArtist(PerformanceArtist performanceArtist, string OtherRole, string PerformanceArtist_ArtistFullName)
         {
             if (ModelState.IsValid)
             {
+
+                // Role
+                if (OtherRole != null && OtherRole.Length > 0)
+                {
+
+                    //Check the Role
+                    Role role = db.Roles.FirstOrDefault(r => r.Role_Id == performanceArtist.PerformanceArtist_RoleId);
+                    if (role.Role_Name == "Other")
+                    {
+                        // Create a new Role
+
+                        // remove any unnecessary spaces
+                        OtherRole = OtherRole.Replace("  ", " ").Trim();
+
+                        Role newRole = new Role();
+                        newRole.Role_Name = OtherRole;
+
+                        Performance performance = db.Performances.FirstOrDefault(p => p.Performance_Id == performanceArtist.PerformanceArtist_PerformanceId);
+                        newRole.Role_PieceId = performance.Performance_PieceId;
+
+                        newRole.Role_Rank = db.Roles.Where(r => r.Role_PieceId == performance.Performance_PieceId).Select(r => r.Role_Rank).Max() + 1;
+
+                        db.Roles.Add(newRole);
+
+                        performanceArtist.PerformanceArtist_RoleId = newRole.Role_Id;
+                    }
+                }
+
+
+                // Artist
                 Artist artist = db.Artists.FirstOrDefault(a => string.Concat(a.Artist_FirstName, " ", a.Artist_LastName).Equals(PerformanceArtist_ArtistFullName));
                 if (artist != null)
                 {

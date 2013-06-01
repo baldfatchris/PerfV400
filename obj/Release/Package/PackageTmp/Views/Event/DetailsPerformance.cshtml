@@ -11,16 +11,6 @@
     }
     
 }
-<div id="@string.Format("PerformanceDetails{0}", Model.Performance_Id)"> 
-    <fieldset>
-        <legend>Performance</legend>
-
-@if (ViewBag.UserCanEditEvent){
-        <ul class="toolbar">
-            <li class="edit">@Html.ActionLink("Edit Performance Details", "EditPerformance", new { id = Model.Performance_Id }, htmlAttributes: new { @class = "editLink", data_dialog_title = "Edit Performance Details" })</li>
-            <li class="delete">@Html.ActionLink("Delete Performance", "DeletePerformance", new { id = Model.Performance_Id }, htmlAttributes: new { @class = "deleteLink", data_dialog_title = "Delete Performance" })</li>
-        </ul>
-}
 
         <h2>@Html.DisplayFor(model => model.Piece.Piece_Name)</h2>
 
@@ -78,30 +68,3 @@
 
 
 
-        <br/><br/><br/><br/>
-        
-        <fieldset>
-            <legend>Cast &amp; Crew</legend>
-
-                @if (ViewBag.UserCanEditEvent){
-                <ul class="toolbar">
-                    <li class="add">@Html.ActionLink("Add New Person", "NewPerformanceArtist", new { PerformanceId = Model.Performance_Id }, htmlAttributes: new { @class = "createLink", data_dialog_title = "Add New Person" })</li>
-
-                    <li class="add">@Html.ActionLink("I'm in this", "ImInThis", new { PerformanceId = Model.Performance_Id }, htmlAttributes: new { @class = "createLink", data_dialog_title = "I'm in this!" })</li>
-
-                </ul>
-                }
-    
-                @foreach (PerfV400.Models.PerformanceArtist performanceArtist in Model.PerformanceArtists.OrderBy(pa => pa.Role.Role_Rank))
-                {
-                    @Html.Partial("DetailsPerformanceArtist", performanceArtist)
-                }
-
-            
-                <div id="@string.Format("NewPerformanceArtistDetails{0}", Model.Performance_Id)" /> 
-
-
-        </fieldset>
-    </fieldset>
-
-</div>

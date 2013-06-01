@@ -34,29 +34,44 @@
         @Html.HiddenFor(model => model.PerformanceArtist_PerformanceId)
 
 
-        <div class="editor-label">
-            @Html.DisplayNameFor(model => model.PerformanceArtist_RoleId)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("PerformanceArtist_RoleId", String.Empty)
-            @Html.ValidationMessageFor(model => model.PerformanceArtist_RoleId)
-        </div>
-
-        <div class="editor-label">
-            @Html.DisplayNameFor(model => model.PerformanceArtist_ArtistId)
-        </div>
-        <div class="editor-field">
-            @Html.Editor("PerformanceArtist_ArtistFullName")
-            @Html.ValidationMessageFor(model => model.PerformanceArtist_ArtistId)
-        </div>
-       
-        <div>
+        <div id="PerformanceArtist_RoleId">
             <div class="editor-label">
-                @Html.DisplayNameFor(model => model.PerformanceArtist_Comments)
+                @Html.DisplayNameFor(model => model.PerformanceArtist_RoleId)
             </div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.PerformanceArtist_Comments)
-                @Html.ValidationMessageFor(model => model.PerformanceArtist_Comments)
+                @Html.DropDownList("PerformanceArtist_RoleId", String.Empty)
+                @Html.ValidationMessageFor(model => model.PerformanceArtist_RoleId)
+            </div>
+        </div>
+        
+        <div id="OtherRole">
+            <div class="editor-label">
+                Other Role
+            </div>
+            <div class="editor-field">
+                @Html.Editor("OtherRole")
+            </div>
+        </div>
+
+        <div id="PerformanceArtist_ArtistId">
+            <div class="editor-label">
+                @Html.DisplayNameFor(model => model.PerformanceArtist_ArtistId)
+            </div>
+            <div class="editor-field">
+                @Html.Editor("PerformanceArtist_ArtistFullName")
+                @Html.ValidationMessageFor(model => model.PerformanceArtist_ArtistId)
+            </div>
+        </div>
+
+        <div id="PerformanceArtist_Comments">
+            <div>
+                <div class="editor-label">
+                    @Html.DisplayNameFor(model => model.PerformanceArtist_Comments)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.PerformanceArtist_Comments)
+                    @Html.ValidationMessageFor(model => model.PerformanceArtist_Comments)
+                </div>
             </div>
         </div>
 
@@ -65,7 +80,20 @@
 
 
 <script type="text/javascript">
-$("#PerformanceArtist_ArtistFullName").autocomplete({
-    source:"@Url.Action("Autocomplete_Artist_FullName")",  
-});  
+    $("#PerformanceArtist_ArtistFullName").autocomplete({
+        source:"@Url.Action("Autocomplete_Artist_FullName")",  
+    });  
+
+    $('#OtherRole').hide();
+
+    $(function () {
+        $('#PerformanceArtist_RoleId').change(function () {
+            if ($('#PerformanceArtist_RoleId :selected').text() == 'Other') {
+                $('#OtherRole').show();
+            }
+            else {
+                $('#OtherRole').hide();
+            }
+        });
+    });
 </script>

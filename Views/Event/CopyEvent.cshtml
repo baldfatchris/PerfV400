@@ -74,7 +74,7 @@
                 @Html.DisplayNameFor(model => model.Event_Date)
             </div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.Event_Date, null, new { @class = "date" })
+                @Html.TextBoxFor(model => model.Event_Date, null, new { @class = "date" })
                 @Html.ValidationMessageFor(model => model.Event_Date)
             </div>
         </div>
@@ -114,7 +114,7 @@
 <script type="text/javascript">
 
     $(function () {
-        $('input#Event_Date').datepicker({ dateFormat: "dd MM yy", autoSize: true });
+        $('input#Event_Date').datepicker({ dateFormat: "dd MM yy"});
     });
 
     $("#VenueName").autocomplete({

@@ -143,17 +143,23 @@
 
         @foreach (PerfV400.Models.PieceArtist pieceArtist in Model.PieceArtists.OrderBy(pa => pa.Piece.Piece_Year).ThenBy(pa => pa.Piece.Piece_Name))
         {
-
+            string pieceGenreYear = "";
+            if (pieceArtist.Piece.Genre != null && pieceArtist.Piece.Genre.Genre_Name != null)
+            {
+                pieceGenreYear = string.Format("{0} - {1}", pieceGenreYear, pieceArtist.Piece.Genre.Genre_Name);
+            }
+            if (pieceArtist.Piece.Piece_Year != null)
+            {
+                pieceGenreYear = string.Format("{0} - {1}", pieceGenreYear, pieceArtist.Piece.Piece_Year);
+            }
+            
             <tr>
                 <td class="cell-thumb">
                     <img height="50" src="@Url.Action("GetPieceImage", "Artist", new { id = pieceArtist.PieceArtist_PieceId })" alt="" border="0" style="border:0"/>
                 </td>
                 <td class="cell-field">
                     @Html.ActionLink(@pieceArtist.Piece.Piece_Name, "Details", "Piece", new { id = pieceArtist.PieceArtist_PieceId }, null)
-                    -
-                    @pieceArtist.Piece.Genre.Genre_Name
-                    -
-                    @pieceArtist.Piece.Piece_Year
+                    @pieceGenreYear
                 </td>
 
             </tr>

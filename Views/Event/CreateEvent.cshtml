@@ -30,7 +30,7 @@
             @Html.DisplayNameFor(model => model.Event_Date)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Event_Date, "Date")
+            @Html.TextBoxFor(model => model.Event_Date, "Date")
             @Html.ValidationMessageFor(model => model.Event_Date)
         </div>
 
@@ -90,7 +90,7 @@
         source: "@Url.Action("Autocomplete_Event_VenueName")",
     });
     $(function () {
-        $('input#Event_Date').datepicker({ dateFormat: "dd MM yy", autoSize: true });
+        $('input#Event_Date').datepicker({ dateFormat: "dd MM yy"});
     });
 </script>
 

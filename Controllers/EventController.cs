@@ -719,6 +719,7 @@ namespace PerfV400.Controllers
                 }
                 
                 db.Entry(Xevent).State = EntityState.Modified;
+                db.SaveChanges();
 
                 ViewBag.Venue = db.Venues.FirstOrDefault(v => v.Venue_Id == Xevent.Event_VenueId);
 

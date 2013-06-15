@@ -54,3 +54,4 @@ C:\Users\foulkesc\Documents\GitHub\PerfV400\bin\zh-CHS\AjaxControlToolkit.resour
 C:\Users\foulkesc\Documents\GitHub\PerfV400\bin\zh-CHT\AjaxControlToolkit.resources.dll
 C:\Users\foulkesc\Documents\GitHub\PerfV400\obj\Release\PerfV400.dll
 C:\Users\foulkesc\Documents\GitHub\PerfV400\obj\Release\PerfV400.pdb
+C:\Users\foulkesc\Documents\GitHub\PerfV400\obj\Release\PerfV400.csprojResolveAssemblyReference.cache

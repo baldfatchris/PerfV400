@@ -199,7 +199,7 @@ namespace PerfV400.Controllers
         }
 
         [HttpPost]
-        // [Authorize]
+        [Authorize]
         public WrappedJsonResult EditPiecePhoto(HttpPostedFileWrapper imageFile, int Piece_Id)
         {
             if (imageFile == null || imageFile.ContentLength == 0)
@@ -647,7 +647,7 @@ namespace PerfV400.Controllers
 
         //
         // GET: /Piece/EditPiece/5
-        // [Authorize]
+        [Authorize]
         public ActionResult EditPiece(int id)
         {
             Piece piece = db.Pieces.Single(e => e.Piece_Id == id);
@@ -659,12 +659,13 @@ namespace PerfV400.Controllers
         // POST: /Piece/EditPiece/5
 
         [HttpPost]
-        // [Authorize]
+        [Authorize]
         public ActionResult EditPiece(Piece piece)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(piece).State = EntityState.Modified;
+                db.SaveChanges();
 
                 ViewBag.Genre = db.Venues.FirstOrDefault(v => v.Venue_Id == piece.Piece_GenreId);
 
@@ -680,7 +681,7 @@ namespace PerfV400.Controllers
 
         //
         // GET: /Piece/EditPieceArtist/5
-        // [Authorize]
+        [Authorize]
         public ActionResult EditPieceArtist(int id)
         {
             PieceArtist pieceArtist = db.PieceArtists.Single(e => e.PieceArtist_Id == id);
@@ -692,7 +693,7 @@ namespace PerfV400.Controllers
         // POST: /Piece/EditPieceArtist/5
 
         [HttpPost]
-        // [Authorize]
+        [Authorize]
         public ActionResult EditPieceArtist(PieceArtist pieceArtist)
         {
             if (ModelState.IsValid)
@@ -714,7 +715,7 @@ namespace PerfV400.Controllers
 
         //
         // GET: /Piece/EditRole/5
-        // [Authorize]
+        [Authorize]
         public ActionResult EditRole(int id)
         {
             Role Role = db.Roles.Single(e => e.Role_Id == id);
@@ -726,7 +727,7 @@ namespace PerfV400.Controllers
         // POST: /Piece/EditRole/5
 
         [HttpPost]
-        // [Authorize]
+        [Authorize]
         public ActionResult EditRole(Role Role)
         {
             if (ModelState.IsValid)
@@ -749,7 +750,7 @@ namespace PerfV400.Controllers
 
         //
         // GET: /Event/NewPieceArtist/5
-        // [Authorize]
+        [Authorize]
         public ActionResult NewPieceArtist(int PieceId)
         {
             Piece Piece = db.Pieces.Single(p => p.Piece_Id == PieceId);
@@ -775,7 +776,7 @@ namespace PerfV400.Controllers
         // POST: /Event/NewPieceArtist/5
 
         [HttpPost]
-        // [Authorize]
+        [Authorize]
         public ActionResult NewPieceArtist(PieceArtist PieceArtist, string PieceArtist_ArtistFullName)
         {
             if (ModelState.IsValid)
@@ -834,7 +835,7 @@ namespace PerfV400.Controllers
 
         //
         // GET: /Event/DeletePieceArtist/5
-        // [Authorize]
+        [Authorize]
         public ActionResult DeletePieceArtist(int id)
         {
             PieceArtist PieceArtist = db.PieceArtists.Single(p => p.PieceArtist_Id == id);
@@ -846,7 +847,7 @@ namespace PerfV400.Controllers
         // POST: /Event/DeletePieceArtist/5
 
         [HttpPost, ActionName("DeletePieceArtist")]
-        // [Authorize]
+        [Authorize]
         public ActionResult DeletePieceArtistConfirmed(int id)
         {
             PieceArtist PieceArtist = db.PieceArtists.Single(p => p.PieceArtist_Id == id);
@@ -868,7 +869,7 @@ namespace PerfV400.Controllers
 
         //
         // GET: /Event/NewRole/5
-        // [Authorize]
+        [Authorize]
         public ActionResult NewRole(int PieceId)
         {
             Piece Piece = db.Pieces.Single(p => p.Piece_Id == PieceId);
@@ -897,7 +898,7 @@ namespace PerfV400.Controllers
         // POST: /Event/NewRole/5
 
         [HttpPost]
-        // [Authorize]
+        [Authorize]
         public ActionResult NewRole(Role Role)
         {
             if (ModelState.IsValid)
@@ -918,7 +919,7 @@ namespace PerfV400.Controllers
 
         //
         // GET: /Event/DeleteRole/5
-        // [Authorize]
+        [Authorize]
         public ActionResult DeleteRole(int id)
         {
             Role Role = db.Roles.Single(p => p.Role_Id == id);
@@ -930,7 +931,7 @@ namespace PerfV400.Controllers
         // POST: /Event/DeleteRole/5
 
         [HttpPost, ActionName("DeleteRole")]
-        // [Authorize]
+        [Authorize]
         public ActionResult DeleteRoleConfirmed(int id)
         {
             Role Role = db.Roles.Single(p => p.Role_Id == id);

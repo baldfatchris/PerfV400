@@ -13,6 +13,10 @@ body {
     padding: 0;
 }
 
+img {
+    border: 0;
+}
+
 a {
     color: #034af3;
     outline: none;
@@ -26,7 +30,6 @@ a:link, a:visited, a:active, a:hover
 
 a:hover {
     color: #1d60ff;
-    background-color: #c7d1d6;
     text-decoration: underline;
 }
 
@@ -73,6 +76,7 @@ h1 {
 
 h2 {
     float:left;
+    clear:both;
 }
 
 h3 {
@@ -859,7 +863,10 @@ tr.pager td {
 }
 /* Styles for photo list
 ----------------------------------------------------------*/
-
+.stuff 
+{
+    clear:both;
+}
 
 .Photo
 {

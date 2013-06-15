@@ -919,6 +919,31 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
+        <member name="M:Facebook.FacebookClient.ParseDialogCallbackUrl(System.Uri)">
+            <summary>
+            Parses the dialog callback url to an object of the resulting data.
+            </summary>
+            <param name="uri"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Facebook.FacebookClient.GetDialogUrl(System.String,System.Object)">
+            <summary>
+            Gets the Facebook dialog url.
+            </summary>
+            <param name="dialog">
+            The dialog name. Values can be oauth, feed, pagetab, friends, pay, apprequests, and send.
+            </param>
+            <param name="parameters">
+             The parameters.
+            </param>
+            <returns>
+            The dialog url.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            If dialog or parameters is null.
+            </exception>
+        </member>
         <member name="M:Facebook.FacebookClient.GetLoginUrl(System.Object)">
             <summary>
             Gets the Facebook OAuth login url.

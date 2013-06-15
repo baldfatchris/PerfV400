@@ -1,114 +1,114 @@
-﻿@model IEnumerable<PerfV400.Models.Event>
+﻿    @model IEnumerable<PerfV400.Models.Event>
 
-@{
-    ViewBag.Title = "Events";
-}
+    @{
+        ViewBag.Title = "Events";
+    }
 
-<p>
-    @Html.ActionLink("Create New Event", "CreateEvent")
-</p>
+    <p>
+        @Html.ActionLink("Create New Event", "CreateEvent")
+    </p>
 
-@using (Ajax.BeginForm("MoreEvents", "Event",
-    new { page = 0 },
-    new AjaxOptions
+    @using (Ajax.BeginForm("MoreEvents", "Event",
+        new { page = 0 },
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            OnFailure = "searchFailed",
+            LoadingElementId = "ajax-loader",
+            UpdateTargetId = "searchresults"
+        }))
     {
-        InsertionMode = InsertionMode.Replace,
-        HttpMethod = "GET",
-        OnFailure = "searchFailed",
-        LoadingElementId = "ajax-loader",
-        UpdateTargetId = "searchresults"
-    }))
-{
 
-    <div class="filter">
-        <div class="filter-label">
-            Search
+        <div class="filter">
+            <div class="filter-label">
+                Search
+            </div>
+            <div class="filter-field">
+                @Html.TextBox("filter_search", null)
+                <input id="fs" type="submit" value="Search" />
+            </div>
         </div>
-        <div class="filter-field">
-            @Html.TextBox("filter_search", null)
-            <input id="fs" type="submit" value="Search" />
+        <div class="filter">
+            <div class="filter-label">
+                Genre
+            </div>
+            <div class="filter-field">
+                @Html.DropDownList("filter_Event_GenreId", (IEnumerable<SelectListItem>)ViewBag.Genres, "All Genres", new { onchange = "$(\"#fs\").click();" })
+            </div>
         </div>
-    </div>
-    <div class="filter">
-        <div class="filter-label">
-            Genre
+        <div class="filter">
+            <div class="filter-label">
+                Piece
+            </div>
+            <div class="filter-field">
+                @Html.TextBox("filter_Performance_Piece", null, new { onchange = "$(\"#fs\").click();" })        
+            </div>
         </div>
-        <div class="filter-field">
-            @Html.DropDownList("filter_Event_GenreId", (IEnumerable<SelectListItem>)ViewBag.Genres, "All Genres", new { onchange = "$(\"#fs\").click();" })
+        <div class="filter">
+            <div class="filter-label">
+                Venue
+            </div>
+            <div class="filter-field">
+                @Html.TextBox("filter_Event_Venue", null, new { onchange = "$(\"#fs\").click();" })        
+            </div>
         </div>
-    </div>
-    <div class="filter">
-        <div class="filter-label">
-            Piece
+        <div class="filter">
+            <div class="filter-label">
+                City
+            </div>
+            <div class="filter-field">
+                @Html.DropDownList("filter_Venue_City", (IEnumerable<SelectListItem>)ViewBag.Cities, "All Cities", new { onchange = "$(\"#fs\").click();" })
+            </div>
         </div>
-        <div class="filter-field">
-            @Html.TextBox("filter_Performance_Piece", null, new { onchange = "$(\"#fs\").click();" })        
+        <div class="filter">
+            <div class="filter-label">
+                Country
+            </div>
+            <div class="filter-field">
+                @Html.DropDownList("filter_Venue_CountryId", (IEnumerable<SelectListItem>)ViewBag.Countries, "All Countries", new { onchange = "$(\"#fs\").click();" })
+            </div>
         </div>
-    </div>
-    <div class="filter">
-        <div class="filter-label">
-            Venue
+        <div class="filter">
+            <div class="filter-label">
+                Date
+            </div>
+            <div class="filter-field">
+                @Html.TextBox("filter_From_Event_Date", null, new { onchange = "$(\"#fs\").click();", @class = "date", @style = "width:10em" })
+                to
+                @Html.TextBox("filter_To_Event_Date", null, new { onchange = "$(\"#fs\").click();", @class = "date", @style = "width:10em" })
+            </div>
         </div>
-        <div class="filter-field">
-            @Html.TextBox("filter_Event_Venue", null, new { onchange = "$(\"#fs\").click();" })        
-        </div>
-    </div>
-    <div class="filter">
-        <div class="filter-label">
-            City
-        </div>
-        <div class="filter-field">
-            @Html.DropDownList("filter_Venue_City", (IEnumerable<SelectListItem>)ViewBag.Cities, "All Cities", new { onchange = "$(\"#fs\").click();" })
-        </div>
-    </div>
-    <div class="filter">
-        <div class="filter-label">
-            Country
-        </div>
-        <div class="filter-field">
-            @Html.DropDownList("filter_Venue_CountryId", (IEnumerable<SelectListItem>)ViewBag.Countries, "All Countries", new { onchange = "$(\"#fs\").click();" })
-        </div>
-    </div>
-    <div class="filter">
-        <div class="filter-label">
-            Date
-        </div>
-        <div class="filter-field">
-            @Html.TextBox("filter_From_Event_Date", null, new { onchange = "$(\"#fs\").click();", @class = "date", @style = "width:10em" })
-            to
-            @Html.TextBox("filter_To_Event_Date", null, new { onchange = "$(\"#fs\").click();", @class = "date", @style = "width:10em" })
-        </div>
-    </div>
 
-    if (Request.IsAuthenticated){
-    <div class="filter">
-        <div class="filter-label">
-            My Status
-        </div>
-        <div class="filter-field">
-            @Html.DropDownList("filter_MyStatus", (IEnumerable<SelectListItem>)ViewBag.MyStatus, null, new { onchange = "$(\"#fs\").click();" })
-        </div>
-    </div>}
+        if (Request.IsAuthenticated){
+        <div class="filter">
+            <div class="filter-label">
+                My Status
+            </div>
+            <div class="filter-field">
+                @Html.DropDownList("filter_MyStatus", (IEnumerable<SelectListItem>)ViewBag.MyStatus, null, new { onchange = "$(\"#fs\").click();" })
+            </div>
+        </div>}
     
 
-    <img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
+        <img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
 
-    <div id="searchresults">
+        <div id="searchresults">
 
-        @Html.Partial("_MoreEvents")
+            @Html.Partial("_MoreEvents")
 
-    </div>
+        </div>
     
-}
+    }
 
 
-<script type="text/javascript">
-    $("#filter_Event_Venue").autocomplete({
-        source: "@Url.Action("Autocomplete_Event_VenueName")",
-    });
+    <script type="text/javascript">
+        $("#filter_Event_Venue").autocomplete({
+            source: "@Url.Action("Autocomplete_Event_VenueName")",
+        });
 
-    $("#filter_Performance_Piece").autocomplete({
-        source: "@Url.Action("Autocomplete_PieceName")",
-    });
+        $("#filter_Performance_Piece").autocomplete({
+            source: "@Url.Action("Autocomplete_PieceName")",
+        });
 
-</script>
+    </script>

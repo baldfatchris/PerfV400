@@ -60,7 +60,7 @@ namespace PerfV400.Controllers
         {
             WebSecurity.Logout();
 
-            return RedirectToAction("Index", "Event");
+            return RedirectToAction("Index", "Home");
         }
 
         //
@@ -87,7 +87,7 @@ namespace PerfV400.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Event");
+                    return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
                 {
@@ -483,7 +483,7 @@ namespace PerfV400.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Event");
+                return RedirectToAction("Index", "Home");
             }
         }
 

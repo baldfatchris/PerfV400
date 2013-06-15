@@ -311,7 +311,7 @@ namespace PerfV400.Controllers
 
         //
         // GET: /Venue/EditVenue/5
-        // [Authorize]
+        [Authorize]
         public ActionResult EditVenue(int id)
         {
             Venue venue = db.Venues.Single(e => e.Venue_Id == id);
@@ -324,7 +324,7 @@ namespace PerfV400.Controllers
         // POST: /Venue/EditVenue/5
 
         [HttpPost]
-        // [Authorize]
+        [Authorize]
         public ActionResult EditVenue(Venue venue)
         {
             if (ModelState.IsValid)
@@ -360,7 +360,7 @@ namespace PerfV400.Controllers
         }
 
         [HttpPost]
-        // [Authorize]
+        [Authorize]
         public WrappedJsonResult EditVenuePhoto(HttpPostedFileWrapper imageFile, int Venue_Id)
         {
             if (imageFile == null || imageFile.ContentLength == 0)

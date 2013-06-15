@@ -18,7 +18,7 @@
         @if (item.Venue_Photo != null)
         {
             <a href="@Url.Action("Details", "Venue", new { id = item.Venue_Id }, null)">
-                <img  class="thumb" width="200" src="@Url.Action("GetVenueImage", "Venue", new { id = item.Venue_Id })" alt="@Html.DisplayFor(modelItem => item.Venue_Name)" border="0" style="border:0"/>
+                <img  class="thumb" width="150" src="@Url.Action("GetVenueImage", "Venue", new { id = item.Venue_Id })" alt="@Html.DisplayFor(modelItem => item.Venue_Name)" border="0" style="border:0"/>
             </a>
     
         }

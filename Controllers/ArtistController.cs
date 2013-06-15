@@ -541,7 +541,7 @@ namespace PerfV400.Controllers
         }
 
         [HttpPost]
-        // [Authorize]
+        [Authorize]
         public WrappedJsonResult EditArtistPhoto(HttpPostedFileWrapper imageFile, int Artist_Id)
         {
             if (imageFile == null || imageFile.ContentLength == 0)

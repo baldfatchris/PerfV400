@@ -44,7 +44,7 @@
     </Reference>
     <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\Facebook.6.1.4\lib\net45\Facebook.dll</HintPath>
+      <HintPath>packages\Facebook.6.4.2\lib\net45\Facebook.dll</HintPath>
     </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\AjaxControlToolkit.4.1.60919\lib\45\SanitizerProviders\HtmlAgilityPack.dll</HintPath>
@@ -614,6 +614,7 @@
     <Content Include="Views\Event\EditPerformanceArtist.cshtml" />
     <Content Include="Views\Event\Performance.cshtml" />
     <Content Include="Views\Event\PerformanceArtist.cshtml" />
+    <Content Include="Views\Home\_MoreStuff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

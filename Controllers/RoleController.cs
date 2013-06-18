@@ -231,37 +231,42 @@ namespace PerfV400.Controllers
         }
 
         //
-        // GET: /Role/Edit/5
-
-        public ActionResult Edit(int id = 0)
+        // GET: /Role/EditRole/5
+        [Authorize]
+        public ActionResult EditRole(int id)
         {
-            Role role = db.Roles.Find(id);
-            if (role == null)
-            {
-                return HttpNotFound();
-            }
+            Role role = db.Roles.Single(e => e.Role_Id == id);
+
             ViewBag.Role_GenreId = new SelectList(db.Genres, "Genre_Id", "Genre_Name", role.Role_GenreId);
             ViewBag.Role_PieceId = new SelectList(db.Pieces, "Piece_Id", "Piece_Name", role.Role_PieceId);
             ViewBag.Role_TypeId = new SelectList(db.Types, "Type_Id", "Type_Name", role.Role_TypeId);
-            return View(role);
+
+            return PartialView(role);
+
         }
 
         //
-        // POST: /Role/Edit/5
+        // POST: /Role/EditRole/5
 
         [HttpPost]
-        public ActionResult Edit(Role role)
+        [Authorize]
+        public ActionResult EditRole(Role role)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(role).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                ViewBag.Role_GenreId = new SelectList(db.Genres, "Genre_Id", "Genre_Name", role.Role_GenreId);
+                ViewBag.Role_PieceId = new SelectList(db.Pieces, "Piece_Id", "Piece_Name", role.Role_PieceId);
+                ViewBag.Role_TypeId = new SelectList(db.Types, "Type_Id", "Type_Name", role.Role_TypeId);
+
+                return PartialView("DetailsRole", role);
             }
-            ViewBag.Role_GenreId = new SelectList(db.Genres, "Genre_Id", "Genre_Name", role.Role_GenreId);
-            ViewBag.Role_PieceId = new SelectList(db.Pieces, "Piece_Id", "Piece_Name", role.Role_PieceId);
-            ViewBag.Role_TypeId = new SelectList(db.Types, "Type_Id", "Type_Name", role.Role_TypeId);
-            return View(role);
+            else
+            {
+                return Content("Please review your form");
+            }
         }
 
         //

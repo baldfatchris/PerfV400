@@ -7,21 +7,18 @@
     <div class="display-image EditPhotoDiv toggle-upload">
 
          <div id="@string.Format("PhotoRole{0}",Model.Role_Id)">
-
-
-                <img class="pic" src="@Url.Action("GetRoleImage", "Role", new { id = Model.Role_Id })" alt="@Html.DisplayFor(a => a.Role_Name)" border="0" style="border:0"/>
+            <img class="pic" src="@Url.Action("GetRoleImage", "Role", new { id = Model.Role_Id })" alt="@Html.DisplayFor(a => a.Role_Name)" border="0" style="border:0"/>
                 
-                <script type="text/javascript">
-                    $(function () {
-                        $('.EditPhotoDiv').hover(function () {
-                            $(this).removeClass('toggle-upload');
-                        }, function () {
-                            $(this).addClass('toggle-upload');
-                        });
+            <script type="text/javascript">
+                $(function () {
+                    $('.EditPhotoDiv').hover(function () {
+                        $(this).removeClass('toggle-upload');
+                    }, function () {
+                        $(this).addClass('toggle-upload');
                     });
-                </script>
-
-        </div>
+                });
+            </script>
+            </div>
        
         @using (Html.BeginForm("EditRolePhoto", "Role", FormMethod.Post,
             new { enctype = "multipart/form-data", id = string.Format("EditPhotoFormRole{0}", Model.Role_Id), target = string.Format("EditPhotoTargetRole{0}", Model.Role_Id) }))

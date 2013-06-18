@@ -892,6 +892,52 @@ tr.pager td {
     float:left;
 }
 
+.Photo100
+{
+    background-color: #000000;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    width: 100px;
+    margin:5px;
+    display:block;
+    float:left;
+}
+
+.Photo75
+{
+    background-color: #000000;
+    height: 75px;
+    overflow: hidden;
+    position: relative;
+    width: 75px;
+    margin:5px;
+    display:block;
+    float:left;
+}
+
+.Photo50
+{
+    background-color: #000000;
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+    width: 50px;
+    margin:2px;
+    display:block;
+    float:left;
+    clear:left;
+}
+
+.Caption {
+    clear: none;
+}
+.Result {
+    display: block;
+    clear:both;
+}
+
+
 .PhotoImage a
 {
     border:0;

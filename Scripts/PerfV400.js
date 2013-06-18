@@ -65,31 +65,14 @@ function EditPhotoComplete(entityType, entityId) {
     }
     document.getElementById("EditPhotoForm" + entityType + entityId).reset();
 
-    //Grab the content of the textarea we named jsonResult .  This shold be loaded into the hidden iFrame.
-    if ($("#EditPhotoTarget" + entityType + entityId).contents() == null) {
-        alert('1');
-        return;
-    }
-    if ($("#EditPhotoTarget" + entityType + entityId).contents().find("#jsonResult")[0] == null) {
-        alert('2');
-        return;
-    }
-    if ($("#EditPhotoTarget" + entityType + entityId).contents().find("#jsonResult")[0].innerHTML == null) {
-        alert('3');
-        return;
-    }
-    var newImg = $.parseJSON($("#EditPhotoTarget" + entityType + entityId).contents().find("#jsonResult")[0].innerHTML);
-
-    //If there was an error, display it to the user
-    if (newImg.IsValid == false) {
-        alert(newImg.Message);
-        return;
-    }
 
     //Create a new image and insert it into the Images div.  
     var imgDiv = document.getElementById("Photo" + entityType + entityId);
     var img = new Image();
-    img.src = newImg.ImagePath;
+    //img.src = newImg.ImagePath;
+
+    img.src = "/" + entityType + "/Get" + entityType + "Image/" + entityId+"?" + "1";
+
     $(img).addClass("pic");
     imgDiv.innerHTML = "";
     imgDiv.appendChild(img);

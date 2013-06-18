@@ -28,7 +28,7 @@ namespace PerfV400.Models
         public int Event_Id { get; set; }
 
         [Required]
-        [Display(Name = "Event")]
+        [Display(Name = "Event Name")]
         public string Event_Name { get; set; }
 
         [Display(Name = "Description")]

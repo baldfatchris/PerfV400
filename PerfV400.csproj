@@ -381,6 +381,7 @@
     <Content Include="Content\copy.png" />
     <Content Include="Content\delete.png" />
     <Content Include="Content\edit.png" />
+    <Content Include="Content\google.css" />
     <Content Include="Content\loading_lg.gif" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -596,7 +597,7 @@
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Details.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
-    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Role\EditRole.cshtml" />
     <Content Include="Views\Role\Delete.cshtml" />
     <Content Include="Views\Role\_MoreRoleArtists.cshtml" />
     <Content Include="Views\Role\DetailsRole.cshtml" />

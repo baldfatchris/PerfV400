@@ -7,18 +7,23 @@
         nextPage = ViewBag.page +1 ;
     }
     string nextDiv = string.Format("more{0}", nextPage);
+
+    int counter = 0;
+    int PageSize = ViewBag.PageSize;
 }
 
 
 @foreach (var item in Model)
 {
+    counter++;
+
+    if (counter <= PageSize)
+    {
     
     @Html.Partial("Performance", item)
-}
-
-
-@if (ViewBag.recordCount - 1 * ViewBag.page > 1)
-{
+    }
+    else
+    {
 <div id="@nextDiv">
 
     @Ajax.ActionLink("more...", "MoreEventPerformances",
@@ -38,7 +43,10 @@
 
     <img id="ajax-loader1" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
 
-</div>
+</div>    
+
+    }
 }
+
 
 

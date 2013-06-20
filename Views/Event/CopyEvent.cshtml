@@ -74,7 +74,7 @@
                 @Html.DisplayNameFor(model => model.Event_Date)
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(model => model.Event_Date, null, new { @class = "date" })
+                @Html.EditorFor(model => model.Event_Date, "Date")
                 @Html.ValidationMessageFor(model => model.Event_Date)
             </div>
         </div>

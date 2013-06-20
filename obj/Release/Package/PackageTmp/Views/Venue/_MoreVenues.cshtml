@@ -7,18 +7,25 @@
         nextPage = ViewBag.page +1 ;
     }
     string nextDiv = string.Format("more{0}", nextPage);
+
+    int counter = 0;
+    int PageSize = ViewBag.PageSize;
 }
 
 
 
 @foreach (var item in Model)
 {
+    counter++;
+
+    if (counter <= PageSize)
+    {
 <div class="Photo">
     <div class="PhotoImage">
         @if (item.Venue_Photo != null)
         {
             <a href="@Url.Action("Details", "Venue", new { id = item.Venue_Id }, null)">
-                <img  class="thumb" width="150" src="@Url.Action("GetVenueImage", "Venue", new { id = item.Venue_Id })" alt="@Html.DisplayFor(modelItem => item.Venue_Name)" border="0" style="border:0"/>
+                <img  class="thumb" width="200" src="@Url.Action("GetVenueImage", "Venue", new { id = item.Venue_Id })" alt="@Html.DisplayFor(modelItem => item.Venue_Name)" border="0" style="border:0"/>
             </a>
     
         }
@@ -35,9 +42,9 @@
         </div>
     </div>
 </div>        
-   
-}
-
+    }
+    else
+    {
 <div id="@nextDiv">
     <div style="width:200px">&nbsp;</div> 
 
@@ -59,5 +66,9 @@
     <div style="clear:both"></div>
 
     <img id="ajax-loader1" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
-</div>
+</div>    }
+
+}
+
+
 

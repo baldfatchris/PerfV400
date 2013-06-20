@@ -439,7 +439,17 @@ label.checkbox {
 
 input, textarea {
     border: 1px solid #e2e2e2;
-    width: 300px;
+    width: 16em;
+}
+
+
+#createnewevent input, #createnewevent textarea {
+    width: 10em;
+}
+
+
+#createnewevent .editor-label {
+    width: 6em;
 }
 
 textarea {

@@ -14,6 +14,8 @@ namespace PerfV400.Controllers
 {
     public class EventController : Controller
     {
+        public const int PageSize = 20;
+        
         private PerfV100Entities db = new PerfV100Entities();
 
         //
@@ -29,6 +31,7 @@ namespace PerfV400.Controllers
 
             // sort out the paging
             ViewBag.page = 0;
+            ViewBag.PageSize = PageSize;
 
             // data for the Genre dropdown
             IEnumerable<SelectListItem> genres = db.Genres
@@ -110,12 +113,8 @@ namespace PerfV400.Controllers
             var events = db.Events
                 .OrderBy(e => e.Event_Date)
                 .Where(e => e.Event_Date >= datetimefilter_from_Event_Date)
-                .Take(60);
+                .Take(PageSize+1);
 
-            ViewBag.recordCount = db.Events
-                .Count();
-
-            
             return View(events.ToList());
         }
 
@@ -144,6 +143,7 @@ namespace PerfV400.Controllers
             
             // sort out the paging
             ViewBag.page = page;
+            ViewBag.PageSize = PageSize;
 
             // set up the filters
             bool result;
@@ -196,8 +196,8 @@ namespace PerfV400.Controllers
 
                 .Where(e => intfilter_MyStatus == 0 || e.EventUsers.Where(eu => eu.EventUser_StatusId == intfilter_MyStatus).Where(eu => eu.EventUser_UserId == intUsertId).Count() > 0)
 
-                .Skip(page * 60)
-                .Take(60);
+                .Skip(page * PageSize)
+                .Take(PageSize+1);
 
 
 
@@ -210,20 +210,6 @@ namespace PerfV400.Controllers
             ViewBag.filter_from_Event_Date = filter_From_Event_Date;
             ViewBag.filter_to_Event_Date = filter_To_Event_Date;
             ViewBag.filter_MyStatus = filter_MyStatus;
-
-            ViewBag.recordCount = db.Events
-                .Where(c => strfilter_search == null || strfilter_search == "" || c.Event_Name.ToUpper().Contains(strfilter_search.ToUpper()) || c.Event_Description.ToUpper().Contains(strfilter_search.ToUpper()))
-                .Where(c => c.Event_Date >= datetimefilter_From_Event_Date)
-                .Where(c => c.Event_Date <= datetimefilter_To_Event_Date)
-                .Where(c => intfilter_Event_GenreId == 0 || c.Event_GenreId == intfilter_Event_GenreId)
-                .Where(c => filter_Performance_Piece == null || filter_Performance_Piece == "" || c.Performances.Select(p => p.Piece.Piece_Name).Contains(filter_Performance_Piece))
-                .Where(e => filter_Event_Venue == null || filter_Event_Venue == "" || e.Venue.Venue_Name.Contains(filter_Event_Venue))
-                .Where(c => filter_Venue_City == null || strfilter_Venue_City == "" || c.Venue.Venue_City == strfilter_Venue_City)
-                .Where(c => intfilter_Venue_CountryId == 0 || c.Venue.Venue_CountryId == intfilter_Venue_CountryId)
-
-                .Where(e => intfilter_MyStatus == 0 || e.EventUsers.Where(eu => eu.EventUser_StatusId == intfilter_MyStatus).Where(eu => eu.EventUser_UserId == intUsertId).Count() > 0)
-
-                .Count();
 
             return PartialView("_MoreEvents", events);
 
@@ -285,6 +271,11 @@ namespace PerfV400.Controllers
             {
                 return HttpNotFound();
             }
+
+            // sort out the paging
+            ViewBag.page = 0;
+            ViewBag.PageSize = PageSize;
+
 
             // Can the current user edit this event?
             if (Request.IsAuthenticated)
@@ -354,12 +345,7 @@ namespace PerfV400.Controllers
             ViewBag.performances = db.Performances
                 .Where(p => p.Performance_EventId == id)
                 .OrderBy(p => p.Performance_Order)
-                .Take(60);
-
-            ViewBag.recordCount = db.Performances
-                .Where(p => p.Performance_EventId == id)
-            .Count();
-
+                .Take(PageSize+1);
 
             return View(eventX);
         }
@@ -468,6 +454,7 @@ namespace PerfV400.Controllers
 
             // sort out the paging
             ViewBag.page = page;
+            ViewBag.PageSize = PageSize;
 
             // set up the filters
             bool result;
@@ -479,12 +466,8 @@ namespace PerfV400.Controllers
             var performances = db.Performances
                 .Where(p => p.Performance_EventId == intfilter_Event_Id)
                 .OrderBy(p => p.Performance_Order)
-                .Skip(page * 1)
-                .Take(60);
-
-            ViewBag.recordCount = db.Performances
-                .Where(p => p.Performance_EventId == intfilter_Event_Id)
-            .Count();
+                .Skip(page * PageSize)
+                .Take(PageSize+1);
 
             return PartialView("_MoreEventPerformances", performances);
         }
@@ -574,7 +557,100 @@ namespace PerfV400.Controllers
 
 
 
+        //
+        // GET: /Event/NewEvent
 
+//        [Authorize]
+        public ActionResult NewEvent()
+        {
+            ViewBag.Event_BandId = new SelectList(db.Bands.OrderBy(b => b.Band_Name), "Band_Id", "Band_Name");
+            ViewBag.Event_GenreId = new SelectList(db.Genres.OrderBy(g => g.Genre_Name), "Genre_Id", "Genre_Name");
+            ViewBag.Event_VenueId = new SelectList(db.Venues.OrderBy(v => v.Venue_Name), "Venue_Id", "Venue_Name");
+
+            return PartialView("NewEvent");
+        }
+
+        //
+        // POST: /Event/NewEvent
+
+        [HttpPost]
+        //[Authorize]
+        public ActionResult NewEvent(Event eventX, string Event_VenueName)
+        {
+            if (ModelState.IsValid)
+            {
+
+                Venue venue = db.Venues.FirstOrDefault(v => v.Venue_Name.Equals(Event_VenueName));
+                if (venue != null)
+                {
+                    //attach the venue
+                    eventX.Event_VenueId = venue.Venue_Id;
+                }
+                else
+                {
+                    //create a new venue
+                    Venue newVenue = new Venue();
+
+                    // remove any unnecessary spaces
+                    Event_VenueName.Replace("  ", " ").Trim();
+                    newVenue.Venue_Name = Event_VenueName;
+
+                    db.Venues.Add(newVenue);
+                    eventX.Event_VenueId = newVenue.Venue_Id;
+
+                }
+
+
+                db.Events.Add(eventX);
+                db.SaveChanges();
+
+                // data for the performances
+                ViewBag.performances = db.Performances
+                    .Where(p => p.Performance_EventId == eventX.Event_Id)
+                    .OrderBy(p => p.Performance_Order)
+                    .Take(PageSize+1);
+
+                // data for the venue
+                ViewBag.Venue = db.Venues.FirstOrDefault(v => v.Venue_Id == eventX.Event_VenueId);
+
+                // data for the genre
+                ViewBag.Genre = db.Genres.FirstOrDefault(g => g.Genre_Id == eventX.Event_GenreId);
+
+                // data for the MyStatus dropdown
+                if (eventX.Event_Date < DateTime.Today)
+                {
+                    var query = db.EventUserStatus.OrderBy(c => c.EventUserStatus_Id)
+                        .Select(c => new
+                        {
+                            c.EventUserStatus_Id,
+                            c.EventUserStatus_Past
+                        });
+
+                    ViewBag.MyStatus = new SelectList(query.AsEnumerable(), "EventUserStatus_Id", "EventUserStatus_Past", ViewBag.EventUser_StatusId);
+                }
+                else
+                {
+                    var query = db.EventUserStatus.OrderBy(c => c.EventUserStatus_Id)
+                        .Select(c => new
+                        {
+                            c.EventUserStatus_Id,
+                            c.EventUserStatus_Future
+                        });
+
+                    ViewBag.MyStatus = new SelectList(query.AsEnumerable(), "EventUserStatus_Id", "EventUserStatus_Future", ViewBag.EventUser_StatusId);
+                }
+
+                // Can the current user edit this event?
+                ViewBag.UserCanEditEvent = true;
+
+
+                return View("Details", eventX);
+            }
+            else
+            {
+                return Content("Please review your form");
+            }
+        }
 
 
         //
@@ -627,11 +703,7 @@ namespace PerfV400.Controllers
                 ViewBag.performances = db.Performances
                     .Where(p => p.Performance_EventId == eventX.Event_Id)
                     .OrderBy(p => p.Performance_Order)
-                    .Take(60);
-
-                ViewBag.recordCount = db.Performances
-                    .Where(p => p.Performance_EventId == eventX.Event_Id)
-                .Count();
+                    .Take(PageSize+1);
 
                 // data for the venue
                 ViewBag.Venue = db.Venues.FirstOrDefault(v => v.Venue_Id == eventX.Event_VenueId);
@@ -665,6 +737,10 @@ namespace PerfV400.Controllers
 
                 // Can the current user edit this event?
                 ViewBag.UserCanEditEvent = true;
+
+                // sort out the paging
+                ViewBag.page = 0;
+                ViewBag.PageSize = PageSize;
 
 
                 return View("Details", eventX);
@@ -856,10 +932,7 @@ namespace PerfV400.Controllers
                     .Include(p => p.PerformanceArtists.Select(pa => pa.Artist))
                     ;
 
-                ViewBag.recordCount = db.Performances
-                    .Where(p => p.Performance_EventId == xEvent.Event_Id)
-                .Count();
-
+               
                 // data for the venue
                 ViewBag.Venue = db.Venues.FirstOrDefault(v => v.Venue_Id == xEvent.Event_VenueId);
 
@@ -894,6 +967,9 @@ namespace PerfV400.Controllers
                     ViewBag.MyStatus = new SelectList(query.AsEnumerable(), "EventUserStatus_Id", "EventUserStatus_Future", ViewBag.EventUser_StatusId);
                 }
 
+                // sort out the paging
+                ViewBag.page = 0;
+                ViewBag.PageSize = PageSize;
 
 
                 return PartialView("Details", xEvent);

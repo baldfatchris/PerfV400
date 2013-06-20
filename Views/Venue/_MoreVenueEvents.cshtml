@@ -7,11 +7,18 @@
         nextPage = ViewBag.page +1 ;
     }
     string nextDiv = string.Format("more{0}", nextPage);
+
+    int counter = 0;
+    int PageSize = ViewBag.PageSize;
 }
 
 
 @foreach (var item in Model)
 {
+    counter++;
+
+    if (counter <= PageSize)
+    {
 <div class="Photo150">
     <div class="PhotoImage">
         <a href="@Url.Action("Details", "Event", new { id = item.Event_Id }, null)">
@@ -31,12 +38,9 @@
         </div>
     </div>
 </div>        
- 
-}
-
-
-@if (ViewBag.recordCount - 60 * ViewBag.page > 60)
-{
+    }
+    else
+    {
 <div id="@nextDiv">
 
     @Ajax.ActionLink("more...", "MoreVenueEvents",
@@ -61,7 +65,9 @@
 
     <img id="ajax-loader1" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
 
-</div>
+</div>        
+    } 
 }
+
 
 

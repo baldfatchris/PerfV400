@@ -4,6 +4,37 @@
     ViewBag.Title = "Home";
 }
 
+<section id="homeevents" class="section" style="clear:left; float:left; width:100%">
+    <fieldset>
+        <legend>Events</legend>
+
+<div style="width:10000px">
+@foreach (PerfV400.Models.Event item in ViewBag.nextevents)
+{
+<div class="Photo">
+    <div class="PhotoImage">
+        <a href="@Url.Action("Details", "Event", new { id = item.Event_Id }, null)">
+            <img class="thumb" width="200" src="@Url.Action("GetEventImage", "Event", new { id = item.Event_Id })" alt="" border="0" style="border:0"/>
+        </a>
+    </div>
+    <div class="UserStatus">
+    </div>
+    <div class="PhotoCaption">
+        <div class="PhotoCaptionText">
+            <a href="@Url.Action("Details", "Event", new { id = item.Event_Id }, null)">
+                <strong>@Html.DisplayFor(modelItem => item.Event_Name)</strong> - 
+                @(item.Event_Date.ToLongDateString()) - 
+                @Html.DisplayFor(modelItem => item.Venue.Venue_Name) - 
+                @Html.DisplayFor(modelItem => item.Venue.Venue_City)
+            </a>
+        </div>
+    </div>
+</div>        
+   
+}
+</div>
+    </fieldset>
+</section>
 
 <section id="homesearch" class="section" style="clear:left; float:left; width:600px">
     <fieldset>
@@ -41,7 +72,8 @@
     }
     </fieldset>
 </section>
-<section id="createnewevent" class="section" style="clear:right; float:right; width:500px">
+
+<section id="createnewevent" class="section" style="clear:right; float:right; width:300px">
     <fieldset>
         <legend>Add A New Event</legend>
 
@@ -85,9 +117,13 @@
             @Html.ValidationMessageFor(model => model.Event_VenueId)
         </div>
 
-        <br />
-        <p>
-            <input type="submit" value="Create" style="clear:both"/>
-        </p>
+        <br /> <br />
+
+        <ul class="toolbar">
+            <li class="add">@Html.ActionLink("Add New Event", "NewEvent", "Event", new {  }, htmlAttributes: new { @class = "createLink", data_dialog_title = "Add New Event" })</li>
+        </ul>
+
+        <div id="NewEventDetails" />
+
     </fieldset>
 </section>

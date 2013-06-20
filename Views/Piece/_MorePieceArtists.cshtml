@@ -7,11 +7,18 @@
         nextPage = ViewBag.page +1 ;
     }
     string nextDiv = string.Format("morepieceartists{0}", nextPage);
+
+    int counter = 0;
+    int PageSize = ViewBag.PageSize;
 }
 
 
 @foreach (var item in Model)
 {
+    counter++;
+
+    if (counter <= PageSize)
+    {
 <div id="@string.Format("PieceArtistDetails{0}", item.PieceArtist_Id)" class="Photo150 toggle-toolbar">
     <div class="artist-toolbar">
         <ul class="toolbar">
@@ -33,13 +40,10 @@
         </div>
     </div>
 </div>        
- 
-}
-
-
-@if (ViewBag.recordCount - 60 * ViewBag.page > 60)
-{
-<div id="@nextDiv">
+    }
+    else
+    {
+ <div id="@nextDiv">
 
     @Ajax.ActionLink("more...", "MorePieceArtists",
         new
@@ -59,6 +63,5 @@
     <img id="morepieceartistsajaxloader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
 
 </div>
+    }
 }
-
-

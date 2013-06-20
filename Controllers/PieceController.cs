@@ -9,10 +9,13 @@ using PerfV400.Models;
 using System.Data.Objects.SqlClient;
 using System.IO;
 
+
 namespace PerfV400.Controllers
 {
     public class PieceController : Controller
     {
+        public const int PageSize = 20;
+
         private PerfV100Entities db = new PerfV100Entities();
 
         //
@@ -22,7 +25,7 @@ namespace PerfV400.Controllers
         {
             // sort out the paging
             ViewBag.page = 0;
-
+            ViewBag.PageSize = PageSize;
 
             // data for the Genre dropdown
             IEnumerable<SelectListItem> genres = db.Genres
@@ -39,12 +42,9 @@ namespace PerfV400.Controllers
 
             // data for the Pieces            
             var Pieces = db.Pieces
-                            .OrderBy(p => p.Piece_Name)
-                            .Take(60);
-
-            ViewBag.recordCount = db.Pieces
-                .Count();
-
+                .OrderByDescending(p => p.Performances.Count())
+                .ThenBy(p => p.Piece_Name)
+                .Take(PageSize+1);
 
             return View(Pieces.ToList());
         }
@@ -60,6 +60,8 @@ namespace PerfV400.Controllers
 
             // sort out the paging
             ViewBag.page = page;
+            ViewBag.PageSize = PageSize;
+
 
             // set up the filters
             bool result;
@@ -73,7 +75,8 @@ namespace PerfV400.Controllers
 
             // data for the Pieces
             var Pieces = db.Pieces
-                .OrderBy(p => p.Piece_Name)
+                .OrderByDescending(p => p.Performances.Count())
+                .ThenBy(p => p.Piece_Name)
                 .Where(c => filter_search == null || filter_search == "" || c.Piece_Name.ToUpper().Contains(filter_search.ToUpper()))
                 .Where(c => intfilter_Piece_GenreId == 0 || c.Piece_GenreId == intfilter_Piece_GenreId)
 
@@ -83,20 +86,13 @@ namespace PerfV400.Controllers
                         )
 
 
-                .Skip(page * 60)
-                .Take(60);
+                .Skip(page * PageSize)
+                .Take(PageSize+1);
 
 
             ViewBag.filter_search = strfilter_search;
             ViewBag.filter_Piece_GenreId = filter_Piece_GenreId;
             ViewBag.filter_Artist_FullName = filter_Artist_FullName;
-
-            ViewBag.recordCount =db.Pieces
-                .OrderBy(p => p.Piece_Name)
-                .Where(c => filter_search == null || filter_search == "" || c.Piece_Name.ToUpper().Contains(filter_search.ToUpper()))
-                .Where(c => intfilter_Piece_GenreId == 0 || c.Piece_GenreId == intfilter_Piece_GenreId)
-                .Skip(page * 60)
-                .Count();
 
             return PartialView("_MorePieces", Pieces);
 
@@ -312,6 +308,7 @@ namespace PerfV400.Controllers
 
             // sort out the paging
             ViewBag.page = 0;
+            ViewBag.PageSize = PageSize;
 
             // data for the Venue dropdown
             IEnumerable<SelectListItem> Venues = db.Venues
@@ -358,26 +355,22 @@ namespace PerfV400.Controllers
             ViewBag.pieceArtists = db.PieceArtists
             .Where(p => p.PieceArtist_PieceId == id)
             .OrderBy(p => p.PieceArtist_Id)
-            .Take(60);
+            .Take(PageSize+1);
 
             // data for the roles
             ViewBag.roles = db.Roles
             .Where(p => p.Role_PieceId == id)
             .OrderBy(p => p.Role_Rank)
-            .Take(60);
+            .Take(PageSize+1);
 
             // data for the performances
             ViewBag.performances = db.Performances
             .Where(p => p.Performance_PieceId == id)
             .Where(p => p.Event.Event_Date >= datetimefilter_from_Event_Date)
             .OrderBy(p => p.Event.Event_Date)
-            .Take(60);
+            .Take(PageSize+1);
 
-            ViewBag.recordCount = db.Performances
-            .Where(p => p.Performance_PieceId == id)
-            .Where(p => p.Event.Event_Date >= datetimefilter_from_Event_Date)
-            .Count();
-
+            
             return View(Piece);
         }
 
@@ -392,6 +385,7 @@ namespace PerfV400.Controllers
 
             // sort out the paging
             ViewBag.page = page;
+            ViewBag.PageSize = PageSize;
 
             // set up the filters
             bool result;
@@ -404,11 +398,7 @@ namespace PerfV400.Controllers
                 .Where(p => p.PieceArtist_PieceId == intfilter_Piece_Id)
                 .OrderBy(p => p.PieceArtist_Id)
                 .Skip(page * 1)
-                .Take(60);
-
-            ViewBag.recordCount = db.PieceArtists
-                .Where(p => p.PieceArtist_PieceId == intfilter_Piece_Id)
-            .Count();
+                .Take(PageSize+1);
 
             return PartialView("_MorePieceArtists", pieceArtists);
         }
@@ -425,6 +415,7 @@ namespace PerfV400.Controllers
 
             // sort out the paging
             ViewBag.page = page;
+            ViewBag.PageSize = PageSize;
 
             // set up the filters
             bool result;
@@ -437,12 +428,9 @@ namespace PerfV400.Controllers
                 .Where(p => p.Role_PieceId == intfilter_Piece_Id)
                 .OrderBy(p => p.Role_Rank)
                 .Skip(page * 1)
-                .Take(60);
+                .Take(PageSize+1);
 
-            ViewBag.recordCount = db.Roles
-                .Where(p => p.Role_PieceId == intfilter_Piece_Id)
-            .Count();
-
+            
             return PartialView("_MoreRoles", Roles);
         }
 
@@ -462,6 +450,7 @@ namespace PerfV400.Controllers
 
             // sort out the paging
             ViewBag.page = page;
+            ViewBag.PageSize = PageSize;
 
             // set up the filters
             bool result;
@@ -504,8 +493,8 @@ namespace PerfV400.Controllers
                 .Where(p => filter_Venue_City == null || strfilter_Venue_City == "" || p.Event.Venue.Venue_City == strfilter_Venue_City)
                 .Where(p => intfilter_Venue_CountryId == 0 || p.Event.Venue.Venue_CountryId == intfilter_Venue_CountryId)
                 .OrderBy(p => p.Event.Event_Date)
-                .Skip(page * 60)
-                .Take(60);
+                .Skip(page * PageSize)
+                .Take(PageSize+1);
 
             ViewBag.filter_Event_VenueId = filter_Event_VenueId;
             ViewBag.filter_Event_Venue = filter_Event_Venue;
@@ -514,15 +503,6 @@ namespace PerfV400.Controllers
             ViewBag.filter_from_Event_Date = filter_From_Event_Date;
             ViewBag.filter_to_Event_Date = filter_To_Event_Date;
 
-
-            ViewBag.recordCount = db.Performances
-                .Where(p => p.Performance_PieceId == intfilter_Piece_Id)
-                .Where(p => p.Event.Event_Date >= datetimefilter_From_Event_Date)
-                .Where(p => p.Event.Event_Date <= datetimefilter_To_Event_Date)
-                .Where(p => intfilter_Event_VenueId == 0 || p.Event.Event_VenueId == intfilter_Event_VenueId)
-                .Where(p => filter_Venue_City == null || strfilter_Venue_City == "" || p.Event.Venue.Venue_City == strfilter_Venue_City)
-                .Where(p => intfilter_Venue_CountryId == 0 || p.Event.Venue.Venue_CountryId == intfilter_Venue_CountryId)
-                .Count();
 
             return PartialView("_MorePiecePerformances", performances);
         }
@@ -572,6 +552,7 @@ namespace PerfV400.Controllers
 
                 // sort out the paging
                 ViewBag.page = 0;
+                ViewBag.PageSize = PageSize;
 
                 // data for the Venue dropdown
                 IEnumerable<SelectListItem> Venues = db.Venues
@@ -617,23 +598,19 @@ namespace PerfV400.Controllers
                 // data for the pieceArtists
                 ViewBag.pieceArtists = db.PieceArtists
                 .Where(p => p.PieceArtist_PieceId == id)
-                .Take(60);
+                .Take(PageSize+1);
 
                 // data for the roles
                 ViewBag.roles = db.Roles
                 .Where(p => p.Role_PieceId == id)
-                .Take(60);
+                .Take(PageSize+1);
 
                 // data for the performances
                 ViewBag.performances = db.Performances
                 .Where(p => p.Performance_PieceId == id)
-                .Take(60);
+                .Take(PageSize+1);
 
-                ViewBag.recordCount = db.Performances
-                .Where(p => p.Performance_PieceId == id)
-                .Count();
-
-
+                
                 return View("Details", piece);
             }
             else

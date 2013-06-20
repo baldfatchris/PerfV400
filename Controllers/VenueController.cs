@@ -13,6 +13,9 @@ namespace PerfV400.Controllers
 {
     public class VenueController : Controller
     {
+
+        public const int PageSize = 20; 
+        
         private PerfV100Entities db = new PerfV100Entities();
 
         //
@@ -22,6 +25,7 @@ namespace PerfV400.Controllers
         {
             // sort out the paging
             ViewBag.page = 0;
+            ViewBag.PageSize = PageSize;
 
             // data for the Country dropdown
             IEnumerable<SelectListItem> countries = db.CountryRegions
@@ -36,7 +40,7 @@ namespace PerfV400.Controllers
             // data for the Venues            
             var venues = db.Venues
                             .OrderByDescending(v => v.Events.Count)
-                            .Take(60);
+                            .Take(PageSize+1);
 
             return View(venues.ToList());
         }
@@ -51,6 +55,7 @@ namespace PerfV400.Controllers
 
             // sort out the paging
             ViewBag.page = page;
+            ViewBag.PageSize = PageSize;
 
             // set up the filters
             bool result;
@@ -66,7 +71,7 @@ namespace PerfV400.Controllers
                 .Where(c => filter_search == null || filter_search == "" || c.Venue_Name.ToUpper().Contains(filter_search.ToUpper()))
                 .Where(c => intfilter_Venue_CountryId == 0 || c.Venue_CountryId == intfilter_Venue_CountryId)
                 .Skip(page * 60)
-                .Take(60);
+                .Take(PageSize+1);
 
 
 
@@ -116,7 +121,8 @@ namespace PerfV400.Controllers
 
             // sort out the paging
             ViewBag.page = 0;
-
+            ViewBag.PageSize = PageSize;
+            
             // data for the Genre dropdown
             IEnumerable<SelectListItem> genres = db.Genres
             .Where(g => db.PerformanceArtists.Where(pa => pa.PerformanceArtist_ArtistId == id).Select(pa => pa.Performance.Event.Event_GenreId).Contains(g.Genre_Id))
@@ -151,13 +157,9 @@ namespace PerfV400.Controllers
             .Where(e => e.Event_VenueId == id)
             .Where(c => c.Event_Date >= datetimefilter_from_Event_Date)
             .OrderBy(c => c.Event_Date)
-            .Take(60);
+            .Take(PageSize+1);
 
-            ViewBag.recordCount = db.Events
-            .Where(e => e.Event_VenueId == id)
-            .Where(c => c.Event_Date >= datetimefilter_from_Event_Date)
-            .Count();
-
+            
             return View(venue);
         }
 
@@ -181,6 +183,7 @@ namespace PerfV400.Controllers
 
             // sort out the paging
             ViewBag.page = page;
+            ViewBag.PageSize = PageSize;
 
             // set up the filters
             bool result;
@@ -221,7 +224,7 @@ namespace PerfV400.Controllers
                 .Where(e => intfilter_Event_GenreId == 0 || e.Event_GenreId == intfilter_Event_GenreId)
                 .Where(e => filter_Performance_Piece == null || filter_Performance_Piece == "" || e.Performances.Select(p => p.Piece.Piece_Name).Contains(filter_Performance_Piece))
                 .Skip(page * 60)
-                .Take(60);
+                .Take(PageSize+1);
 
 
 
@@ -230,15 +233,6 @@ namespace PerfV400.Controllers
             ViewBag.filter_Performance_Piece = filter_Performance_Piece;
             ViewBag.filter_from_Event_Date = filter_From_Event_Date;
             ViewBag.filter_to_Event_Date = filter_To_Event_Date;
-
-            ViewBag.recordCount = db.Events
-                .Where(e => e.Event_VenueId == intfilter_Venue_Id)
-                .Where(c => strfilter_search == null || strfilter_search == "" || c.Event_Name.ToUpper().Contains(strfilter_search.ToUpper()) || c.Event_Description.ToUpper().Contains(strfilter_search.ToUpper()))
-                .Where(c => c.Event_Date >= datetimefilter_From_Event_Date)
-                .Where(c => c.Event_Date <= datetimefilter_To_Event_Date)
-                .Where(c => intfilter_Event_GenreId == 0 || c.Event_GenreId == intfilter_Event_GenreId)
-                .Where(c => filter_Performance_Piece == null || filter_Performance_Piece == "" || c.Performances.Select(p => p.Piece.Piece_Name).Contains(filter_Performance_Piece))
-                .Count();
 
             return PartialView("_MoreVenueEvents", events);
         }

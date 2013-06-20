@@ -13,6 +13,9 @@ namespace PerfV400.Controllers
 {
     public class RoleController : Controller
     {
+
+        public const int PageSize = 20;
+
         private PerfV100Entities db = new PerfV100Entities();
 
         //
@@ -37,6 +40,7 @@ namespace PerfV400.Controllers
 
             // sort out the paging
             ViewBag.page = 0;
+            ViewBag.PageSize = PageSize;
 
             // data for the Venue dropdown
             IEnumerable<SelectListItem> Venues = db.Venues
@@ -86,7 +90,7 @@ namespace PerfV400.Controllers
                 .Where(pa => pa.Performance.Event.Event_Date >= datetimefilter_from_Artist_Date)
                 .Select(pa => pa.PerformanceArtist_ArtistId).Contains(a.Artist_Id))
             .OrderBy(a => a.Artist_LastName).ThenBy(a => a.Artist_FirstName)
-            .Take(60);
+            .Take(PageSize+1);
 
 
             return View(role);
@@ -108,6 +112,7 @@ namespace PerfV400.Controllers
 
             // sort out the paging
             ViewBag.page = page;
+            ViewBag.PageSize = PageSize;
 
             // set up the filters
             bool result;
@@ -153,7 +158,7 @@ namespace PerfV400.Controllers
                 .Select(pa => pa.PerformanceArtist_ArtistId).Contains(a.Artist_Id))
             .OrderBy(a => a.Artist_LastName).ThenBy(a => a.Artist_FirstName)
             .Skip(page * 60)
-            .Take(60);
+            .Take(PageSize+1);
 
 
 
@@ -163,16 +168,6 @@ namespace PerfV400.Controllers
             ViewBag.filter_From_Artist_Date = filter_From_Artist_Date;
             ViewBag.filter_to_Artist_Date = filter_To_Artist_Date;
 
-            ViewBag.recordCount = db.Artists
-                .Where(a => db.PerformanceArtists
-                .Where(pa => pa.PerformanceArtist_RoleId == intfilter_Role_Id)
-                .Where(pa => strfilter_search == null || strfilter_search == "" || pa.Artist.Artist_FirstName.ToUpper().Contains(strfilter_search.ToUpper()) || pa.Artist.Artist_LastName.ToUpper().Contains(strfilter_search.ToUpper()))
-                .Where(pa => intfilter_Role_VenueId == 0 || pa.Performance.Event.Event_VenueId == intfilter_Role_VenueId)
-                .Where(pa => intfilter_Venue_CountryId == 0 || pa.Performance.Event.Venue.Venue_CountryId == intfilter_Venue_CountryId)
-                .Where(pa => pa.Performance.Event.Event_Date >= datetimefilter_From_Artist_Date)
-                .Where(pa => pa.Performance.Event.Event_Date <= datetimefilter_To_Artist_Date)
-                .Select(pa => pa.PerformanceArtist_ArtistId).Contains(a.Artist_Id))
-                .Count();
 
             return PartialView("_MoreRoleArtists", artists);
         }

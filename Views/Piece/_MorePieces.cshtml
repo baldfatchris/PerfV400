@@ -4,14 +4,21 @@
     int nextPage = 1;
     if (ViewBag.page != null)
     {
-        nextPage = ViewBag.page +1 ;
+        nextPage = ViewBag.page + 1;
     }
     string nextDiv = string.Format("more{0}", nextPage);
+
+    int counter = 0;
+    int PageSize = ViewBag.PageSize;
 }
 
 
 @foreach (var item in Model)
 {
+    counter++;
+
+    if (counter <= PageSize)
+    {
 <div class="Photo">
     <div class="PhotoImage">
         <a href="@Url.Action("Details", "Piece", new { id = item.Piece_Id }, null)">
@@ -23,16 +30,14 @@
     <div class="PhotoCaption">
         <div class="PhotoCaptionText">
             <a href="@Url.Action("Details", "Piece", new { id = item.Piece_Id }, null)">
-                <strong>@Html.DisplayFor(modelItem => item.Piece_Name)</strong> 
+                <strong>@Html.DisplayFor(modelItem => item.Piece_Name)</strong> (@item.Performances.Count() performances)
             </a>
         </div>
     </div>
 </div>        
-   
-}
-
-@if (ViewBag.recordCount - 60 * ViewBag.page > 60)
-{
+    }
+    else
+    {
     <div id="@nextDiv">
     <div style="width:200px">&nbsp;</div> 
 
@@ -44,20 +49,24 @@
             filter_Piece_GenreId = ViewBag.filter_Piece_GenreId,
             filter_Artist_FullName = ViewBag.filter_Artist_FullName,
             page = nextPage
-        }, 
-        new AjaxOptions { 
-            UpdateTargetId = nextDiv, 
-            InsertionMode = InsertionMode.Replace, 
-            HttpMethod = "GET", 
-            LoadingElementId = "ajax-loader1" 
+        },
+        new AjaxOptions
+        {
+            UpdateTargetId = nextDiv,
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            LoadingElementId = "ajax-loader1"
         })
         
     <div style="clear:both"></div>
 
     <img id="ajax-loader1" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
 </div>
+    }
+
 
 }
+
 
 <script type="text/javascript">
     $(function () { $('.thumb').mouseover(function () { $(this).animate({ height: '+=4', width: '+=4' }).animate({ height: '-=4', width: '-=4' }); }); });

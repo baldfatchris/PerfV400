@@ -7,11 +7,18 @@
         nextPage = ViewBag.page +1 ;
     }
     string nextDiv = string.Format("more{0}", nextPage);
+
+    int counter = 0;
+    int PageSize = ViewBag.PageSize;
 }
 
 
 @foreach (var item in Model)
 {
+    counter++;
+
+    if (counter <= PageSize)
+    {
 <div class="Photo">
     <div class="PhotoImage">
         @if (item.Artist_Photo != null)
@@ -33,12 +40,9 @@
         </div>
     </div>
 </div>        
-   
-}
-
-
-@if (ViewBag.recordCount - 60 * ViewBag.page > 60)
-{
+    }
+    else
+    {
 <div id="@nextDiv">
     <div style="width:200px">&nbsp;</div> 
 
@@ -60,5 +64,7 @@
             HttpMethod = "GET",
             LoadingElementId = "ajax-loader1"
         })
-</div>
+</div>    }   
 }
+
+

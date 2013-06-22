@@ -22,6 +22,28 @@
                 <div class="float-left">
                    <a href="/home"><img src="@Url.Content("~/Content/logo.png")" alt="logo" /></a>
                  </div>
+
+
+
+<section id="homesearch" class="section" style="float:left; ">
+    <fieldset style="border:0; padding:0 0 0 4em; margin:0;">
+        <legend style="color:white">Search</legend>
+
+    @using (Html.BeginForm("Search", "Home"))
+    {
+
+    <div class="filter">
+        <div class="filter-field">
+            @Html.TextBox("filter_search", null)
+            <input id="fs" type="submit" value="Go" />
+        </div>
+    </div>
+    }
+    </fieldset>
+</section>
+
+
+
                 <div class="float-right">
                     <section id="login">
                         @Html.Partial("_LoginPartial")

@@ -17,6 +17,10 @@ img {
     border: 0;
 }
 
+p {
+    margin:0;
+}
+
 a {
     color: #034af3;
     outline: none;
@@ -166,7 +170,9 @@ footer {
         background: none;
         margin: 0;
         padding: 0;
-        text-decoration: underline;
+        text-decoration: none;
+        font-weight:bold;
+        color:white;
     }
 
     #login ul {
@@ -474,6 +480,7 @@ textarea {
         border: 1px solid #787878;
         cursor: pointer;
         font-weight: 600;
+
         margin-right: 8px;
         width: auto;
     }

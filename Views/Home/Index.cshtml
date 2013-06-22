@@ -36,42 +36,7 @@
     </fieldset>
 </section>
 
-<section id="homesearch" class="section" style="clear:left; float:left; width:600px">
-    <fieldset>
-        <legend>Search</legend>
-    @using (Ajax.BeginForm("MoreStuff", "Home",
-        new { page = 0 },
-        new AjaxOptions
-        {
-            InsertionMode = InsertionMode.Replace,
-            HttpMethod = "GET",
-            OnFailure = "searchFailed",
-            LoadingElementId = "ajax-loader",
-            UpdateTargetId = "searchresults"
-        }))
-    {
 
-    <div class="filter">
-        <div class="filter-field">
-            @Html.TextBox("filter_search", null)
-            <input id="fs" type="submit" value="Search" />
-        </div>
-    </div>
-
-    
-
-    <img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
-
-        <div id="searchresults">
-
-            @Html.Partial("_MoreStuff")
-
-        </div>    
-    
-
-    }
-    </fieldset>
-</section>
 
 <section id="createnewevent" class="section" style="clear:right; float:right; width:300px">
     <fieldset>
@@ -94,14 +59,6 @@
         </div>
 
         <div class="editor-label">
-            @Html.DisplayNameFor(model => model.Event_Date)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.Event_Date, "Date")
-            @Html.ValidationMessageFor(model => model.Event_Date)
-        </div>
-
-        <div class="editor-label">
             @Html.DisplayNameFor(model => model.Event_StartTime)
         </div>
         <div class="editor-field">
@@ -109,13 +66,7 @@
             @Html.ValidationMessageFor(model => model.Event_StartTime)
         </div>
 
-        <div class="editor-label">
-            @Html.DisplayNameFor(model => model.Event_VenueId)
-        </div>
-        <div class="editor-field">
-            @Html.Editor("Event_VenueName")
-            @Html.ValidationMessageFor(model => model.Event_VenueId)
-        </div>
+
 
         <br /> <br />
 

@@ -619,6 +619,7 @@
     <Content Include="Views\Event\PerformanceArtist.cshtml" />
     <Content Include="Views\Home\_MoreStuff.cshtml" />
     <Content Include="Views\Event\NewEvent.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

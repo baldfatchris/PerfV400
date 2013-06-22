@@ -643,6 +643,10 @@ namespace PerfV400.Controllers
                 // Can the current user edit this event?
                 ViewBag.UserCanEditEvent = true;
 
+                // sort out the paging
+                ViewBag.page = 0;
+                ViewBag.PageSize = PageSize;
+
 
                 return View("Details", eventX);
             }

@@ -1,0 +1,204 @@
+﻿@{    
+    int counter;
+
+    IEnumerable<PerfV400.Models.Event> events = ViewBag.events;
+    if (events != null && events.Count() > 0)
+    {
+<h2>Events</h2>
+<div class="stuff">
+    @{
+        counter = 0;
+    }
+    @foreach (PerfV400.Models.Event item in ViewBag.events)
+    {
+        <div class="Result">
+        @if (counter < 5)
+        {
+            counter = counter + 1;
+            
+            <div class="Photo50">
+                <div class="PhotoImage">
+                    <a href="@Url.Action("Details", "Event", new { id = item.Event_Id }, null)">
+                        <img class="thumb" width="50" src="@Url.Action("GetEventImage", "Event", new { id = item.Event_Id })" alt="" border="0" style="border:0"/>
+                    </a>
+                </div>
+            </div>           
+            <div class="Caption">
+                <a href="@Url.Action("Details", "Event", new { id = item.Event_Id }, null)">
+                    <strong>@Html.DisplayFor(modelItem => item.Event_Name)</strong> <br /> 
+                    @(item.Event_Date.ToLongDateString()) - 
+                    @Html.DisplayFor(modelItem => item.Venue.Venue_Name) - 
+                    @Html.DisplayFor(modelItem => item.Venue.Venue_City)
+                </a>
+            </div>
+        
+        }
+        else
+        {
+            <div>More Events...</div>
+        }
+        </div>
+    }
+</div>        
+        
+    }
+
+
+    IEnumerable<PerfV400.Models.Artist> artists = ViewBag.artists;
+    if (artists != null && artists.Count() > 0)
+    {
+        counter = 0;
+<h2>Artists</h2>
+<div class="stuff">
+    @foreach (PerfV400.Models.Artist item in ViewBag.artists)
+    {
+        <div class="Result">
+        @if (counter < 5)
+        {
+            counter = counter + 1;
+            
+            <div class="Photo50">
+                <div class="PhotoImage">
+                    <a href="@Url.Action("Details", "Artist", new { id = item.Artist_Id }, null)">
+                        <img  class="thumb" width="50" src="@Url.Action("GetArtistImage", "Artist", new { id = item.Artist_Id })" alt="" border="0" style="border:0"/>
+                    </a>
+                </div>
+            </div>           
+            <div class="Caption">
+                <a href="@Url.Action("Details", "Artist", new { id = item.Artist_Id }, null)">
+                    <strong>@Html.DisplayFor(modelItem => item.Artist_FirstName) @Html.DisplayFor(modelItem => item.Artist_LastName)</strong> - @Html.DisplayFor(modelItem => item.Type.Type_Name) 
+                    
+                    @switch (item.PerformanceArtists.Count())
+                    {
+                        case 0:
+                            break;
+
+                        case 1:
+                            <p>(1 performance)</p>
+                            break;
+
+                        default:
+                            <p>(@item.PerformanceArtists.Count() performances)</p>
+                            break;
+                    }
+
+                    @switch (item.PieceArtists.Count())
+                    {
+                        case 0:
+                            break;
+
+                        case 1:
+                            <p>(1 piece)</p>
+                            break;
+
+                        default:
+                            <p>(@item.PieceArtists.Count() pieces)</p>
+                            break;
+                    }
+
+                   
+                    
+                </a>
+            </div>
+      
+        }
+        else
+        {
+            <div>More Artists...</div>
+        }
+        </div>       
+    }
+</div>
+
+    }
+
+    IEnumerable<PerfV400.Models.Venue> venues = ViewBag.venues;
+    if (venues != null && venues.Count() > 0)
+    {
+        counter = 0;
+<h2>Venues</h2>
+<div class="stuff">
+    @foreach (PerfV400.Models.Venue item in venues)
+    {
+        <div class="Result">
+        @if (counter < 5)
+        {
+            counter = counter + 1;
+            
+            <div class="Photo50">
+                <div class="PhotoImage">
+                <a href="@Url.Action("Details", "Venue", new { id = item.Venue_Id }, null)">
+                    <img  class="thumb" width="50" src="@Url.Action("GetVenueImage", "Venue", new { id = item.Venue_Id })" alt="@Html.DisplayFor(modelItem => item.Venue_Name)" border="0" style="border:0"/>
+                </a>
+                </div>
+            </div>           
+            <div class="Caption">
+                <a href="@Url.Action("Details", "Venue", new { id = item.Venue_Id }, null)">
+                    <strong>@Html.DisplayFor(modelItem => item.Venue_Name)</strong> 
+                    (@item.Events.Count() performances)
+                    <br /> 
+                    @Html.DisplayFor(modelItem => item.Venue_City) -
+                    @Html.DisplayFor(modelItem => item.CountryRegion.CountryRegion_Name)
+                </a>
+            </div>
+      
+        }
+        else
+        {
+            <div>More Venues...</div>
+        }
+        </div>       
+    }
+</div>
+
+    }
+    IEnumerable<PerfV400.Models.Piece> pieces = ViewBag.pieces;
+    if (pieces != null && pieces.Count() > 0)
+    {
+        counter = 0;
+<h2>Pieces</h2>
+<div class="stuff">
+    @foreach (PerfV400.Models.Piece item in pieces)
+    {
+        <div class="Result">
+        @if (counter < 5)
+        {
+            counter = counter + 1;
+            
+            <div class="Photo50">
+                <div class="PhotoImage">
+                    <a href="@Url.Action("Details", "Piece", new { id = item.Piece_Id }, null)">
+                        <img  class="thumb" width="50" src="@Url.Action("GetPieceImage", "Piece", new { id = item.Piece_Id })" alt="" border="0" style="border:0"/>
+                    </a>    
+                </div>
+            </div>           
+            <div class="Caption">
+                <a href="@Url.Action("Details", "Piece", new { id = item.Piece_Id }, null)">
+                    <strong>@Html.DisplayFor(modelItem => item.Piece_Name)</strong> 
+                    (@item.Performances.Count() performances)
+
+                </a>
+            </div>
+      
+        }
+        else
+        {
+            <div>More Pieces...</div>
+        }
+        </div>       
+        
+    }
+</div>
+
+    }       
+}
+
+
+
+
+
+
+
+<script type="text/javascript">
+    $(function () { $('.thumb').mouseover(function () { $(this).animate({ height: '+=4', width: '+=4' }).animate({ height: '-=4', width: '-=4' }); }); });
+</script>

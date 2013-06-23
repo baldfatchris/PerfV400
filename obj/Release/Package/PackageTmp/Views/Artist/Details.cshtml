@@ -172,6 +172,41 @@
 
 
 
+@if (Model.vPerformanceArtist_RoleCount.Count > 0)
+{
+ <fieldset>
+    <legend>Roles</legend>
+
+        <table border="0">
+
+        @foreach (PerfV400.Models.vPerformanceArtist_RoleCount roleCount in Model.vPerformanceArtist_RoleCount.OrderByDescending(rc => rc.PerformanceCount))
+        {
+            string strPerformanceCount = "performances";
+            if (roleCount.PerformanceCount == 1)
+            {
+                strPerformanceCount = "performance";
+            }
+            
+            <tr>
+                <td class="cell-thumb">
+                    <img height="50" src="@Url.Action("GetPieceImage", "Artist", new { id = roleCount.Role.Role_PieceId })" alt="" border="0" style="border:0"/>
+                </td>
+                <td class="cell-field">
+                    @if (roleCount.Role.Piece != null){
+                        @Html.ActionLink(string.Format("{0} - {1} ({2} {3})",roleCount.Role.Piece.Piece_Name,roleCount.Role.Role_Name, roleCount.PerformanceCount, strPerformanceCount), "Details", "Role", new { id = roleCount.Role.Role_Id }, null)
+                    }
+                    else {
+                        @Html.ActionLink(string.Format("{0} ({1} {2})",roleCount.Role.Role_Name, roleCount.PerformanceCount, strPerformanceCount), "Details", "Role", new { id = roleCount.Role.Role_Id }, null) 
+                    }
+                </td>
+
+            </tr>
+        }
+
+        </table>
+</fieldset>
+        
+}
 </div>
 
 <script type="text/javascript">

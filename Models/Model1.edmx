@@ -63,6 +63,13 @@
           <EntitySet Name="webpages_Membership" EntityType="PerfV100Model.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="webpages_OAuthMembership" EntityType="PerfV100Model.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="webpages_Roles" EntityType="PerfV100Model.Store.webpages_Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="vPerformanceArtist_RoleCount" EntityType="PerfV100Model.Store.vPerformanceArtist_RoleCount" store:Type="Views" store:Schema="dbo" store:Name="vPerformanceArtist_RoleCount">
+            <DefiningQuery>SELECT 
+      [vPerformanceArtist_RoleCount].[PerformanceArtist_ArtistId] AS [PerformanceArtist_ArtistId], 
+      [vPerformanceArtist_RoleCount].[PerformanceArtist_RoleId] AS [PerformanceArtist_RoleId], 
+      [vPerformanceArtist_RoleCount].[PerformanceCount] AS [PerformanceCount]
+      FROM [dbo].[vPerformanceArtist_RoleCount] AS [vPerformanceArtist_RoleCount]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_ArtistBand_Artist" Association="PerfV100Model.Store.FK_ArtistBand_Artist">
             <End Role="Artist" EntitySet="Artist" />
             <End Role="ArtistBand" EntitySet="ArtistBand" />
@@ -975,6 +982,18 @@
           </Key>
           <Property Name="RoleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'amovada.dbo.vPerformanceArtist_RoleCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="vPerformanceArtist_RoleCount">
+          <Key>
+            <PropertyRef Name="PerformanceArtist_ArtistId" />
+            <PropertyRef Name="PerformanceArtist_RoleId" />
+          </Key>
+          <Property Name="PerformanceArtist_ArtistId" Type="int" Nullable="false" />
+          <Property Name="PerformanceArtist_RoleId" Type="int" Nullable="false" />
+          <Property Name="PerformanceCount" Type="int" />
         </EntityType>
         <Association Name="FK_ArtistBand_Artist">
           <End Role="Artist" Type="PerfV100Model.Store.Artist" Multiplicity="1">
@@ -2251,6 +2270,15 @@
             <End Role="User" EntitySet="Users" />
             <End Role="EventUser" EntitySet="EventUsers" />
           </AssociationSet>
+          <EntitySet Name="vPerformanceArtist_RoleCount" EntityType="PerfV100Model.vPerformanceArtist_RoleCount" />
+          <AssociationSet Name="vPerformanceArtist_RoleCountArtist" Association="PerfV100Model.vPerformanceArtist_RoleCountArtist">
+            <End Role="vPerformanceArtist_RoleCount" EntitySet="vPerformanceArtist_RoleCount" />
+            <End Role="Artist" EntitySet="Artists" />
+          </AssociationSet>
+          <AssociationSet Name="vPerformanceArtist_RoleCountRole" Association="PerfV100Model.vPerformanceArtist_RoleCountRole">
+            <End Role="vPerformanceArtist_RoleCount" EntitySet="vPerformanceArtist_RoleCount" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Agent">
           <Key>
@@ -2311,6 +2339,7 @@
           <NavigationProperty Name="ProductionArtists" Relationship="PerfV100Model.FK_ProductionArtist_Artist" FromRole="Artist" ToRole="ProductionArtist" />
           <NavigationProperty Name="Users" Relationship="PerfV100Model.FK_User_Artist" FromRole="Artist" ToRole="User" />
           <Property Type="String" Name="Artist_Wiki" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="vPerformanceArtist_RoleCount" Relationship="PerfV100Model.vPerformanceArtist_RoleCountArtist" FromRole="Artist" ToRole="vPerformanceArtist_RoleCount" />
         </EntityType>
         <EntityType Name="ArtistBand">
           <Key>
@@ -2888,6 +2917,7 @@
           <NavigationProperty Name="PerformanceArtists" Relationship="PerfV100Model.FK_PerformanceArtist_Role" FromRole="Role" ToRole="PerformanceArtist" />
           <NavigationProperty Name="Piece" Relationship="PerfV100Model.FK_Role_Piece" FromRole="Role" ToRole="Piece" />
           <NavigationProperty Name="Type" Relationship="PerfV100Model.FK_Role_Type" FromRole="Role" ToRole="Type" />
+          <NavigationProperty Name="vPerformanceArtist_RoleCount" Relationship="PerfV100Model.vPerformanceArtist_RoleCountRole" FromRole="Role" ToRole="vPerformanceArtist_RoleCount" />
         </EntityType>
         <EntityType Name="StateProvince">
           <Key>
@@ -4034,6 +4064,41 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="vPerformanceArtist_RoleCount">
+          <Key>
+            <PropertyRef Name="PerformanceArtist_ArtistId" />
+            <PropertyRef Name="PerformanceArtist_RoleId" />
+          </Key>
+          <Property Type="Int32" Name="PerformanceArtist_ArtistId" Nullable="false" />
+          <Property Type="Int32" Name="PerformanceArtist_RoleId" Nullable="false" />
+          <Property Type="Int32" Name="PerformanceCount" />
+          <NavigationProperty Name="Artist" Relationship="PerfV100Model.vPerformanceArtist_RoleCountArtist" FromRole="vPerformanceArtist_RoleCount" ToRole="Artist" />
+          <NavigationProperty Name="Role" Relationship="PerfV100Model.vPerformanceArtist_RoleCountRole" FromRole="vPerformanceArtist_RoleCount" ToRole="Role" />
+        </EntityType>
+        <Association Name="vPerformanceArtist_RoleCountArtist">
+          <End Type="PerfV100Model.vPerformanceArtist_RoleCount" Role="vPerformanceArtist_RoleCount" Multiplicity="*" />
+          <End Type="PerfV100Model.Artist" Role="Artist" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Artist">
+              <PropertyRef Name="Artist_Id" />
+            </Principal>
+            <Dependent Role="vPerformanceArtist_RoleCount">
+              <PropertyRef Name="PerformanceArtist_ArtistId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vPerformanceArtist_RoleCountRole">
+          <End Type="PerfV100Model.vPerformanceArtist_RoleCount" Role="vPerformanceArtist_RoleCount" Multiplicity="*" />
+          <End Type="PerfV100Model.Role" Role="Role" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Role_Id" />
+            </Principal>
+            <Dependent Role="vPerformanceArtist_RoleCount">
+              <PropertyRef Name="PerformanceArtist_RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4714,6 +4779,15 @@
               <MappingFragment StoreEntitySet="webpages_Roles">
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vPerformanceArtist_RoleCount">
+            <EntityTypeMapping TypeName="PerfV100Model.vPerformanceArtist_RoleCount">
+              <MappingFragment StoreEntitySet="vPerformanceArtist_RoleCount">
+                <ScalarProperty Name="PerformanceCount" ColumnName="PerformanceCount" />
+                <ScalarProperty Name="PerformanceArtist_RoleId" ColumnName="PerformanceArtist_RoleId" />
+                <ScalarProperty Name="PerformanceArtist_ArtistId" ColumnName="PerformanceArtist_ArtistId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

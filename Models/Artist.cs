@@ -106,5 +106,6 @@ namespace PerfV400.Models
         public virtual ICollection<PieceArtist> PieceArtists { get; set; }
         public virtual ICollection<ProductionArtist> ProductionArtists { get; set; }
         public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<vPerformanceArtist_RoleCount> vPerformanceArtist_RoleCount { get; set; }
     }
 }

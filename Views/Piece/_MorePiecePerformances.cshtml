@@ -42,16 +42,18 @@
     else
     {
 <div id="@nextDiv">
+    <div style="width:150px">&nbsp;</div>
 
-    @Ajax.ActionLink("more...", "MoreVenuePerformances",
+    @Ajax.ActionLink("more...", "MorePiecePerformances",
         new
         {
-            filter_Venue_Id = ViewBag.Venue_Id,
-            filter_search = HttpUtility.UrlEncode((string)ViewBag.filter_search),
-            filter_Performance_GenreId = ViewBag.filter_Performance_GenreId,
-            filter_Performance_Piece = ViewBag.filter_Performance_Piece,
-            filter_From_Performance_Date = ViewBag.filter_From_Performance_Date,
-            filter_To_Performance_Date = ViewBag.filter_To_Performance_Date,
+            filter_Piece_Id = ViewBag.Piece_Id,
+
+            filter_Event_GenreId = ViewBag.filter_Event_GenreId,
+            filter_Venue_City = ViewBag.filter_Venue_City,
+            filter_Venue_CountryId = ViewBag.filter_Venue_CountryId,
+            filter_From_Event_Date = ViewBag.filter_From_Event_Date,
+            filter_To_Event_Date = ViewBag.filter_To_Event_Date,
             page = nextPage
         },
         new AjaxOptions

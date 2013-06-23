@@ -143,6 +143,9 @@
         <EntityTypeShape EntityType="PerfV100Model.webpages_OAuthMembership" Width="1.5" PointX="25.625" PointY="39.625" />
         <EntityTypeShape EntityType="PerfV100Model.webpages_Roles" Width="1.5" PointX="14.25" PointY="64.375" />
         <AssociationConnector Association="PerfV100Model.FK_EventUser_User" />
+        <EntityTypeShape EntityType="PerfV100Model.vPerformanceArtist_RoleCount" Width="3.75" PointX="0.5" PointY="84" />
+        <AssociationConnector Association="PerfV100Model.vPerformanceArtist_RoleCountArtist" />
+        <AssociationConnector Association="PerfV100Model.vPerformanceArtist_RoleCountRole" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

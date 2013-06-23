@@ -385,6 +385,15 @@
       <End Role="User" EntitySet="Users" />
       <End Role="EventUser" EntitySet="EventUsers" />
     </AssociationSet>
+    <EntitySet Name="vPerformanceArtist_RoleCount" EntityType="PerfV100Model.vPerformanceArtist_RoleCount" />
+    <AssociationSet Name="vPerformanceArtist_RoleCountArtist" Association="PerfV100Model.vPerformanceArtist_RoleCountArtist">
+      <End Role="vPerformanceArtist_RoleCount" EntitySet="vPerformanceArtist_RoleCount" />
+      <End Role="Artist" EntitySet="Artists" />
+    </AssociationSet>
+    <AssociationSet Name="vPerformanceArtist_RoleCountRole" Association="PerfV100Model.vPerformanceArtist_RoleCountRole">
+      <End Role="vPerformanceArtist_RoleCount" EntitySet="vPerformanceArtist_RoleCount" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Agent">
     <Key>
@@ -445,6 +454,7 @@
     <NavigationProperty Name="ProductionArtists" Relationship="PerfV100Model.FK_ProductionArtist_Artist" FromRole="Artist" ToRole="ProductionArtist" />
     <NavigationProperty Name="Users" Relationship="PerfV100Model.FK_User_Artist" FromRole="Artist" ToRole="User" />
     <Property Type="String" Name="Artist_Wiki" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="vPerformanceArtist_RoleCount" Relationship="PerfV100Model.vPerformanceArtist_RoleCountArtist" FromRole="Artist" ToRole="vPerformanceArtist_RoleCount" />
   </EntityType>
   <EntityType Name="ArtistBand">
     <Key>
@@ -1022,6 +1032,7 @@
     <NavigationProperty Name="PerformanceArtists" Relationship="PerfV100Model.FK_PerformanceArtist_Role" FromRole="Role" ToRole="PerformanceArtist" />
     <NavigationProperty Name="Piece" Relationship="PerfV100Model.FK_Role_Piece" FromRole="Role" ToRole="Piece" />
     <NavigationProperty Name="Type" Relationship="PerfV100Model.FK_Role_Type" FromRole="Role" ToRole="Type" />
+    <NavigationProperty Name="vPerformanceArtist_RoleCount" Relationship="PerfV100Model.vPerformanceArtist_RoleCountRole" FromRole="Role" ToRole="vPerformanceArtist_RoleCount" />
   </EntityType>
   <EntityType Name="StateProvince">
     <Key>
@@ -2165,6 +2176,41 @@
       </Principal>
       <Dependent Role="EventUser">
         <PropertyRef Name="EventUser_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="vPerformanceArtist_RoleCount">
+    <Key>
+      <PropertyRef Name="PerformanceArtist_ArtistId" />
+      <PropertyRef Name="PerformanceArtist_RoleId" />
+    </Key>
+    <Property Type="Int32" Name="PerformanceArtist_ArtistId" Nullable="false" />
+    <Property Type="Int32" Name="PerformanceArtist_RoleId" Nullable="false" />
+    <Property Type="Int32" Name="PerformanceCount" />
+    <NavigationProperty Name="Artist" Relationship="PerfV100Model.vPerformanceArtist_RoleCountArtist" FromRole="vPerformanceArtist_RoleCount" ToRole="Artist" />
+    <NavigationProperty Name="Role" Relationship="PerfV100Model.vPerformanceArtist_RoleCountRole" FromRole="vPerformanceArtist_RoleCount" ToRole="Role" />
+  </EntityType>
+  <Association Name="vPerformanceArtist_RoleCountArtist">
+    <End Type="PerfV100Model.vPerformanceArtist_RoleCount" Role="vPerformanceArtist_RoleCount" Multiplicity="*" />
+    <End Type="PerfV100Model.Artist" Role="Artist" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Artist">
+        <PropertyRef Name="Artist_Id" />
+      </Principal>
+      <Dependent Role="vPerformanceArtist_RoleCount">
+        <PropertyRef Name="PerformanceArtist_ArtistId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="vPerformanceArtist_RoleCountRole">
+    <End Type="PerfV100Model.vPerformanceArtist_RoleCount" Role="vPerformanceArtist_RoleCount" Multiplicity="*" />
+    <End Type="PerfV100Model.Role" Role="Role" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Role_Id" />
+      </Principal>
+      <Dependent Role="vPerformanceArtist_RoleCount">
+        <PropertyRef Name="PerformanceArtist_RoleId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

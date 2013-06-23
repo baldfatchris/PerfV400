@@ -18,95 +18,67 @@
         @Html.Partial("DetailsRole")
     </fieldset>
 
-    
-<fieldset>
+
+
+
+    @if (Model.vPerformanceArtist_RoleCount.Count > 0)
+    {
+ <fieldset>
     <legend>Artists</legend>
 
+        @foreach (PerfV400.Models.vPerformanceArtist_RoleCount roleCount in Model.vPerformanceArtist_RoleCount.OrderByDescending(rc => rc.PerformanceCount))
+        {
+            string strPerformanceCount = "performances";
+            if (roleCount.PerformanceCount == 1)
+            {
+                strPerformanceCount = "performance";
+            }
 
-@using (Ajax.BeginForm("MoreRoleArtists", "Role",
-    new     {page = 0}, 
-    new AjaxOptions
-    {
-        InsertionMode = InsertionMode.Replace,
-        HttpMethod = "GET",
-        OnFailure = "searchFailed",
-        LoadingElementId = "ajax-loader",
-        UpdateTargetId = "artistsearchresults"
-    }))
-{
+            
+<div class="Photo150">
+    <div class="PhotoImage">
+        <a href="@Url.Action("Details", "Artist", new { id = roleCount.PerformanceArtist_ArtistId}, null)">
+            <img class="thumb" width="150" src="@Url.Action("GetArtistImage", "Artist", new { id = roleCount.PerformanceArtist_ArtistId })" alt="" border="0" style="border:0"/>
+        </a>
+    </div>
+    <div class="UserStatus">
+    </div>
+    <div class="PhotoCaption">
+        <div class="PhotoCaptionText">
+            <a href="@Url.Action("Details", "Artist", new { id = roleCount.PerformanceArtist_ArtistId }, null)">
+                <strong>@Html.DisplayFor(modelItem => roleCount.Artist.Artist_FirstName) @Html.DisplayFor(modelItem => roleCount.Artist.Artist_LastName)</strong>
+                ( @Html.DisplayFor(modelItem => roleCount.PerformanceCount) @strPerformanceCount )
 
-    <div class="filter">
+            </a>
+        </div>
+    </div>
+</div>        
+            
+            
+            
+            
+            
+            <tr>
+                <td class="cell-thumb">
+                    <img height="50" src="@Url.Action("GetPieceImage", "Artist", new { id = roleCount.Role.Role_PieceId })" alt="" border="0" style="border:0"/>
+                </td>
+                <td class="cell-field">
+                    @if (roleCount.Role.Piece != null)
+                    {
+                    }
+                    else
+                    {
+                        @Html.ActionLink(string.Format("{0} ({1} {2})", roleCount.Role.Role_Name, roleCount.PerformanceCount, strPerformanceCount), "Details", "Role", new { id = roleCount.Role.Role_Id }, null) 
+                    }
+                </td>
 
-    @Html.Hidden("filter_Role_Id", Model.Role_Id)
-
-    <table>
-        <tr>
-            <td class="filter-label">
-                Search
-            </td>
-            <td class="filter-field">
-                @Html.TextBox("filter_search", null)
-                <input id="fs" type="submit" value="Search" />
-            </td>
-        </tr>
-        <tr>
-            <td class="filter-label">
-                Venue
-            </td>
-            <td class="filter-field">
-                @Html.DropDownList("filter_Role_VenueId", (IEnumerable<SelectListItem>)ViewBag.Venues, "All Venues", new { onchange = "$(\"#fs\").click();" }) 
-            </td>
-        </tr>
-        <tr>
-            <td class="filter-label">
-                City
-            </td>
-            <td class="filter-field">
-                @Html.DropDownList("filter_Venue_City", (IEnumerable<SelectListItem>)ViewBag.Cities, "All Cities", new { onchange = "$(\"#fs\").click();" }) 
-            </td>
-        </tr>
-        <tr>
-            <td class="filter-label">
-                Country
-            </td>
-            <td class="filter-field">
-                @Html.DropDownList("filter_Venue_CountryId", (IEnumerable<SelectListItem>)ViewBag.Countries, "All Countries", new { onchange = "$(\"#fs\").click();" }) 
-            </td>
-        </tr>
-        <tr>
-            <td class="filter-label">
-                Date
-            </td>
-            <td class="filter-field">
-                @Html.TextBox("filter_From_Artist_Date", null, new { onchange = "$(\"#fs\").click();", @class = "datepicker", @style = "width:8em" })
-                to
-                @Html.TextBox("filter_To_Artist_Date", null, new { onchange = "$(\"#fs\").click();", @class = "datepicker", @style = "width:8em" })
-            </td>
-            <td class="filter-field">
-            </td>
-        </tr>
-
-    </table>
-
-</div>
-
-    
-<img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
-
-<div id="artistsearchresults">
-    
-    @{
-        ViewBag.Role_Id = Model.Role_Id;
-        IEnumerable<PerfV400.Models.Artist> artists = ViewBag.artists;
-    }
-    @Html.Partial("_MoreRoleArtists", artists)
-
-</div>
-    
-}    
-
+            </tr>
+        }
 
 </fieldset>
+        
+    }
+
 
 </div>
 

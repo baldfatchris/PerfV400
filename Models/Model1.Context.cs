@@ -81,5 +81,6 @@ namespace PerfV400.Models
         public DbSet<webpages_Membership> webpages_Membership { get; set; }
         public DbSet<webpages_OAuthMembership> webpages_OAuthMembership { get; set; }
         public DbSet<webpages_Roles> webpages_Roles { get; set; }
+        public DbSet<vPerformanceArtist_RoleCount> vPerformanceArtist_RoleCount { get; set; }
     }
 }

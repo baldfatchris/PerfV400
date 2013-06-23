@@ -19,6 +19,7 @@
 @if (ViewBag.recordCount - 60 * ViewBag.page > 60)
 {
 <div id="@nextDiv">
+    <div style="width:150px">&nbsp;</div>
 
     @Ajax.ActionLink("more...", "MoreRoles",
         new

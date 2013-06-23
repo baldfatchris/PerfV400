@@ -58,6 +58,13 @@
     <EntitySet Name="webpages_Membership" EntityType="PerfV100Model.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="webpages_OAuthMembership" EntityType="PerfV100Model.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="webpages_Roles" EntityType="PerfV100Model.Store.webpages_Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="vPerformanceArtist_RoleCount" EntityType="PerfV100Model.Store.vPerformanceArtist_RoleCount" store:Type="Views" store:Schema="dbo" store:Name="vPerformanceArtist_RoleCount">
+      <DefiningQuery>SELECT 
+      [vPerformanceArtist_RoleCount].[PerformanceArtist_ArtistId] AS [PerformanceArtist_ArtistId], 
+      [vPerformanceArtist_RoleCount].[PerformanceArtist_RoleId] AS [PerformanceArtist_RoleId], 
+      [vPerformanceArtist_RoleCount].[PerformanceCount] AS [PerformanceCount]
+      FROM [dbo].[vPerformanceArtist_RoleCount] AS [vPerformanceArtist_RoleCount]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_ArtistBand_Artist" Association="PerfV100Model.Store.FK_ArtistBand_Artist">
       <End Role="Artist" EntitySet="Artist" />
       <End Role="ArtistBand" EntitySet="ArtistBand" />
@@ -970,6 +977,18 @@
     </Key>
     <Property Name="RoleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'amovada.dbo.vPerformanceArtist_RoleCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="vPerformanceArtist_RoleCount">
+    <Key>
+      <PropertyRef Name="PerformanceArtist_ArtistId" />
+      <PropertyRef Name="PerformanceArtist_RoleId" />
+    </Key>
+    <Property Name="PerformanceArtist_ArtistId" Type="int" Nullable="false" />
+    <Property Name="PerformanceArtist_RoleId" Type="int" Nullable="false" />
+    <Property Name="PerformanceCount" Type="int" />
   </EntityType>
   <Association Name="FK_ArtistBand_Artist">
     <End Role="Artist" Type="PerfV100Model.Store.Artist" Multiplicity="1">

@@ -229,8 +229,13 @@ namespace PerfV400.Controllers
                 return RedirectToAction("ExternalLoginFailure");
             }
 
+            
+            // store the user id in the session
+            //["UserId"] = Membership.GetUser().ProviderUserKey;
+
+            
+
             // remember the user's facebook friends
-            //int intUserId = (int)Membership.GetUser().ProviderUserKey;
             
             var fb = new FacebookClient(result.ExtraData["accesstoken"]);
             dynamic myInfo = fb.Get("/me/friends");

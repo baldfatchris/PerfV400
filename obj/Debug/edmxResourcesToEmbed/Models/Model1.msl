@@ -678,5 +678,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="vPerformanceArtist_RoleCount">
+      <EntityTypeMapping TypeName="PerfV100Model.vPerformanceArtist_RoleCount">
+        <MappingFragment StoreEntitySet="vPerformanceArtist_RoleCount">
+          <ScalarProperty Name="PerformanceCount" ColumnName="PerformanceCount" />
+          <ScalarProperty Name="PerformanceArtist_RoleId" ColumnName="PerformanceArtist_RoleId" />
+          <ScalarProperty Name="PerformanceArtist_ArtistId" ColumnName="PerformanceArtist_ArtistId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -4,9 +4,18 @@
         ViewBag.Title = "Events";
     }
 
-    <p>
-        @Html.ActionLink("Create New Event", "CreateEvent")
-    </p>
+
+
+
+
+        <ul class="toolbar">
+            <li class="add">@Html.ActionLink("Add New Event", "NewEvent", "Event", new {  }, htmlAttributes: new { @class = "createLink", data_dialog_title = "Add New Event" })</li>
+        </ul>
+
+
+
+
+
 
     @using (Ajax.BeginForm("MoreEvents", "Event",
         new { page = 0 },

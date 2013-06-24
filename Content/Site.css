@@ -1078,6 +1078,16 @@ padding:10px;
 }
 
 
+#menu .add  A
+{
+    background-image:url("/Content/add.png");
+    background-repeat:no-repeat;
+    padding-right: 20px;
+    padding-left: 0px;
+     text-indent: -9999px; /* hides the link text */
+
+
+}
 
 .toolbar .edit A 
 {

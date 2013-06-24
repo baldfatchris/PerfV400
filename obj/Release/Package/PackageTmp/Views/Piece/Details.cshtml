@@ -129,7 +129,6 @@
                         Venue
                 </div>
                 <div class="filter-field">
-                        @Html.DropDownList("filter_Event_VenueId", (IEnumerable<SelectListItem>)ViewBag.Venues, "All Venues", new { onchange = "$(\"#fs\").click();" }) 
                         @Html.TextBox("filter_Event_Venue", null)        
                 </div>
             </div>

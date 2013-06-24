@@ -20,7 +20,7 @@
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                   <a href="/home"><img src="@Url.Content("~/Content/logo.png")" alt="logo" /></a>
+                   <a href="/event"><img src="@Url.Content("~/Content/logo.png")" alt="logo" /></a>
                  </div>
 
 
@@ -50,11 +50,18 @@
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("Events", "Index", "Event")</li>
+                                <li class="add">@Html.ActionLink(" ", "NewEvent", "Event", new {  }, htmlAttributes: new { @class = "createLink", data_dialog_title = "Add New Event" })</li>
+
                             <li>@Html.ActionLink("Artists", "Index", "Artist")</li>
+                                <li class="add">@Html.ActionLink(" ", "NewArtist", "Artist", new {  }, htmlAttributes: new { @class = "createLink", data_dialog_title = "Add New Artist" })</li>
+
                             <li>@Html.ActionLink("Pieces", "Index", "Piece")</li>
+                                <li class="add">@Html.ActionLink(" ", "NewPiece", "Piece", new {  }, htmlAttributes: new { @class = "createLink", data_dialog_title = "Add New Piece" })</li>
+
                             <li>@Html.ActionLink("Venues", "Index", "Venue")</li>
+                                <li class="add">@Html.ActionLink(" ", "NewVenue", "Venue", new {  }, htmlAttributes: new { @class = "createLink", data_dialog_title = "Add New Venue" })</li>
+
                         </ul>
                     </nav>
                 </div>

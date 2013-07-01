@@ -231,9 +231,13 @@ namespace PerfV400.Controllers
 
             
             // store the user id in the session
-            //["UserId"] = Membership.GetUser().ProviderUserKey;
-
-            
+            Session["UserFacebookId"] = result.ProviderUserId;
+            webpages_OAuthMembership userrecord = db.webpages_OAuthMembership.FirstOrDefault(m => m.Provider == "facebook" && m.ProviderUserId == result.ProviderUserId);
+            if (userrecord != null)
+            {
+                Session["UserID"] = userrecord.UserId;
+            }
+                
 
             // remember the user's facebook friends
             
@@ -259,6 +263,7 @@ namespace PerfV400.Controllers
                     db.SaveChanges();
                 }
             }
+
 
 
             if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
@@ -330,6 +335,18 @@ namespace PerfV400.Controllers
             return View(model);
         }
 
+        public Boolean IsUserAuthenticated()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         //
         // GET: /Account/ExternalLoginFailure
 
@@ -384,7 +401,7 @@ namespace PerfV400.Controllers
 
                 if (Request.IsAuthenticated)
                 {
-                    id = (int)Membership.GetUser().ProviderUserKey;
+                    id = (int)Session["UserID"];
                 }
                 else
                 {

@@ -58,21 +58,6 @@
             
             
             
-            <tr>
-                <td class="cell-thumb">
-                    <img height="50" src="@Url.Action("GetPieceImage", "Artist", new { id = roleCount.Role.Role_PieceId })" alt="" border="0" style="border:0"/>
-                </td>
-                <td class="cell-field">
-                    @if (roleCount.Role.Piece != null)
-                    {
-                    }
-                    else
-                    {
-                        @Html.ActionLink(string.Format("{0} ({1} {2})", roleCount.Role.Role_Name, roleCount.PerformanceCount, strPerformanceCount), "Details", "Role", new { id = roleCount.Role.Role_Id }, null) 
-                    }
-                </td>
-
-            </tr>
         }
 
 </fieldset>

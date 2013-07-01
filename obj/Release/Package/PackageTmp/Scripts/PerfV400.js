@@ -8,7 +8,8 @@
 
 /*! datepicker 
 $(function () {
-$('.datepicker').datepicker({ dateFormat: "dd MM yy" }); 
+$('.datepicker').datepicker({ dateFormat: "dd MM yy" }); getJqueryUserLanguage
+.datepicker.regional[getJqueryUserLanguage()]
 });
 */
 
@@ -32,8 +33,6 @@ $(function () {
 
     /*! activate the date picker */
     $('input.date').datepicker({ dateFormat: "dd MM yy" });
-
-
 
 });
 
@@ -378,4 +377,26 @@ var starRating = {
         });
     }
 
+}
+
+
+
+
+function getJqueryUserLanguage() {
+
+    var language = (navigator.userLanguage) ? navigator.userLanguage : navigator.language;
+
+    var l = language.toLowerCase().split('-');
+    if (l.length == 1) {
+        if (jQuery.datepicker.regional[l[0]] != undefined) return l[0];
+        else return '';
+    }
+    else if (l.length > 1) {
+        if (jQuery.datepicker.regional[l[0] + '-' + l[1].toUpperCase()] != undefined) return l[0] + '-' + l[1].toUpperCase();
+        else if (jQuery.datepicker.regional[l[0]] != undefined) return l[0];
+        else return '';
+    }
+    else {
+        return '';
+    }
 }

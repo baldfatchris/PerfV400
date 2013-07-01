@@ -134,7 +134,7 @@ namespace PerfV400.Controllers
 
             // Am I the artist?
             ViewBag.AmITheArtist = false;
-            if (Request.IsAuthenticated && artist.Artist_UserId == (int)Membership.GetUser().ProviderUserKey)
+            if (Request.IsAuthenticated && artist.Artist_UserId == (int)Session["UserID"])
             {
                 ViewBag.AmITheArtist = true;
             }
@@ -391,7 +391,7 @@ namespace PerfV400.Controllers
 
                 // Am I the artist?
                 ViewBag.AmITheArtist = false;
-                if (Request.IsAuthenticated && artist.Artist_UserId == (int)Membership.GetUser().ProviderUserKey)
+                if (Request.IsAuthenticated && artist.Artist_UserId == (int)Session["UserID"])
                 {
                     ViewBag.AmITheArtist = true;
                 }
@@ -425,9 +425,9 @@ namespace PerfV400.Controllers
             }
 
             // Retrieve the User Id
-            if (Request.IsAuthenticated)
+            if (Session["UserID"] != null)
             {
-                ViewBag.UserId = Membership.GetUser().ProviderUserKey;
+                ViewBag.UserId = Session["UserID"];
             }
 
             ViewBag.Artist_AgentId = new SelectList(db.Agents.OrderBy(a => a.Agent_Name), "Agent_Id", "Agent_Name", artist.Artist_AgentId);

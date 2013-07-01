@@ -24,9 +24,9 @@ namespace PerfV400.Controllers
         public ActionResult Index()
         {
 
-            if (Request.IsAuthenticated)
+            if (Session["UserID"] != null)
             {
-//                ViewBag.UserId = Membership.GetUser().ProviderUserKey;
+//                ViewBag.UserId = Session["UserID"];
             }
 
             // sort out the paging
@@ -93,7 +93,7 @@ namespace PerfV400.Controllers
 
             // data for the MyStatus dropdown
             IEnumerable<SelectListItem> mystatus = null;   
-            if (Request.IsAuthenticated)
+            if (Session["UserID"] != null)
             {
                 mystatus = db.EventUserStatus
                 .OrderBy(c => c.EventUserStatus_Id)
@@ -107,7 +107,7 @@ namespace PerfV400.Controllers
 
             // set up the filters
             DateTime datetimefilter_from_Event_Date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            ViewData["filter_from_Event_Date"] = DateTime.Now.ToLongDateString();
+            ViewData["filter_from_Event_Date"] = DateTime.Now.ToString("dd MMMM yy");
 
             // data for the events
             var events = db.Events
@@ -135,9 +135,9 @@ namespace PerfV400.Controllers
 
             // Retrieve the User Id
             int intUsertId = 0;
-            if (Request.IsAuthenticated)
+            if (Session["UserID"] != null)
             {
-                intUsertId = (int)Membership.GetUser().ProviderUserKey;
+                intUsertId = (int)Session["UserID"];
             }
 
             
@@ -183,8 +183,11 @@ namespace PerfV400.Controllers
             var events = db.Events
                 .OrderBy(e => e.Event_Date)
                 .Where(e => strfilter_search == null || strfilter_search == "" || e.Event_Name.ToUpper().Contains(strfilter_search.ToUpper()) || e.Event_Description.ToUpper().Contains(strfilter_search.ToUpper()))
+                
                 .Where(e => e.Event_Date >= datetimefilter_From_Event_Date)
                 .Where(e => e.Event_Date <= datetimefilter_To_Event_Date)
+
+
                 .Where(e => intfilter_Event_GenreId == 0 || e.Event_GenreId == intfilter_Event_GenreId)
 
                 .Where(e => filter_Performance_Piece == null || filter_Performance_Piece == "" || db.Performances.Where(p => p.Piece.Piece_Name.ToUpper().Contains(filter_Performance_Piece.ToUpper())).Select(p => p.Performance_EventId).Contains(e.Event_Id))
@@ -278,10 +281,10 @@ namespace PerfV400.Controllers
 
 
             // Can the current user edit this event?
-            if (Request.IsAuthenticated)
+            if (Session["UserID"] != null)
             {
                 ViewBag.UserCanEditEvent = true;
-                int intUserId = (int)Membership.GetUser().ProviderUserKey;
+                int intUserId = (int)Session["UserID"];
 
 
                 ViewBag.Event_Date = eventX.Event_Date;
@@ -882,6 +885,12 @@ namespace PerfV400.Controllers
                     xEvent.Event_VenueId = newVenue.Venue_Id;
                 }
 
+                db.Events.Add(xEvent);
+                db.Entry(xEvent).State = EntityState.Added;
+                db.SaveChanges();
+
+
+
                 // copy over all the child objects
                 Event oldEvent = db.Events.Single(e => e.Event_Id == oldEventId);
 
@@ -900,7 +909,7 @@ namespace PerfV400.Controllers
 
                     db.Performances.Add(newPerformance);
                     db.Entry(newPerformance).State = EntityState.Added;
-
+                    db.SaveChanges();
 
                     foreach (PerfV400.Models.PerformanceArtist performanceArtist in performance.PerformanceArtists)
                     {
@@ -919,7 +928,6 @@ namespace PerfV400.Controllers
                 
                 }
 
-                db.Events.Add(xEvent);
                 db.SaveChanges();
 
                 
@@ -1234,6 +1242,10 @@ namespace PerfV400.Controllers
                         newRole.Role_PieceId = performance.Performance_PieceId;
 
                         newRole.Role_Rank = db.Roles.Where(r => r.Role_PieceId == performance.Performance_PieceId).Select(r => r.Role_Rank).Max() + 1;
+                        if (newRole.Role_Rank == null)
+                        {
+                            newRole.Role_Rank = 1;
+                        }
 
                         db.Roles.Add(newRole);
 
@@ -1577,7 +1589,7 @@ namespace PerfV400.Controllers
                 .Distinct();
 
             //work out the current user id
-            int intUserId = (int)Membership.GetUser().ProviderUserKey;
+            int intUserId = (int)Session["UserID"];
             webpages_OAuthMembership OAuth = db.webpages_OAuthMembership.FirstOrDefault(oa => oa.UserId == intUserId);
 
             int intFacebookId = int.Parse(OAuth.ProviderUserId);
@@ -1648,6 +1660,6 @@ namespace PerfV400.Controllers
             base.Dispose(disposing);
         }
 
-        public int intUserId { get; set; }
+
     }
 }

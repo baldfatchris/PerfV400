@@ -38,7 +38,7 @@ namespace PerfV400.Filters
                         }
                     }
 
-                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "User", "User_Id", "User_Name", autoCreateTables: true);
+                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "User", "User_Id", "User_Name", autoCreateTables: false);
                 }
                 catch (Exception ex)
                 {

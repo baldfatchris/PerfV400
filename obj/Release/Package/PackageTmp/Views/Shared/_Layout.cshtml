@@ -20,7 +20,7 @@
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                   <a href="/home"><img src="@Url.Content("~/Content/logo.png")" alt="logo" /></a>
+                   <a href="/event"><img src="@Url.Content("~/Content/logo.png")" alt="logo" /></a>
                  </div>
 
 
@@ -50,11 +50,14 @@
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("Events", "Index", "Event")</li>
+
                             <li>@Html.ActionLink("Artists", "Index", "Artist")</li>
+
                             <li>@Html.ActionLink("Pieces", "Index", "Piece")</li>
+
                             <li>@Html.ActionLink("Venues", "Index", "Venue")</li>
+
                         </ul>
                     </nav>
                 </div>

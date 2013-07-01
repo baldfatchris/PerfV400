@@ -89,7 +89,7 @@
             </div>
         </div>
 
-        if (Request.IsAuthenticated){
+        if (Session["UserID"] != null){
         <div class="filter">
             <div class="filter-label">
                 My Status

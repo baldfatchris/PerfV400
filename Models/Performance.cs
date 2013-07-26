@@ -11,7 +11,9 @@ namespace PerfV400.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Performance
     {
         public Performance()
@@ -20,15 +22,23 @@ namespace PerfV400.Models
             this.ReviewPerformances = new HashSet<ReviewPerformance>();
             this.PerformanceComments = new HashSet<PerformanceComment>();
         }
-    
+
         public int Performance_Id { get; set; }
         public Nullable<int> Performance_EventId { get; set; }
+
+        [Display(Name = "Piece")]
         public int Performance_PieceId { get; set; }
+
+        [Display(Name = "Production")]
         public Nullable<int> Performance_ProductionId { get; set; }
+
+        [Display(Name = "Order")]
         public Nullable<int> Performance_Order { get; set; }
+
         public byte[] Performance_Photo { get; set; }
         public string Performance_PhotoFileName { get; set; }
         public string Performance_PhotoMimeType { get; set; }
+
         public int Performance_CreatedBy { get; set; }
         public Nullable<System.DateTime> Performance_CreatedDate { get; set; }
     

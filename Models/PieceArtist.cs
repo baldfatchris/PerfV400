@@ -11,13 +11,23 @@ namespace PerfV400.Models
 {
     using System;
     using System.Collections.Generic;
+
+    using System.ComponentModel.DataAnnotations;
     
     public partial class PieceArtist
     {
         public int PieceArtist_Id { get; set; }
+
+        [Display(Name = "Piece")]
         public int PieceArtist_PieceId { get; set; }
+
+        [Display(Name = "Artist")]
         public int PieceArtist_ArtistId { get; set; }
+
+        [Display(Name = "Type")]
         public Nullable<int> PieceArtist_PieceArtistTypeId { get; set; }
+
+        [Display(Name = "Comments")]
         public string PieceArtist_Comments { get; set; }
     
         public virtual Artist Artist { get; set; }

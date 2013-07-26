@@ -11,7 +11,9 @@ namespace PerfV400.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Artist
     {
         public Artist()
@@ -27,31 +29,69 @@ namespace PerfV400.Models
             this.vPerformanceArtist_RoleCount = new HashSet<vPerformanceArtist_RoleCount>();
             this.ArtistComments = new HashSet<ArtistComment>();
         }
-    
+
         public int Artist_Id { get; set; }
+
+        [Display(Name = "First Name")]
         public string Artist_FirstName { get; set; }
+
+        [Display(Name = "Middle Names")]
         public string Artist_Middle_Names { get; set; }
+
+        [Display(Name = "Last Name")]
+        [Required]
         public string Artist_LastName { get; set; }
+
+        [Display(Name = "Type")]
         public Nullable<int> Artist_TypeId { get; set; }
+
+        [Display(Name = "Notes")]
         public string Artist_Notes { get; set; }
+
         public byte[] Artist_Photo { get; set; }
         public string Artist_PhotoFileName { get; set; }
         public string Artist_PhotoMimeType { get; set; }
         public Nullable<int> Artist_UserId { get; set; }
+
+        [Display(Name = "Agent")]
         public Nullable<int> Artist_AgentId { get; set; }
+
+        [Display(Name = "Web Site")]
         public string Artist_WebPage { get; set; }
+
+        [Display(Name = "Born")]
         public Nullable<System.DateTime> Artist_Born { get; set; }
+
+        [Display(Name = "Died")]
         public Nullable<System.DateTime> Artist_Died { get; set; }
+
+        [Display(Name = "Email")]
         public string Artist_Email { get; set; }
+
+        [Display(Name = "Phone")]
         public string Artist_Phone { get; set; }
+
+        [Display(Name = "Country")]
         public Nullable<int> Artist_CountryId { get; set; }
+
+        [Display(Name = "State/Province")]
         public Nullable<int> Artist_StateProvinceId { get; set; }
+
+        [Display(Name = "City")]
         public string Artist_City { get; set; }
+
+        [Display(Name = "Twitter")]
         public string Artist_TwitterName { get; set; }
+
+        [Display(Name = "Facebook")]
         public Nullable<int> Artist_FacebookId { get; set; }
+
         public Nullable<int> Artist_CreatedBy { get; set; }
         public Nullable<System.DateTime> Artist_CreatedDate { get; set; }
+
+        [Display(Name = "Wiki")]
         public string Artist_Wiki { get; set; }
+
     
         public virtual Agent Agent { get; set; }
         public virtual CountryRegion CountryRegion { get; set; }

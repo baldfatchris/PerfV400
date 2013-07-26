@@ -11,6 +11,8 @@ namespace PerfV400.Models
 {
     using System;
     using System.Collections.Generic;
+
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Venue
     {
@@ -22,25 +24,56 @@ namespace PerfV400.Models
             this.VenueUsers = new HashSet<VenueUser>();
             this.VenueComments = new HashSet<VenueComment>();
         }
-    
+
         public int Venue_Id { get; set; }
+
+        [Required]
+        [Display(Name = "Venue")]
         public string Venue_Name { get; set; }
+
+        [Display(Name = "Address Line 1")]
         public string Venue_AddressLine1 { get; set; }
+
+        [Display(Name = "Address Line 2")]
         public string Venue_AddressLine2 { get; set; }
+
+        [Display(Name = "City")]
         public string Venue_City { get; set; }
+
+        [Display(Name = "Postal Code")]
         public string Venue_PostalCode { get; set; }
+
+        [Display(Name = "State/Province")]
         public Nullable<int> Venue_StateProvinceId { get; set; }
+
+        [Display(Name = "Country")]
         public Nullable<int> Venue_CountryId { get; set; }
+
         public byte[] Venue_Photo { get; set; }
         public string Venue_PhotoFileName { get; set; }
         public string Venue_PhotoMimeType { get; set; }
+
+        [Display(Name = "Longitude")]
         public string Venue_Long { get; set; }
+
+        [Display(Name = "Latitude")]
         public string Venue_Lat { get; set; }
+
+        [Display(Name = "Website")]
         public string Venue_URL { get; set; }
+
+        [Display(Name = "Description")]
         public string Venue_Description { get; set; }
+
+        [Display(Name = "Major Venue")]
         public Nullable<bool> Venue_Major { get; set; }
+
+        [Display(Name = "Capacity")]
         public Nullable<int> Venue_Capacity { get; set; }
+
+        [Display(Name = "Architect")]
         public string Venue_Architect { get; set; }
+
         public int Venue_CreatedBy { get; set; }
         public Nullable<System.DateTime> Venue_CreatedDate { get; set; }
     

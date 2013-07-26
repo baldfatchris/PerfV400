@@ -11,7 +11,9 @@ namespace PerfV400.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Band
     {
         public Band()
@@ -21,11 +23,20 @@ namespace PerfV400.Models
             this.Events = new HashSet<Event>();
             this.BandComments = new HashSet<BandComment>();
         }
-    
+
         public int Band_Id { get; set; }
+
+        [Required]
+        [Display(Name = "Band")]
         public string Band_Name { get; set; }
+
+        [Display(Name = "Description")]
         public string Band_Description { get; set; }
+
+        [Display(Name = "Start Date")]
         public Nullable<System.DateTime> Band_StartDate { get; set; }
+
+        [Display(Name = "End Date")]
         public Nullable<System.DateTime> Band_EndDate { get; set; }
         public Nullable<int> Band_BandTypeId { get; set; }
         public Nullable<int> Band_AgentId { get; set; }
@@ -37,8 +48,7 @@ namespace PerfV400.Models
         public Nullable<int> Band_StateProvinceId { get; set; }
         public string Band_City { get; set; }
         public Nullable<int> Band_CreatedBy { get; set; }
-        public Nullable<System.DateTime> Band_CreatedDate { get; set; }
-    
+        public Nullable<System.DateTime> Band_CreatedDate { get; set; }    
         public virtual Agent Agent { get; set; }
         public virtual ICollection<ArtistBand> ArtistBands { get; set; }
         public virtual BandType BandType { get; set; }

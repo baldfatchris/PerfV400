@@ -11,7 +11,9 @@ namespace PerfV400.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Event
     {
         public Event()
@@ -21,22 +23,44 @@ namespace PerfV400.Models
             this.Reviews = new HashSet<Review>();
             this.EventComments = new HashSet<EventComment>();
         }
-    
+
         public int Event_Id { get; set; }
+
+        [Required]
+        [Display(Name = "Event Name")]
         public string Event_Name { get; set; }
+
+        [Display(Name = "Description")]
         public string Event_Description { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Date")]
         public System.DateTime Event_Date { get; set; }
+
+        [DataType(DataType.Time)]
+        [Display(Name = "Start Time")]
         public Nullable<System.DateTime> Event_StartTime { get; set; }
+
+        [DataType(DataType.Time)]
+        [Display(Name = "End Time")]
         public Nullable<System.DateTime> Event_EndTime { get; set; }
+
+        [Display(Name = "Band")]
         public Nullable<int> Event_BandId { get; set; }
+
+        [Display(Name = "Venue")]
         public int Event_VenueId { get; set; }
+
         public byte[] Event_Photo { get; set; }
         public string Event_PhotoFileName { get; set; }
         public string Event_PhotoMimeType { get; set; }
+
+        [Display(Name = "Genre")]
         public int Event_GenreId { get; set; }
+
         public Nullable<int> Event_CreatedBy { get; set; }
-        public Nullable<System.DateTime> Event_CreatedDate { get; set; }
-    
+        public Nullable<System.DateTime> Event_CreatedDate { get; set; }    
         public virtual Band Band { get; set; }
         public virtual Genre Genre { get; set; }
         public virtual Venue Venue { get; set; }

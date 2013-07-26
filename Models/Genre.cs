@@ -11,7 +11,9 @@ namespace PerfV400.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Genre
     {
         public Genre()
@@ -21,11 +23,15 @@ namespace PerfV400.Models
             this.Pieces = new HashSet<Piece>();
             this.Roles = new HashSet<Role>();
         }
-    
+
         public int Genre_Id { get; set; }
+
+        [Required]
+        [Display(Name = "Genre")]
         public string Genre_Name { get; set; }
+
         public Nullable<int> Genre_ParentId { get; set; }
-    
+   
         public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<Genre> Genre1 { get; set; }
         public virtual Genre Genre2 { get; set; }

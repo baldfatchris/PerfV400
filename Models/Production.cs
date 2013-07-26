@@ -11,6 +11,8 @@ namespace PerfV400.Models
 {
     using System;
     using System.Collections.Generic;
+
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Production
     {
@@ -21,11 +23,18 @@ namespace PerfV400.Models
             this.ReviewProductions = new HashSet<ReviewProduction>();
             this.ProductionComments = new HashSet<ProductionComment>();
         }
-    
+
         public int Production_Id { get; set; }
         public int Production_PieceId { get; set; }
+
+        [Required]
+        [Display(Name = "Production")]
         public string Production_Name { get; set; }
+
+        [DataType(DataType.Date)]
+        [Display(Name = "Production Date")]
         public Nullable<System.DateTime> Production_Date { get; set; }
+
         public byte[] Production_Photo { get; set; }
         public string Production_PhotoFileName { get; set; }
         public string Production_PhotoMimeType { get; set; }

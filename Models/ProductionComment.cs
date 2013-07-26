@@ -14,12 +14,11 @@ namespace PerfV400.Models
     
     public partial class ProductionComment
     {
-        public int ProductionComment_Id { get; set; }
+        public long ProductionComment_Id { get; set; }
+        public long ProductionComment_CommentId { get; set; }
         public int ProductionComment_ProductionId { get; set; }
-        public int ProductionComment_UserId { get; set; }
-        public string ProductionComment_Comment { get; set; }
-        public Nullable<System.DateTime> ProductionComment_DateTime { get; set; }
     
+        public virtual Comment Comment { get; set; }
         public virtual Production Production { get; set; }
     }
 }

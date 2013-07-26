@@ -132,6 +132,9 @@ namespace PerfV400.Controllers
                 return HttpNotFound();
             }
 
+            // sort out the return url
+            ViewBag.ReturnUrl = Url.Action(string.Format("Details/{0}", id), "Artist");
+
             // Am I the artist?
             ViewBag.AmITheArtist = false;
             if (Request.IsAuthenticated && artist.Artist_UserId == (int)Session["UserID"])

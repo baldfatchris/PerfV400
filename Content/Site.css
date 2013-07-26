@@ -224,6 +224,19 @@ ul#menu {
         }
 
 
+
+
+/* autocomplete
+----------------------------------------------------------*/
+ul.ui-autocomplete {
+    padding-left:5px !important;
+}
+ul.ui-autocomplete li {
+    list-style:none !important;
+    font-size:0.9em !important;
+}
+
+
 /* page elements
 ----------------------------------------------------------*/
 /* featured */
@@ -392,7 +405,7 @@ aside {
     }
 
 #socialLoginList button {
-    margin-bottom: 12px;
+    margin-top: 12px;
 }
 
 #logoutForm {
@@ -417,8 +430,25 @@ aside {
 fieldset {
     border: 1px solid #ddd;
     padding: 0 1.4em 1.4em 1.4em;
-    margin: 0 0 1.5em 0;
-    clear: both;
+    margin: 0 0 1.5em 0;   
+    float:left;
+    clear:left;      
+}
+
+fieldset.main {
+    width:65%;
+}
+fieldset.comments {
+    width:25%;
+    min-width:250px;
+    float:right;
+    padding-top:10px;
+    clear:right;
+}
+
+fieldset.comments textarea {
+    padding-left: 3px;
+    width: 270px;
 }
 
     fieldset legend {
@@ -460,7 +490,7 @@ input, textarea {
 
 textarea {
     font-family: inherit;
-    width: 500px;
+    width: 275px;
 }
 
     input:focus, textarea:focus {
@@ -825,11 +855,33 @@ tr.pager td {
 
 .display-image
 {
-    float:right;
+    float:left;
     clear: left;
     padding-top: 3px;
+    padding-right: 10px;
 }
 
+.display-details
+{
+    float:left;
+}
+
+.display-comment
+{
+    float:left;
+    clear:left;
+}
+
+.display-comment-text
+{
+    float:left;
+    padding-left: 2px;
+}
+
+.display-user-icon
+{
+    float:left;
+}
 
 /* Styles for artist list
 ----------------------------------------------------------*/

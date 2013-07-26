@@ -56,17 +56,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ArtistComments">
-      <EntityTypeMapping TypeName="PerfV100Model.ArtistComment">
-        <MappingFragment StoreEntitySet="ArtistComment">
-          <ScalarProperty Name="ArtistComment_Id" ColumnName="ArtistComment_Id" />
-          <ScalarProperty Name="ArtistComment_ArtistId" ColumnName="ArtistComment_ArtistId" />
-          <ScalarProperty Name="ArtistComment_UserId" ColumnName="ArtistComment_UserId" />
-          <ScalarProperty Name="ArtistComment_Comment" ColumnName="ArtistComment_Comment" />
-          <ScalarProperty Name="ArtistComment_DateTime" ColumnName="ArtistComment_DateTime" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ArtistMedias">
       <EntityTypeMapping TypeName="PerfV100Model.ArtistMedia">
         <MappingFragment StoreEntitySet="ArtistMedia">
@@ -187,17 +176,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="EventComments">
-      <EntityTypeMapping TypeName="PerfV100Model.EventComment">
-        <MappingFragment StoreEntitySet="EventComment">
-          <ScalarProperty Name="EventComment_Id" ColumnName="EventComment_Id" />
-          <ScalarProperty Name="EventComment_EventId" ColumnName="EventComment_EventId" />
-          <ScalarProperty Name="EventComment_UserId" ColumnName="EventComment_UserId" />
-          <ScalarProperty Name="EventComment_Comment" ColumnName="EventComment_Comment" />
-          <ScalarProperty Name="EventComment_DateTime" ColumnName="EventComment_DateTime" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="EventUsers">
       <EntityTypeMapping TypeName="PerfV100Model.EventUser">
         <MappingFragment StoreEntitySet="EventUser">
@@ -286,17 +264,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="PerformanceComments">
-      <EntityTypeMapping TypeName="PerfV100Model.PerformanceComment">
-        <MappingFragment StoreEntitySet="PerformanceComment">
-          <ScalarProperty Name="PerformanceComment_Id" ColumnName="PerformanceComment_Id" />
-          <ScalarProperty Name="PerformanceComment_PerformanceId" ColumnName="PerformanceComment_PerformanceId" />
-          <ScalarProperty Name="PerformanceComment_UserId" ColumnName="PerformanceComment_UserId" />
-          <ScalarProperty Name="PerformanceComment_Comment" ColumnName="PerformanceComment_Comment" />
-          <ScalarProperty Name="PerformanceComment_DateTime" ColumnName="PerformanceComment_DateTime" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Photos">
       <EntityTypeMapping TypeName="PerfV100Model.Photo">
         <MappingFragment StoreEntitySet="Photo">
@@ -307,78 +274,6 @@
           <ScalarProperty Name="Photo_Caption" ColumnName="Photo_Caption" />
           <ScalarProperty Name="Photo_CreatedBy" ColumnName="Photo_CreatedBy" />
           <ScalarProperty Name="Photo_CreatedDate" ColumnName="Photo_CreatedDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PhotoAgents">
-      <EntityTypeMapping TypeName="PerfV100Model.PhotoAgent">
-        <MappingFragment StoreEntitySet="PhotoAgent">
-          <ScalarProperty Name="PhotoAgent_Id" ColumnName="PhotoAgent_Id" />
-          <ScalarProperty Name="PhotoAgent_PhotoId" ColumnName="PhotoAgent_PhotoId" />
-          <ScalarProperty Name="PhotoAgent_AgentId" ColumnName="PhotoAgent_AgentId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PhotoArtists">
-      <EntityTypeMapping TypeName="PerfV100Model.PhotoArtist">
-        <MappingFragment StoreEntitySet="PhotoArtist">
-          <ScalarProperty Name="PhotoArtist_Id" ColumnName="PhotoArtist_Id" />
-          <ScalarProperty Name="PhotoArtist_PhotoId" ColumnName="PhotoArtist_PhotoId" />
-          <ScalarProperty Name="PhotoArtist_ArtistId" ColumnName="PhotoArtist_ArtistId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PhotoBands">
-      <EntityTypeMapping TypeName="PerfV100Model.PhotoBand">
-        <MappingFragment StoreEntitySet="PhotoBand">
-          <ScalarProperty Name="PhotoBand_Id" ColumnName="PhotoBand_Id" />
-          <ScalarProperty Name="PhotoBand_PhotoId" ColumnName="PhotoBand_PhotoId" />
-          <ScalarProperty Name="PhotoBand_BandId" ColumnName="PhotoBand_BandId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PhotoEvents">
-      <EntityTypeMapping TypeName="PerfV100Model.PhotoEvent">
-        <MappingFragment StoreEntitySet="PhotoEvent">
-          <ScalarProperty Name="PhotoEvent_Id" ColumnName="PhotoEvent_Id" />
-          <ScalarProperty Name="PhotoEvent_PhotoId" ColumnName="PhotoEvent_PhotoId" />
-          <ScalarProperty Name="PhotoEvent_EventId" ColumnName="PhotoEvent_EventId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PhotoPerformances">
-      <EntityTypeMapping TypeName="PerfV100Model.PhotoPerformance">
-        <MappingFragment StoreEntitySet="PhotoPerformance">
-          <ScalarProperty Name="PhotoPerformance_Id" ColumnName="PhotoPerformance_Id" />
-          <ScalarProperty Name="PhotoPerformance_PhotoId" ColumnName="PhotoPerformance_PhotoId" />
-          <ScalarProperty Name="PhotoPerformance_PerformanceId" ColumnName="PhotoPerformance_PerformanceId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PhotoProductions">
-      <EntityTypeMapping TypeName="PerfV100Model.PhotoProduction">
-        <MappingFragment StoreEntitySet="PhotoProduction">
-          <ScalarProperty Name="PhotoProduction_Id" ColumnName="PhotoProduction_Id" />
-          <ScalarProperty Name="PhotoProduction_PhotoId" ColumnName="PhotoProduction_PhotoId" />
-          <ScalarProperty Name="PhotoProduction_ProductionId" ColumnName="PhotoProduction_ProductionId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PhotoReviews">
-      <EntityTypeMapping TypeName="PerfV100Model.PhotoReview">
-        <MappingFragment StoreEntitySet="PhotoReview">
-          <ScalarProperty Name="PhotoReview_Id" ColumnName="PhotoReview_Id" />
-          <ScalarProperty Name="PhotoReview_PhotoId" ColumnName="PhotoReview_PhotoId" />
-          <ScalarProperty Name="PhotoReview_ReviewId" ColumnName="PhotoReview_ReviewId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PhotoVenues">
-      <EntityTypeMapping TypeName="PerfV100Model.PhotoVenue">
-        <MappingFragment StoreEntitySet="PhotoVenue">
-          <ScalarProperty Name="PhotoVenue_Id" ColumnName="PhotoVenue_Id" />
-          <ScalarProperty Name="PhotoVenue_PhotoId" ColumnName="PhotoVenue_PhotoId" />
-          <ScalarProperty Name="PhotoVenue_VenueId" ColumnName="PhotoVenue_VenueId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -418,17 +313,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="PieceComments">
-      <EntityTypeMapping TypeName="PerfV100Model.PieceComment">
-        <MappingFragment StoreEntitySet="PieceComment">
-          <ScalarProperty Name="PieceComment_Id" ColumnName="PieceComment_Id" />
-          <ScalarProperty Name="PieceComment_PieceId" ColumnName="PieceComment_PieceId" />
-          <ScalarProperty Name="PieceComment_UserId" ColumnName="PieceComment_UserId" />
-          <ScalarProperty Name="PieceComment_Comment" ColumnName="PieceComment_Comment" />
-          <ScalarProperty Name="PieceComment_DateTime" ColumnName="PieceComment_DateTime" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Productions">
       <EntityTypeMapping TypeName="PerfV100Model.Production">
         <MappingFragment StoreEntitySet="Production">
@@ -450,17 +334,6 @@
           <ScalarProperty Name="ProductionArtist_ArtistId" ColumnName="ProductionArtist_ArtistId" />
           <ScalarProperty Name="ProductionArtist_Comments" ColumnName="ProductionArtist_Comments" />
           <ScalarProperty Name="ProductionArtist_Photo" ColumnName="ProductionArtist_Photo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ProductionComments">
-      <EntityTypeMapping TypeName="PerfV100Model.ProductionComment">
-        <MappingFragment StoreEntitySet="ProductionComment">
-          <ScalarProperty Name="ProductionComment_Id" ColumnName="ProductionComment_Id" />
-          <ScalarProperty Name="ProductionComment_ProductionId" ColumnName="ProductionComment_ProductionId" />
-          <ScalarProperty Name="ProductionComment_UserId" ColumnName="ProductionComment_UserId" />
-          <ScalarProperty Name="ProductionComment_Comment" ColumnName="ProductionComment_Comment" />
-          <ScalarProperty Name="ProductionComment_DateTime" ColumnName="ProductionComment_DateTime" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -613,17 +486,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="VenueComments">
-      <EntityTypeMapping TypeName="PerfV100Model.VenueComment">
-        <MappingFragment StoreEntitySet="VenueComment">
-          <ScalarProperty Name="VenueComment_Id" ColumnName="VenueComment_Id" />
-          <ScalarProperty Name="VenueComment_VenueId" ColumnName="VenueComment_VenueId" />
-          <ScalarProperty Name="VenueComment_UserId" ColumnName="VenueComment_UserId" />
-          <ScalarProperty Name="VenueComment_Comment" ColumnName="VenueComment_Comment" />
-          <ScalarProperty Name="VenueComment_DateTime" ColumnName="VenueComment_DateTime" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="VenueUsers">
       <EntityTypeMapping TypeName="PerfV100Model.VenueUser">
         <MappingFragment StoreEntitySet="VenueUser">
@@ -684,6 +546,205 @@
           <ScalarProperty Name="PerformanceCount" ColumnName="PerformanceCount" />
           <ScalarProperty Name="PerformanceArtist_RoleId" ColumnName="PerformanceArtist_RoleId" />
           <ScalarProperty Name="PerformanceArtist_ArtistId" ColumnName="PerformanceArtist_ArtistId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="PerfV100Model.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="Comment_DateTime" ColumnName="Comment_DateTime" />
+          <ScalarProperty Name="Comment_UserId" ColumnName="Comment_UserId" />
+          <ScalarProperty Name="Comment_Text" ColumnName="Comment_Text" />
+          <ScalarProperty Name="Comment_Id" ColumnName="Comment_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AgentComments">
+      <EntityTypeMapping TypeName="PerfV100Model.AgentComment">
+        <MappingFragment StoreEntitySet="AgentComment">
+          <ScalarProperty Name="AgentComment_AgentId" ColumnName="AgentComment_AgentId" />
+          <ScalarProperty Name="AgentComment_CommentId" ColumnName="AgentComment_CommentId" />
+          <ScalarProperty Name="AgentComment_Id" ColumnName="AgentComment_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AgentPhotoes">
+      <EntityTypeMapping TypeName="PerfV100Model.AgentPhoto">
+        <MappingFragment StoreEntitySet="AgentPhoto">
+          <ScalarProperty Name="AgentPhoto_AgentId" ColumnName="AgentPhoto_AgentId" />
+          <ScalarProperty Name="AgentPhoto_PhotoId" ColumnName="AgentPhoto_PhotoId" />
+          <ScalarProperty Name="AgentPhoto_Id" ColumnName="AgentPhoto_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ArtistComments">
+      <EntityTypeMapping TypeName="PerfV100Model.ArtistComment">
+        <MappingFragment StoreEntitySet="ArtistComment">
+          <ScalarProperty Name="ArtistComment_ArtistId" ColumnName="ArtistComment_ArtistId" />
+          <ScalarProperty Name="ArtistComment_CommentId" ColumnName="ArtistComment_CommentId" />
+          <ScalarProperty Name="ArtistComment_Id" ColumnName="ArtistComment_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ArtistPhotoes">
+      <EntityTypeMapping TypeName="PerfV100Model.ArtistPhoto">
+        <MappingFragment StoreEntitySet="ArtistPhoto">
+          <ScalarProperty Name="ArtistPhoto_ArtistId" ColumnName="ArtistPhoto_ArtistId" />
+          <ScalarProperty Name="ArtistPhoto_PhotoId" ColumnName="ArtistPhoto_PhotoId" />
+          <ScalarProperty Name="ArtistPhoto_Id" ColumnName="ArtistPhoto_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BandComments">
+      <EntityTypeMapping TypeName="PerfV100Model.BandComment">
+        <MappingFragment StoreEntitySet="BandComment">
+          <ScalarProperty Name="BandComment_BandId" ColumnName="BandComment_BandId" />
+          <ScalarProperty Name="BandComment_CommentId" ColumnName="BandComment_CommentId" />
+          <ScalarProperty Name="BandComment_Id" ColumnName="BandComment_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BandPhotoes">
+      <EntityTypeMapping TypeName="PerfV100Model.BandPhoto">
+        <MappingFragment StoreEntitySet="BandPhoto">
+          <ScalarProperty Name="BandPhoto_BandId" ColumnName="BandPhoto_BandId" />
+          <ScalarProperty Name="BandPhoto_PhotoId" ColumnName="BandPhoto_PhotoId" />
+          <ScalarProperty Name="BandPhoto_Id" ColumnName="BandPhoto_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventComments">
+      <EntityTypeMapping TypeName="PerfV100Model.EventComment">
+        <MappingFragment StoreEntitySet="EventComment">
+          <ScalarProperty Name="EventComment_EventId" ColumnName="EventComment_EventId" />
+          <ScalarProperty Name="EventComment_CommentId" ColumnName="EventComment_CommentId" />
+          <ScalarProperty Name="EventComment_Id" ColumnName="EventComment_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventPhotoes">
+      <EntityTypeMapping TypeName="PerfV100Model.EventPhoto">
+        <MappingFragment StoreEntitySet="EventPhoto">
+          <ScalarProperty Name="EventPhoto_EventId" ColumnName="EventPhoto_EventId" />
+          <ScalarProperty Name="EventPhoto_PhotoId" ColumnName="EventPhoto_PhotoId" />
+          <ScalarProperty Name="EventPhoto_Id" ColumnName="EventPhoto_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PerformanceComments">
+      <EntityTypeMapping TypeName="PerfV100Model.PerformanceComment">
+        <MappingFragment StoreEntitySet="PerformanceComment">
+          <ScalarProperty Name="PerformanceComment_PerformanceId" ColumnName="PerformanceComment_PerformanceId" />
+          <ScalarProperty Name="PerformanceComment_CommentId" ColumnName="PerformanceComment_CommentId" />
+          <ScalarProperty Name="PerformanceComment_Id" ColumnName="PerformanceComment_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PerformancePhotoes">
+      <EntityTypeMapping TypeName="PerfV100Model.PerformancePhoto">
+        <MappingFragment StoreEntitySet="PerformancePhoto">
+          <ScalarProperty Name="PerformancePhoto_PerformanceId" ColumnName="PerformancePhoto_PerformanceId" />
+          <ScalarProperty Name="PerformancePhoto_PhotoId" ColumnName="PerformancePhoto_PhotoId" />
+          <ScalarProperty Name="PerformancePhoto_Id" ColumnName="PerformancePhoto_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PieceComments">
+      <EntityTypeMapping TypeName="PerfV100Model.PieceComment">
+        <MappingFragment StoreEntitySet="PieceComment">
+          <ScalarProperty Name="PieceComment_PieceId" ColumnName="PieceComment_PieceId" />
+          <ScalarProperty Name="PieceComment_CommentId" ColumnName="PieceComment_CommentId" />
+          <ScalarProperty Name="PieceComment_Id" ColumnName="PieceComment_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PiecePhotoes">
+      <EntityTypeMapping TypeName="PerfV100Model.PiecePhoto">
+        <MappingFragment StoreEntitySet="PiecePhoto">
+          <ScalarProperty Name="PiecePhoto_PieceId" ColumnName="PiecePhoto_PieceId" />
+          <ScalarProperty Name="PiecePhoto_PhotoId" ColumnName="PiecePhoto_PhotoId" />
+          <ScalarProperty Name="PiecePhoto_Id" ColumnName="PiecePhoto_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductionPhotoes">
+      <EntityTypeMapping TypeName="PerfV100Model.ProductionPhoto">
+        <MappingFragment StoreEntitySet="ProductionPhoto">
+          <ScalarProperty Name="ProductionPhoto_ProductionId" ColumnName="ProductionPhoto_ProductionId" />
+          <ScalarProperty Name="ProductionPhoto_PhotoId" ColumnName="ProductionPhoto_PhotoId" />
+          <ScalarProperty Name="ProductionPhoto_Id" ColumnName="ProductionPhoto_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReviewComments">
+      <EntityTypeMapping TypeName="PerfV100Model.ReviewComment">
+        <MappingFragment StoreEntitySet="ReviewComment">
+          <ScalarProperty Name="ReviewComment_ReviewId" ColumnName="ReviewComment_ReviewId" />
+          <ScalarProperty Name="ReviewComment_CommentId" ColumnName="ReviewComment_CommentId" />
+          <ScalarProperty Name="ReviewComment_Id" ColumnName="ReviewComment_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReviewPhotoes">
+      <EntityTypeMapping TypeName="PerfV100Model.ReviewPhoto">
+        <MappingFragment StoreEntitySet="ReviewPhoto">
+          <ScalarProperty Name="ReviewPhoto_ReviewId" ColumnName="ReviewPhoto_ReviewId" />
+          <ScalarProperty Name="ReviewPhoto_PhotoId" ColumnName="ReviewPhoto_PhotoId" />
+          <ScalarProperty Name="ReviewPhoto_Id" ColumnName="ReviewPhoto_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleComments">
+      <EntityTypeMapping TypeName="PerfV100Model.RoleComment">
+        <MappingFragment StoreEntitySet="RoleComment">
+          <ScalarProperty Name="RoleComment_RoleId" ColumnName="RoleComment_RoleId" />
+          <ScalarProperty Name="RoleComment_CommentId" ColumnName="RoleComment_CommentId" />
+          <ScalarProperty Name="RoleComment_Id" ColumnName="RoleComment_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolePhotoes">
+      <EntityTypeMapping TypeName="PerfV100Model.RolePhoto">
+        <MappingFragment StoreEntitySet="RolePhoto">
+          <ScalarProperty Name="RolePhoto_RoleId" ColumnName="RolePhoto_RoleId" />
+          <ScalarProperty Name="RolePhoto_PhotoId" ColumnName="RolePhoto_PhotoId" />
+          <ScalarProperty Name="RolePhoto_Id" ColumnName="RolePhoto_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VenueComments">
+      <EntityTypeMapping TypeName="PerfV100Model.VenueComment">
+        <MappingFragment StoreEntitySet="VenueComment">
+          <ScalarProperty Name="VenueComment_VenueId" ColumnName="VenueComment_VenueId" />
+          <ScalarProperty Name="VenueComment_CommentId" ColumnName="VenueComment_CommentId" />
+          <ScalarProperty Name="VenueComment_Id" ColumnName="VenueComment_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VenuePhotoes">
+      <EntityTypeMapping TypeName="PerfV100Model.VenuePhoto">
+        <MappingFragment StoreEntitySet="VenuePhoto">
+          <ScalarProperty Name="VenuePhoto_VenueId" ColumnName="VenuePhoto_VenueId" />
+          <ScalarProperty Name="VenuePhoto_PhotoId" ColumnName="VenuePhoto_PhotoId" />
+          <ScalarProperty Name="VenuePhoto_Id" ColumnName="VenuePhoto_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhotoComments">
+      <EntityTypeMapping TypeName="PerfV100Model.PhotoComment">
+        <MappingFragment StoreEntitySet="PhotoComment">
+          <ScalarProperty Name="PhotoComment_PhotoId" ColumnName="PhotoComment_PhotoId" />
+          <ScalarProperty Name="PhotoComment_CommentId" ColumnName="PhotoComment_CommentId" />
+          <ScalarProperty Name="PhotoComment_Id" ColumnName="PhotoComment_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductionComments">
+      <EntityTypeMapping TypeName="PerfV100Model.ProductionComment">
+        <MappingFragment StoreEntitySet="ProductionComment">
+          <ScalarProperty Name="ProductionComment_ProductionId" ColumnName="ProductionComment_ProductionId" />
+          <ScalarProperty Name="ProductionComment_CommentId" ColumnName="ProductionComment_CommentId" />
+          <ScalarProperty Name="ProductionComment_Id" ColumnName="ProductionComment_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

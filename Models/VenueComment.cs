@@ -14,12 +14,11 @@ namespace PerfV400.Models
     
     public partial class VenueComment
     {
-        public int VenueComment_Id { get; set; }
+        public long VenueComment_Id { get; set; }
+        public long VenueComment_CommentId { get; set; }
         public int VenueComment_VenueId { get; set; }
-        public int VenueComment_UserId { get; set; }
-        public string VenueComment_Comment { get; set; }
-        public Nullable<System.DateTime> VenueComment_DateTime { get; set; }
     
+        public virtual Comment Comment { get; set; }
         public virtual Venue Venue { get; set; }
     }
 }

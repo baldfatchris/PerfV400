@@ -16,10 +16,11 @@ namespace PerfV400.Models
     {
         public User()
         {
-            this.ArtistComments = new HashSet<ArtistComment>();
             this.ArtistUsers = new HashSet<ArtistUser>();
             this.Groups = new HashSet<Group>();
             this.EventUsers = new HashSet<EventUser>();
+            this.webpages_OAuthMembership = new HashSet<webpages_OAuthMembership>();
+            this.Comments = new HashSet<Comment>();
         }
     
         public int User_Id { get; set; }
@@ -38,11 +39,12 @@ namespace PerfV400.Models
         public string User_MiddleNames { get; set; }
     
         public virtual Artist Artist { get; set; }
-        public virtual ICollection<ArtistComment> ArtistComments { get; set; }
         public virtual ICollection<ArtistUser> ArtistUsers { get; set; }
         public virtual CountryRegion CountryRegion { get; set; }
         public virtual Language Language { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
         public virtual ICollection<EventUser> EventUsers { get; set; }
+        public virtual ICollection<webpages_OAuthMembership> webpages_OAuthMembership { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

@@ -4,6 +4,10 @@
     ViewBag.Title = "Venues";
 }
 
+<ul class="toolbar">
+    <li class="add">@Html.ActionLink("Add New Venue", "NewVenue", "Venue", new {  }, htmlAttributes: new { @class = "createLink", data_dialog_title = "Add New Venue" })</li>
+</ul>
+
 <p>
     @Html.ActionLink("Create New Venue", "Create")
 </p>
@@ -20,27 +24,30 @@
     }))
 {
 
+
 <div class="filter">
-    <table>
-        <tr>
-            <td class="filter-label">
-                Search
-            </td>
-            <td class="filter-field">
-                @Html.TextBox("filter_search", null)
-                <input id="fs" type="submit" value="Search" />
-            </td>
-        </tr>
-        <tr>
-            <td class="filter-label">
-                Country
-            </td>
-            <td class="filter-field">
-                @Html.DropDownList("filter_Venue_CountryId", (IEnumerable<SelectListItem>)ViewBag.Countries, "All Countries", new { onchange = "$(\"#fs\").click();" }) 
-            </td>
-        </tr>
-    </table>
+    <div class="filter-label">
+        Venue Name
+    </div>
+    <div class="filter-field">
+        @Html.TextBox("filter_search", null)
+    </div>
+
+    <div class="filter-label">
+        Country
+    </div>
+    <div class="filter-field">
+        @Html.DropDownList("filter_Venue_CountryId", (IEnumerable<SelectListItem>)ViewBag.Countries, "All Countries") 
+    </div>
+
+    <div class="filter-label">
+        &nbsp;
+    </div>
+    <div class="filter-field">
+        <input id="fs" type="submit" value="Filter" />
+    </div>
 </div>
+
 
 <img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
 

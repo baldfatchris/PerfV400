@@ -14,13 +14,11 @@ namespace PerfV400.Models
     
     public partial class ArtistComment
     {
-        public int ArtistComment_Id { get; set; }
+        public long ArtistComment_Id { get; set; }
+        public long ArtistComment_CommentId { get; set; }
         public int ArtistComment_ArtistId { get; set; }
-        public int ArtistComment_UserId { get; set; }
-        public string ArtistComment_Comment { get; set; }
-        public Nullable<System.DateTime> ArtistComment_DateTime { get; set; }
     
         public virtual Artist Artist { get; set; }
-        public virtual User User { get; set; }
+        public virtual Comment Comment { get; set; }
     }
 }

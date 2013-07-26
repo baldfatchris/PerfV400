@@ -33,6 +33,23 @@ $(function () {
 
     /*! activate the date picker */
     $('input.date').datepicker({ dateFormat: "dd MM yy" });
+    
+    /*! submit the filters */
+    $('div.filter select').change(function () {
+        $(this).parents('div.filter').select('#fs').submit()
+    });
+    $('div.filter input').change(function () {
+        $(this).parents('div.filter').select('#fs').submit()
+    });
+
+    /*! toggle the image upload */
+    $('.EditPhotoDiv').hover(function () {
+        $(this).removeClass('toggle-upload');
+    }, function () {
+        $(this).addClass('toggle-upload');
+    });
+
+
 
 });
 

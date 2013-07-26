@@ -245,6 +245,19 @@ namespace PerfV400.Controllers
             dynamic myInfo = fb.Get("/me/friends");
             foreach (dynamic friend in myInfo.data)
             {
+
+                // post a test message the friend's wall
+                //try
+                //{
+                //    fb.Post(string.Format("{0}/feed",friend.id), new { message = "My first wall post" });
+                //}
+                //catch (Exception e)
+                //{
+                //    string text = e.StackTrace;
+                //}
+                
+                
+                
                 // does the friend already exist?
                 String strUserId = result.ProviderUserId;
                 Int64 intUserId = Int64.Parse(strUserId);
@@ -263,6 +276,28 @@ namespace PerfV400.Controllers
                     db.SaveChanges();
                 }
             }
+
+            // post a test message on my wall
+            //try
+            //{
+            //    fb.Post("me/feed", new { message = "My second wall post" });
+            //}
+            //catch (Exception e)
+            //{
+            //    string text = e.StackTrace;   
+            //}
+
+            
+            // post a test 
+            var parameters = new Dictionary<string, object>
+                {
+                    {"event", "http://amovada.azurewebsites.net/Event/Details/1963"},
+                    {"tags" , "585173979"}
+                };
+            var response = fb.Post("me/amovada:added_you_to", parameters);
+
+
+
 
 
 

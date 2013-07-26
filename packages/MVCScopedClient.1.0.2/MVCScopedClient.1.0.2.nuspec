@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>MVCScopedClient</id>
+    <version>1.0.2</version>
+    <title>MVCScopedClient</title>
+    <authors>Tapanila</authors>
+    <owners>Tapanila</owners>
+    <projectUrl>https://github.com/tapanila/MVCScopedClient</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>OAuth 2.0 Authentication clients that support custom scope
+
+Currently supports: Linkedin and Facebook</description>
+    <releaseNotes />
+    <copyright />
+    <language />
+  </metadata>
+</package>

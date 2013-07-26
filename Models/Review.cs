@@ -16,10 +16,10 @@ namespace PerfV400.Models
     {
         public Review()
         {
-            this.PhotoReviews = new HashSet<PhotoReview>();
             this.ReviewPerformanceArtists = new HashSet<ReviewPerformanceArtist>();
             this.ReviewProductions = new HashSet<ReviewProduction>();
             this.ReviewVenues = new HashSet<ReviewVenue>();
+            this.ReviewComments = new HashSet<ReviewComment>();
         }
     
         public int Review_Id { get; set; }
@@ -35,10 +35,10 @@ namespace PerfV400.Models
         public Nullable<System.DateTime> Review_CreatedDate { get; set; }
     
         public virtual Event Event { get; set; }
-        public virtual ICollection<PhotoReview> PhotoReviews { get; set; }
         public virtual ReviewPerformance ReviewPerformance { get; set; }
         public virtual ICollection<ReviewPerformanceArtist> ReviewPerformanceArtists { get; set; }
         public virtual ICollection<ReviewProduction> ReviewProductions { get; set; }
         public virtual ICollection<ReviewVenue> ReviewVenues { get; set; }
+        public virtual ICollection<ReviewComment> ReviewComments { get; set; }
     }
 }

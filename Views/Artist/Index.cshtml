@@ -21,34 +21,34 @@
 {
 
 <div class="filter">
-    <table>
-        <tr>
-            <td class="filter-label">
-                Search
-            </td>
-            <td class="filter-field">
-                @Html.TextBox("filter_search", null)
-                <input id="fs" type="submit" value="Search" />
-            </td>
-        </tr>
-        <tr>
-            <td class="filter-label">
-                Type
-            </td>
-            <td class="filter-field">
-                @Html.DropDownList("filter_Artist_TypeId", (IEnumerable<SelectListItem>)ViewBag.Types, "All Types", new { onchange = "$(\"#fs\").click();" }) 
-            </td>
-        </tr>
-        <tr>
-            <td class="filter-label">
-                Country
-            </td>
-            <td class="filter-field">
-                @Html.DropDownList("filter_Artist_CountryId", (IEnumerable<SelectListItem>)ViewBag.Countries, "All Countries", new { onchange = "$(\"#fs\").click();" }) 
-            </td>
-        </tr>
-    </table>
-
+    <div class="filter-label">
+        Artist Name
+    </div>
+    <div class="filter-field">
+        @Html.TextBox("filter_search", null)
+    </div>
+</div><div class="filter">
+    <div class="filter-label">
+        Type
+    </div>
+    <div class="filter-field">
+        @Html.DropDownList("filter_Artist_TypeId", (IEnumerable<SelectListItem>)ViewBag.Types, "All Types") 
+    </div>
+</div><div class="filter">
+    <div class="filter-label">
+        Country
+    </div>
+    <div class="filter-field">
+        @Html.DropDownList("filter_Artist_CountryId", (IEnumerable<SelectListItem>)ViewBag.Countries, "All Countries") 
+    </div>
+</div>
+<div class="filter">
+    <div class="filter-label">
+        &nbsp;
+    </div>
+    <div class="filter-field">
+        <input id="fs" type="submit" value="Filter" />
+    </div>
 </div>
 
 <img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />

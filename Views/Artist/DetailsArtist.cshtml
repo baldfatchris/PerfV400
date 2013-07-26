@@ -14,112 +14,106 @@
 
          <div id="@string.Format("PhotoArtist{0}",Model.Artist_Id)">
             <img class="pic" src="@Url.Action("GetArtistImage", "Artist", new { id = Model.Artist_Id })" alt="@Html.DisplayFor(a => a.Artist_FirstName) @Html.DisplayFor(a => a.Artist_LastName)" border="0" style="border:0"/>
-                
-            <script type="text/javascript">
-                $(function () {
-                    $('.EditPhotoDiv').hover(function () {
-                        $(this).removeClass('toggle-upload');
-                    }, function () {
-                        $(this).addClass('toggle-upload');
-                    });
-                });
-            </script>
         </div>
-       
-        @using (Html.BeginForm("EditArtistPhoto", "Artist", FormMethod.Post,
-            new { enctype = "multipart/form-data", id = string.Format("EditPhotoFormArtist{0}", Model.Artist_Id), target = string.Format("EditPhotoTargetArtist{0}", Model.Artist_Id) }))
-        {
-            @Html.HiddenFor(model => model.Artist_Id)
-            <input type="file" name="imageFile" onchange="EditPhoto('Artist',@Model.Artist_Id);" />
-        }
-        <iframe id="@string.Format("EditPhotoTargetArtist{0}", Model.Artist_Id)" name="@string.Format("EditPhotoTargetArtist{0}", Model.Artist_Id)" onload="EditPhotoComplete('Artist',@Model.Artist_Id);" 
-            style="position: absolute; left: -999em; top: -999em;"></iframe>
 
-        <script type="text/javascript">
-            var isFirstLoad = true;
-        </script>
- 
+        @if (Session["UserID"] != null){
+       
+            using (Html.BeginForm("EditArtistPhoto", "Artist", FormMethod.Post,
+                new { enctype = "multipart/form-data", id = string.Format("EditPhotoFormArtist{0}", Model.Artist_Id), target = string.Format("EditPhotoTargetArtist{0}", Model.Artist_Id) }))
+            {
+                @Html.HiddenFor(model => model.Artist_Id)
+                <input type="file" name="imageFile" onchange="EditPhoto('Artist',@Model.Artist_Id);" />
+            }
+            <iframe id="@string.Format("EditPhotoTargetArtist{0}", Model.Artist_Id)" name="@string.Format("EditPhotoTargetArtist{0}", Model.Artist_Id)" onload="EditPhotoComplete('Artist',@Model.Artist_Id);" 
+                style="position: absolute; left: -999em; top: -999em;"></iframe>
+
+            <script type="text/javascript">
+                var isFirstLoad = true;
+            </script>
+        }
     </div>
 
+    <div class="display-details">
 
-    <div class="display-label">@Html.DisplayNameFor(model => model.Artist_FirstName)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Artist_FirstName)</div>
+        <div class="display-label">@Html.DisplayNameFor(model => model.Artist_FirstName)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Artist_FirstName)</div>
 
-    <div class="display-label">@Html.DisplayNameFor(model => model.Artist_LastName)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Artist_LastName)</div>
+        <div class="display-label">@Html.DisplayNameFor(model => model.Artist_LastName)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Artist_LastName)</div>
 
-    @if (ViewBag.Type != null)
-    {
-    <div class="display-label">@Html.DisplayNameFor(model => model.Type.Type_Name)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Type.Type_Name)</div>
-    }
+        @if (ViewBag.Type != null)
+        {
+        <div class="display-label">@Html.DisplayNameFor(model => model.Type.Type_Name)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Type.Type_Name)</div>
+        }
     
-    @if (ViewBag.Agent != null)
-    {
-    <div class="display-label">@Html.DisplayNameFor(model => model.Agent.Agent_Name)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Agent.Agent_Name)</div>
-    }
+        @if (ViewBag.Agent != null)
+        {
+        <div class="display-label">@Html.DisplayNameFor(model => model.Agent.Agent_Name)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Agent.Agent_Name)</div>
+        }
     
-    @if (Model.Artist_WebPage != null)
-    {
-    <div class="display-label">@Html.DisplayNameFor(model => model.Artist_WebPage)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Artist_WebPage)</div>
-    }
+        @if (Model.Artist_WebPage != null)
+        {
+        <div class="display-label">@Html.DisplayNameFor(model => model.Artist_WebPage)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Artist_WebPage)</div>
+        }
     
-    @if (Model.Artist_Born != null)
-    {
-    <div class="display-label">@Html.DisplayNameFor(model => model.Artist_Born)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Artist_Born)</div>
-    }
+        @if (Model.Artist_Born != null)
+        {
+        <div class="display-label">@Html.DisplayNameFor(model => model.Artist_Born)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Artist_Born)</div>
+        }
     
-    @if (Model.Artist_Died != null)
-    {
-    <div class="display-label">@Html.DisplayNameFor(model => model.Artist_Died)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Artist_Died)</div>
-    }
+        @if (Model.Artist_Died != null)
+        {
+        <div class="display-label">@Html.DisplayNameFor(model => model.Artist_Died)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Artist_Died)</div>
+        }
     
-    @if (Model.Artist_Email != null)
-    {
-    <div class="display-label">@Html.DisplayNameFor(model => model.Artist_Email)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Artist_Email)</div>
-    }
+        @if (Model.Artist_Email != null)
+        {
+        <div class="display-label">@Html.DisplayNameFor(model => model.Artist_Email)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Artist_Email)</div>
+        }
     
-    @if (ViewBag.CountryRegion != null)
-    {
-    <div class="display-label">@Html.DisplayNameFor(model => model.CountryRegion.CountryRegion_Name)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.CountryRegion.CountryRegion_Name)</div>
-    }
+        @if (ViewBag.CountryRegion != null)
+        {
+        <div class="display-label">@Html.DisplayNameFor(model => model.CountryRegion.CountryRegion_Name)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.CountryRegion.CountryRegion_Name)</div>
+        }
     
-    @if (ViewBag.StateProvince != null)
-    {
-    <div class="display-label">@Html.DisplayNameFor(model => model.StateProvince.StateProvince_Name)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.StateProvince.StateProvince_Name)</div>
-    }
+        @if (ViewBag.StateProvince != null)
+        {
+        <div class="display-label">@Html.DisplayNameFor(model => model.StateProvince.StateProvince_Name)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.StateProvince.StateProvince_Name)</div>
+        }
     
-    @if (Model.Artist_City != null)
-    {
-    <div class="display-label">@Html.DisplayNameFor(model => model.Artist_City)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Artist_City)</div>
-    }
+        @if (Model.Artist_City != null)
+        {
+        <div class="display-label">@Html.DisplayNameFor(model => model.Artist_City)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Artist_City)</div>
+        }
     
-    @if (Model.Artist_TwitterName != null)
-    {
-    <div class="display-label">@Html.DisplayNameFor(model => model.Artist_TwitterName)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Artist_TwitterName)</div>
-    }
+        @if (Model.Artist_TwitterName != null)
+        {
+        <div class="display-label">@Html.DisplayNameFor(model => model.Artist_TwitterName)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Artist_TwitterName)</div>
+        }
     
-    @if (Model.Artist_Notes != null)
-    {
-    <div class="display-label">@Html.DisplayNameFor(model => model.Artist_Notes)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Artist_Notes)</div>
-    }  
+        @if (Model.Artist_Notes != null)
+        {
+        <div class="display-label">@Html.DisplayNameFor(model => model.Artist_Notes)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Artist_Notes)</div>
+        }  
 
-    @if (Model.Artist_Wiki != null)
-    {
-    <div class="display-label">@Html.DisplayNameFor(model => model.Artist_Wiki)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Artist_Wiki)</div>
-    }  
+        @if (Model.Artist_Wiki != null)
+        {
+        <div class="display-label">@Html.DisplayNameFor(model => model.Artist_Wiki)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Artist_Wiki)</div>
+        }  
 
+    </div>
 </div>
       
  

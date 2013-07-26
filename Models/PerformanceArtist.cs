@@ -11,9 +11,7 @@ namespace PerfV400.Models
 {
     using System;
     using System.Collections.Generic;
-
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class PerformanceArtist
     {
         public PerformanceArtist()
@@ -21,26 +19,14 @@ namespace PerfV400.Models
             this.PerformanceArtistUsers = new HashSet<PerformanceArtistUser>();
             this.ReviewPerformanceArtists = new HashSet<ReviewPerformanceArtist>();
         }
-
+    
         public int PerformanceArtist_Id { get; set; }
-
-        [Display(Name = "Performance")]
         public int PerformanceArtist_PerformanceId { get; set; }
-
-        [Required]
-        [Display(Name = "Artist")]
         public int PerformanceArtist_ArtistId { get; set; }
-
-        [Required]
-        [Display(Name = "Role")]
         public Nullable<int> PerformanceArtist_RoleId { get; set; }
-
-        [Display(Name = "Comments")]
         public string PerformanceArtist_Comments { get; set; }
-
-        [Display(Name = "Photo")]
         public byte[] PerformanceArtist_Photo { get; set; }
-
+    
         public virtual Artist Artist { get; set; }
         public virtual Performance Performance { get; set; }
         public virtual Role Role { get; set; }

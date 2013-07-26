@@ -4,180 +4,226 @@
     ViewBag.Title = "Piece Details";
 }
 
-
-
 <div id="PieceDetails">
 
-    <fieldset>
+    <fieldset class="main">
         <legend>Piece</legend>
 
         <ul class="toolbar">
             <li class="edit">@Html.ActionLink("Edit Piece Details", "EditPiece", new { id = Model.Piece_Id }, htmlAttributes: new { @class = "editLink", data_dialog_title = "Edit Piece Details" })</li>
         </ul>
         @Html.Partial("DetailsPiece")
-    </fieldset>
 
 
-    <fieldset>
-        <legend>Artists</legend>
 
-        <ul class="toolbar">
-            <li class="add">@Html.ActionLink("Add New Artist", "NewPieceArtist", new { PieceId = Model.Piece_Id }, htmlAttributes: new { @class = "createLink", data_dialog_title = "Add New Artist" })</li>
-        </ul>
+        <fieldset>
+            <legend>Artists</legend>
 
-        @using (Ajax.BeginForm("MorePieceArtists", "Piece",
-            new { page = 0 },
-            new AjaxOptions
+            <ul class="toolbar">
+                <li class="add">@Html.ActionLink("Add New Artist", "NewPieceArtist", new { PieceId = Model.Piece_Id }, htmlAttributes: new { @class = "createLink", data_dialog_title = "Add New Artist" })</li>
+            </ul>
+
+            @using (Ajax.BeginForm("MorePieceArtists", "Piece",
+                new { page = 0 },
+                new AjaxOptions
+                {
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "GET",
+                    OnFailure = "searchFailed",
+                    LoadingElementId = "ajax-loader1",
+                    UpdateTargetId = "PieceArtistsearchresults"
+                }))
             {
-                InsertionMode = InsertionMode.Replace,
-                HttpMethod = "GET",
-                OnFailure = "searchFailed",
-                LoadingElementId = "ajax-loader1",
-                UpdateTargetId = "PieceArtistsearchresults"
-            }))
-        {
 
-            <div class="filter">
+                <div class="filter">
+
+                    @Html.Hidden("filter_Piece_Id", Model.Piece_Id)
+
+                </div>
+
+                <img id="ajax-loader1" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
+
+                <div id="PieceArtistsearchresults">
+
+                    <div id="NewPieceArtistDetails"></div>
+    
+                    @{
+                    ViewBag.Piece_Id = Model.Piece_Id;
+                    IEnumerable<PerfV400.Models.PieceArtist> pieceArtists = ViewBag.pieceArtists;
+                    }
+                    @Html.Partial("_MorePieceArtists", pieceArtists)
+
+                </div>
+    
+            }    
+
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Roles</legend>
+
+            <ul class="toolbar">
+                <li class="add">@Html.ActionLink("Add New Role", "NewRole", new { PieceId = Model.Piece_Id }, htmlAttributes: new { @class = "createLink", data_dialog_title = "Add New Role" })</li>
+            </ul>
+
+            @using (Ajax.BeginForm("MoreRoles", "Piece",
+                new { page = 0 },
+                new AjaxOptions
+                {
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "GET",
+                    OnFailure = "searchFailed",
+                    LoadingElementId = "ajax-loader3",
+                    UpdateTargetId = "Rolesearchresults"
+                }))
+            {
+
+                <div class="filter">
+
+                    @Html.Hidden("filter_Piece_Id", Model.Piece_Id)
+
+                </div>
+
+                <img id="ajax-loader3" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
+
+                <div id="Rolesearchresults">
+
+                    <div id="NewRoleDetails"></div>
+    
+                    @{
+                    ViewBag.Piece_Id = Model.Piece_Id;
+                    IEnumerable<PerfV400.Models.Role> Roles = ViewBag.Roles;
+                    }
+                    @Html.Partial("_MoreRoles", Roles)
+
+                </div>
+    
+            }    
+
+
+        </fieldset>
+
+
+        <fieldset>
+            <legend>Performances</legend>
+
+            @using (Ajax.BeginForm("MorePiecePerformances", "Piece",
+                new { page = 0 },
+                new AjaxOptions
+                {
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "GET",
+                    OnFailure = "searchFailed",
+                    LoadingElementId = "ajax-loader",
+                    UpdateTargetId = "Pieceperformancesearchresults"
+                }))
+            {
 
                 @Html.Hidden("filter_Piece_Id", Model.Piece_Id)
 
-            </div>
+                <div class="filter">
+                    <div class="filter-label">
+                            Venue Name
+                    </div>
+                    <div class="filter-field">
+                            @Html.TextBox("filter_Event_Venue", null)        
+                    </div>
 
-            <img id="ajax-loader1" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
+                    <div class="filter-label">
+                            City
+                    </div>
+                    <div class="filter-field">
+                            @Html.DropDownList("filter_Venue_City", (IEnumerable<SelectListItem>)ViewBag.Cities, "All Cities") 
+                    </div>
 
-            <div id="PieceArtistsearchresults">
+                    <div class="filter-label">
+                            Country
+                    </div>
+                    <div class="filter-field">
+                            @Html.DropDownList("filter_Venue_CountryId", (IEnumerable<SelectListItem>)ViewBag.Countries, "All Countries") 
+                    </div>
 
-                <div id="NewPieceArtistDetails"></div>
+                    <div class="filter-label">
+                        Date
+                    </div>
+                    <div class="filter-field">
+                        @Html.TextBox("filter_From_Event_Date", null, new { @class = "date", @style = "width:10em" })
+                        to
+                        @Html.TextBox("filter_To_Event_Date", null, new { @class = "date", @style = "width:10em" })
+                    </div>
+
+                    <div class="filter-label">
+                        &nbsp;
+                    </div>
+                    <div class="filter-field">
+                        <input id="fs" type="submit" value="Filter" />
+                    </div>
+                </div>
+                
+                
+
+                <img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
+
+                <div id="Pieceperformancesearchresults">
     
-                @{
-                ViewBag.Piece_Id = Model.Piece_Id;
-                IEnumerable<PerfV400.Models.PieceArtist> pieceArtists = ViewBag.pieceArtists;
-                }
-                @Html.Partial("_MorePieceArtists", pieceArtists)
+                    @{
+                    ViewBag.Piece_Id = Model.Piece_Id;
+                    IEnumerable<PerfV400.Models.Performance> performances = ViewBag.performances;
+                    }
+                    @Html.Partial("_MorePiecePerformances", performances)
 
-            </div>
+                </div>
     
-        }    
+            }    
 
+            <div id="NewPerformanceDetails"></div>
 
+        </fieldset>
     </fieldset>
 
-    <fieldset>
-        <legend>Roles</legend>
+    <fieldset class="comments">
+        <legend>Comments</legend>
 
-        <ul class="toolbar">
-            <li class="add">@Html.ActionLink("Add New Role", "NewRole", new { PieceId = Model.Piece_Id }, htmlAttributes: new { @class = "createLink", data_dialog_title = "Add New Role" })</li>
-        </ul>
-
-        @using (Ajax.BeginForm("MoreRoles", "Piece",
-            new { page = 0 },
-            new AjaxOptions
-            {
-                InsertionMode = InsertionMode.Replace,
-                HttpMethod = "GET",
-                OnFailure = "searchFailed",
-                LoadingElementId = "ajax-loader3",
-                UpdateTargetId = "Rolesearchresults"
-            }))
+        @foreach (PerfV400.Models.PieceComment pieceComment in Model.PieceComments)
         {
-
-            <div class="filter">
-
-                @Html.Hidden("filter_Piece_Id", Model.Piece_Id)
-
+            string imgSrc = string.Format("http://graph.facebook.com/{0}/picture?width=30&height=30", pieceComment.Comment.User.User_FacebookId.ToString());
+            
+            <div class="display-comment">
+                <div class="display-user-icon">
+                    <img src="@imgSrc" />
+                </div>
+                <div class="display-comment-text">
+                    @pieceComment.Comment.Comment_Text
+                </div>
             </div>
-
-            <img id="ajax-loader3" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
-
-            <div id="Rolesearchresults">
-
-                <div id="NewRoleDetails"></div>
-    
-                @{
-                ViewBag.Piece_Id = Model.Piece_Id;
-                IEnumerable<PerfV400.Models.Role> Roles = ViewBag.Roles;
-                }
-                @Html.Partial("_MoreRoles", Roles)
-
-            </div>
-    
-        }    
-
-
-    </fieldset>
-
-
-    <fieldset>
-        <legend>Performances</legend>
-
-        @using (Ajax.BeginForm("MorePiecePerformances", "Piece",
-            new { page = 0 },
-            new AjaxOptions
-            {
-                InsertionMode = InsertionMode.Replace,
-                HttpMethod = "GET",
-                OnFailure = "searchFailed",
-                LoadingElementId = "ajax-loader",
-                UpdateTargetId = "Pieceperformancesearchresults"
-            }))
+        }
+        
+        @if (Session["UserFacebookId"] != null && Session["UserFacebookId"].ToString().Length != 0)
         {
+            string myImgSrc = string.Format("http://graph.facebook.com/{0}/picture?width=30&height=30", Session["UserFacebookId"]);
 
-            @Html.Hidden("filter_Piece_Id", Model.Piece_Id)
+            <div class="display-comment">
+                <div class="display-user-icon">
 
-            <div class="filter">
-                <div class="filter-label">
-                        Venue
+                    <img src="@myImgSrc" />
                 </div>
-                <div class="filter-field">
-                        @Html.TextBox("filter_Event_Venue", null)        
+                <div class="display-comment-text">
+                    @Html.TextArea("NewComment")
                 </div>
             </div>
-            <div class="filter">
-                <div class="filter-label">
-                        City
-                </div>
-                <div class="filter-field">
-                        @Html.DropDownList("filter_Venue_City", (IEnumerable<SelectListItem>)ViewBag.Cities, "All Cities", new { onchange = "$(\"#fs\").click();" }) 
-                </div>
+        }
+        else
+        {
+            <div class="display-comment">
+                @Html.Action("ExternalLoginsList","Account", new { ReturnUrl = ViewBag.ReturnUrl })
             </div>
-            <div class="filter">
-                <div class="filter-label">
-                        Country
-                </div>
-                <div class="filter-field">
-                        @Html.DropDownList("filter_Venue_CountryId", (IEnumerable<SelectListItem>)ViewBag.Countries, "All Countries", new { onchange = "$(\"#fs\").click();" }) 
-                </div>
-            </div>
-            <div class="filter">
-                <div class="filter-label">
-                    Date
-                </div>
-                <div class="filter-field">
-                    @Html.TextBox("filter_From_Event_Date", null, new { onchange = "$(\"#fs\").click();", @class = "date", @style = "width:10em" })
-                    to
-                    @Html.TextBox("filter_To_Event_Date", null, new { onchange = "$(\"#fs\").click();", @class = "date", @style = "width:10em" })
-                </div>
-
-            </div>
-            <input id="fs" type="submit" value="Search" />
-
-            <img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
-
-            <div id="Pieceperformancesearchresults">
-    
-                @{
-                ViewBag.Piece_Id = Model.Piece_Id;
-                IEnumerable<PerfV400.Models.Performance> performances = ViewBag.performances;
-                }
-                @Html.Partial("_MorePiecePerformances", performances)
-
-            </div>
-    
-        }    
-
-        <div id="NewPerformanceDetails"></div>
+           
+        }
 
     </fieldset>
+
+
 </div>
 
 <script type="text/javascript">

@@ -1,15 +1,16 @@
 ﻿@model PerfV400.Models.Event
 
 @{
-    ViewBag.Title = "Event Details";
+    string strVenue = ViewBag.Venue.Venue_Name;
+    if (ViewBag.Venue.Venue_City != null && !strVenue.Contains(ViewBag.Venue.Venue_City)) { strVenue = string.Format("{0} - {1}", strVenue, ViewBag.Venue.Venue_City); }
+    ViewBag.Title = string.Format("{0} - {1} - {2}", Model.Event_Name, strVenue, Model.Event_Date.ToLongDateString());
 }
-
 
 <div id="EventDetails">
     
-<div id="DeleteEventDetails">
-</div>    
-        <fieldset>
+    <div id="DeleteEventDetails"></div>
+        
+    <fieldset class="main">
         <legend>Event</legend>
 
 @if (ViewBag.UserCanEditEvent){
@@ -22,48 +23,86 @@
 }
         @Html.Partial("DetailsEvent")
 
-@if (Request.IsAuthenticated)
-{
-    PerfV400.Models.EventUser eventUser = ViewBag.eventUser;
-    @Html.Partial("DetailsEventUser")
-}
+        <div class="performances">
+            
+
+        @using (Ajax.BeginForm("MoreEventPerformances", "Event",
+            new { page = 0 },
+            new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "GET",
+                OnFailure = "searchFailed",
+                LoadingElementId = "ajax-loader",
+                UpdateTargetId = "eventperformancesearchresults"
+            }))
+        {
+
+            <div class="filter">
+
+            @Html.Hidden("filter_Venue_Id", Model.Event_Id)
+
+            </div>
+
+    
+            <img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
+
+            <div id="eventperformancesearchresults">
+    
+                @{
+                ViewBag.Event_Id = Model.Event_Id;
+                IEnumerable<PerfV400.Models.Performance> performances = ViewBag.performances;
+                }
+                @Html.Partial("_MoreEventPerformances", performances)
+
+            </div>
+    
+            }    
+
+            <div id="NewPerformanceDetails"></div>
+        </div>
+    </fieldset>
+
+    <fieldset class="comments">
+        <legend>Comments</legend>
+
+        @foreach (PerfV400.Models.EventComment eventComment in Model.EventComments)
+        {
+            string imgSrc = string.Format("http://graph.facebook.com/{0}/picture?width=30&height=30", eventComment.Comment.User.User_FacebookId.ToString());
+            
+            <div class="display-comment">
+                <div class="display-user-icon">
+                    <img src="@imgSrc" />
+                </div>
+                <div class="display-comment-text">
+                    @eventComment.Comment.Comment_Text
+                </div>
+            </div>
+        }
+        
+        @if (Session["UserFacebookId"] != null && Session["UserFacebookId"].ToString().Length != 0)
+        {
+            string myImgSrc = string.Format("http://graph.facebook.com/{0}/picture?width=30&height=30", Session["UserFacebookId"]);
+
+            <div class="display-comment">
+                <div class="display-user-icon">
+
+                    <img src="@myImgSrc" />
+                </div>
+                <div class="display-comment-text">
+                    @Html.TextArea("NewComment")
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="display-comment">
+                @Html.Action("ExternalLoginsList","Account", new { ReturnUrl = ViewBag.ReturnUrl })
+            </div>
+           
+        }
 
     </fieldset>
 
-    @using (Ajax.BeginForm("MoreEventPerformances", "Event",
-        new { page = 0 },
-        new AjaxOptions
-        {
-            InsertionMode = InsertionMode.Replace,
-            HttpMethod = "GET",
-            OnFailure = "searchFailed",
-            LoadingElementId = "ajax-loader",
-            UpdateTargetId = "eventperformancesearchresults"
-        }))
-    {
-
-        <div class="filter">
-
-        @Html.Hidden("filter_Venue_Id", Model.Event_Id)
-
-        </div>
-
-    
-    <img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
-
-    <div id="eventperformancesearchresults">
-    
-        @{
-        ViewBag.Event_Id = Model.Event_Id;
-        IEnumerable<PerfV400.Models.Performance> performances = ViewBag.performances;
-        }
-        @Html.Partial("_MoreEventPerformances", performances)
-
-    </div>
-    
-    }    
-
-    <div id="NewPerformanceDetails"></div>
- 
 
 </div>

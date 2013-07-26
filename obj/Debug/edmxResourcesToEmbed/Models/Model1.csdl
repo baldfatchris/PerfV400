@@ -4,7 +4,6 @@
     <EntitySet Name="Agents" EntityType="PerfV100Model.Agent" />
     <EntitySet Name="Artists" EntityType="PerfV100Model.Artist" />
     <EntitySet Name="ArtistBands" EntityType="PerfV100Model.ArtistBand" />
-    <EntitySet Name="ArtistComments" EntityType="PerfV100Model.ArtistComment" />
     <EntitySet Name="ArtistMedias" EntityType="PerfV100Model.ArtistMedia" />
     <EntitySet Name="ArtistMediaTypes" EntityType="PerfV100Model.ArtistMediaType" />
     <EntitySet Name="ArtistTypes" EntityType="PerfV100Model.ArtistType" />
@@ -15,7 +14,6 @@
     <EntitySet Name="CountryRegions" EntityType="PerfV100Model.CountryRegion" />
     <EntitySet Name="Defaults" EntityType="PerfV100Model.Default" />
     <EntitySet Name="Events" EntityType="PerfV100Model.Event" />
-    <EntitySet Name="EventComments" EntityType="PerfV100Model.EventComment" />
     <EntitySet Name="EventUsers" EntityType="PerfV100Model.EventUser" />
     <EntitySet Name="EventUserStatus" EntityType="PerfV100Model.EventUserStatus" />
     <EntitySet Name="Genres" EntityType="PerfV100Model.Genre" />
@@ -24,23 +22,12 @@
     <EntitySet Name="Performances" EntityType="PerfV100Model.Performance" />
     <EntitySet Name="PerformanceArtists" EntityType="PerfV100Model.PerformanceArtist" />
     <EntitySet Name="PerformanceArtistUsers" EntityType="PerfV100Model.PerformanceArtistUser" />
-    <EntitySet Name="PerformanceComments" EntityType="PerfV100Model.PerformanceComment" />
     <EntitySet Name="Photos" EntityType="PerfV100Model.Photo" />
-    <EntitySet Name="PhotoAgents" EntityType="PerfV100Model.PhotoAgent" />
-    <EntitySet Name="PhotoArtists" EntityType="PerfV100Model.PhotoArtist" />
-    <EntitySet Name="PhotoBands" EntityType="PerfV100Model.PhotoBand" />
-    <EntitySet Name="PhotoEvents" EntityType="PerfV100Model.PhotoEvent" />
-    <EntitySet Name="PhotoPerformances" EntityType="PerfV100Model.PhotoPerformance" />
-    <EntitySet Name="PhotoProductions" EntityType="PerfV100Model.PhotoProduction" />
-    <EntitySet Name="PhotoReviews" EntityType="PerfV100Model.PhotoReview" />
-    <EntitySet Name="PhotoVenues" EntityType="PerfV100Model.PhotoVenue" />
     <EntitySet Name="Pieces" EntityType="PerfV100Model.Piece" />
     <EntitySet Name="PieceArtists" EntityType="PerfV100Model.PieceArtist" />
     <EntitySet Name="PieceArtistTypes" EntityType="PerfV100Model.PieceArtistType" />
-    <EntitySet Name="PieceComments" EntityType="PerfV100Model.PieceComment" />
     <EntitySet Name="Productions" EntityType="PerfV100Model.Production" />
     <EntitySet Name="ProductionArtists" EntityType="PerfV100Model.ProductionArtist" />
-    <EntitySet Name="ProductionComments" EntityType="PerfV100Model.ProductionComment" />
     <EntitySet Name="Reviews" EntityType="PerfV100Model.Review" />
     <EntitySet Name="ReviewPerformances" EntityType="PerfV100Model.ReviewPerformance" />
     <EntitySet Name="ReviewPerformanceArtists" EntityType="PerfV100Model.ReviewPerformanceArtist" />
@@ -52,7 +39,6 @@
     <EntitySet Name="Users" EntityType="PerfV100Model.User" />
     <EntitySet Name="UserFriends" EntityType="PerfV100Model.UserFriend" />
     <EntitySet Name="Venues" EntityType="PerfV100Model.Venue" />
-    <EntitySet Name="VenueComments" EntityType="PerfV100Model.VenueComment" />
     <EntitySet Name="VenueUsers" EntityType="PerfV100Model.VenueUser" />
     <AssociationSet Name="FK_Artist_Agent" Association="PerfV100Model.FK_Artist_Agent">
       <End Role="Agent" EntitySet="Agents" />
@@ -61,10 +47,6 @@
     <AssociationSet Name="FK_Band_Agent" Association="PerfV100Model.FK_Band_Agent">
       <End Role="Agent" EntitySet="Agents" />
       <End Role="Band" EntitySet="Bands" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PhotoAgent_Agent" Association="PerfV100Model.FK_PhotoAgent_Agent">
-      <End Role="Agent" EntitySet="Agents" />
-      <End Role="PhotoAgent" EntitySet="PhotoAgents" />
     </AssociationSet>
     <AssociationSet Name="FK_Artist_CountryRegion" Association="PerfV100Model.FK_Artist_CountryRegion">
       <End Role="CountryRegion" EntitySet="CountryRegions" />
@@ -82,10 +64,6 @@
       <End Role="Artist" EntitySet="Artists" />
       <End Role="ArtistBand" EntitySet="ArtistBands" />
     </AssociationSet>
-    <AssociationSet Name="FK_ArtistComment_Artist" Association="PerfV100Model.FK_ArtistComment_Artist">
-      <End Role="Artist" EntitySet="Artists" />
-      <End Role="ArtistComment" EntitySet="ArtistComments" />
-    </AssociationSet>
     <AssociationSet Name="FK_ArtistMedia_Artist" Association="PerfV100Model.FK_ArtistMedia_Artist">
       <End Role="Artist" EntitySet="Artists" />
       <End Role="ArtistMedia" EntitySet="ArtistMedias" />
@@ -102,10 +80,6 @@
       <End Role="Artist" EntitySet="Artists" />
       <End Role="PerformanceArtist" EntitySet="PerformanceArtists" />
     </AssociationSet>
-    <AssociationSet Name="FK_PhotoArtist_Artist" Association="PerfV100Model.FK_PhotoArtist_Artist">
-      <End Role="Artist" EntitySet="Artists" />
-      <End Role="PhotoArtist" EntitySet="PhotoArtists" />
-    </AssociationSet>
     <AssociationSet Name="FK_PieceArtist_Artist" Association="PerfV100Model.FK_PieceArtist_Artist">
       <End Role="Artist" EntitySet="Artists" />
       <End Role="PieceArtist" EntitySet="PieceArtists" />
@@ -121,10 +95,6 @@
     <AssociationSet Name="FK_ArtistBand_Band" Association="PerfV100Model.FK_ArtistBand_Band">
       <End Role="Band" EntitySet="Bands" />
       <End Role="ArtistBand" EntitySet="ArtistBands" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ArtistComment_User" Association="PerfV100Model.FK_ArtistComment_User">
-      <End Role="User" EntitySet="Users" />
-      <End Role="ArtistComment" EntitySet="ArtistComments" />
     </AssociationSet>
     <AssociationSet Name="FK_ArtistMedia_ArtistMediaType" Association="PerfV100Model.FK_ArtistMedia_ArtistMediaType">
       <End Role="ArtistMediaType" EntitySet="ArtistMediaTypes" />
@@ -162,10 +132,6 @@
       <End Role="Band" EntitySet="Bands" />
       <End Role="Event" EntitySet="Events" />
     </AssociationSet>
-    <AssociationSet Name="FK_PhotoBand_Band" Association="PerfV100Model.FK_PhotoBand_Band">
-      <End Role="Band" EntitySet="Bands" />
-      <End Role="PhotoBand" EntitySet="PhotoBands" />
-    </AssociationSet>
     <AssociationSet Name="FK_StateProvince_CountryRegion" Association="PerfV100Model.FK_StateProvince_CountryRegion">
       <End Role="CountryRegion" EntitySet="CountryRegions" />
       <End Role="StateProvince" EntitySet="StateProvinces" />
@@ -186,10 +152,6 @@
       <End Role="Venue" EntitySet="Venues" />
       <End Role="Event" EntitySet="Events" />
     </AssociationSet>
-    <AssociationSet Name="FK_EventComment_Event" Association="PerfV100Model.FK_EventComment_Event">
-      <End Role="Event" EntitySet="Events" />
-      <End Role="EventComment" EntitySet="EventComments" />
-    </AssociationSet>
     <AssociationSet Name="FK_EventUser_Event" Association="PerfV100Model.FK_EventUser_Event">
       <End Role="Event" EntitySet="Events" />
       <End Role="EventUser" EntitySet="EventUsers" />
@@ -197,10 +159,6 @@
     <AssociationSet Name="FK_Performance_Event" Association="PerfV100Model.FK_Performance_Event">
       <End Role="Event" EntitySet="Events" />
       <End Role="Performance" EntitySet="Performances" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PhotoEvent_Event" Association="PerfV100Model.FK_PhotoEvent_Event">
-      <End Role="Event" EntitySet="Events" />
-      <End Role="PhotoEvent" EntitySet="PhotoEvents" />
     </AssociationSet>
     <AssociationSet Name="FK_Review_Event" Association="PerfV100Model.FK_Review_Event">
       <End Role="Event" EntitySet="Events" />
@@ -238,14 +196,6 @@
       <End Role="Performance" EntitySet="Performances" />
       <End Role="PerformanceArtist" EntitySet="PerformanceArtists" />
     </AssociationSet>
-    <AssociationSet Name="FK_PerformanceComment_Performance" Association="PerfV100Model.FK_PerformanceComment_Performance">
-      <End Role="Performance" EntitySet="Performances" />
-      <End Role="PerformanceComment" EntitySet="PerformanceComments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PhotoPerformance_Performance" Association="PerfV100Model.FK_PhotoPerformance_Performance">
-      <End Role="Performance" EntitySet="Performances" />
-      <End Role="PhotoPerformance" EntitySet="PhotoPerformances" />
-    </AssociationSet>
     <AssociationSet Name="FK_ReviewPerformance_Performance" Association="PerfV100Model.FK_ReviewPerformance_Performance">
       <End Role="Performance" EntitySet="Performances" />
       <End Role="ReviewPerformance" EntitySet="ReviewPerformances" />
@@ -262,57 +212,9 @@
       <End Role="PerformanceArtist" EntitySet="PerformanceArtists" />
       <End Role="ReviewPerformanceArtist" EntitySet="ReviewPerformanceArtists" />
     </AssociationSet>
-    <AssociationSet Name="FK_PhotoAgent_Photo" Association="PerfV100Model.FK_PhotoAgent_Photo">
-      <End Role="Photo" EntitySet="Photos" />
-      <End Role="PhotoAgent" EntitySet="PhotoAgents" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PhotoArtist_Photo" Association="PerfV100Model.FK_PhotoArtist_Photo">
-      <End Role="Photo" EntitySet="Photos" />
-      <End Role="PhotoArtist" EntitySet="PhotoArtists" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PhotoBand_Photo" Association="PerfV100Model.FK_PhotoBand_Photo">
-      <End Role="Photo" EntitySet="Photos" />
-      <End Role="PhotoBand" EntitySet="PhotoBands" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PhotoEvent_Photo" Association="PerfV100Model.FK_PhotoEvent_Photo">
-      <End Role="Photo" EntitySet="Photos" />
-      <End Role="PhotoEvent" EntitySet="PhotoEvents" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PhotoPerformance_Photo" Association="PerfV100Model.FK_PhotoPerformance_Photo">
-      <End Role="Photo" EntitySet="Photos" />
-      <End Role="PhotoPerformance" EntitySet="PhotoPerformances" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PhotoProduction_Photo" Association="PerfV100Model.FK_PhotoProduction_Photo">
-      <End Role="Photo" EntitySet="Photos" />
-      <End Role="PhotoProduction" EntitySet="PhotoProductions" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PhotoReview_Photo" Association="PerfV100Model.FK_PhotoReview_Photo">
-      <End Role="Photo" EntitySet="Photos" />
-      <End Role="PhotoReview" EntitySet="PhotoReviews" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PhotoVenue_Photo" Association="PerfV100Model.FK_PhotoVenue_Photo">
-      <End Role="Photo" EntitySet="Photos" />
-      <End Role="PhotoVenue" EntitySet="PhotoVenues" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PhotoProduction_Production" Association="PerfV100Model.FK_PhotoProduction_Production">
-      <End Role="Production" EntitySet="Productions" />
-      <End Role="PhotoProduction" EntitySet="PhotoProductions" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PhotoReview_Review" Association="PerfV100Model.FK_PhotoReview_Review">
-      <End Role="Review" EntitySet="Reviews" />
-      <End Role="PhotoReview" EntitySet="PhotoReviews" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PhotoVenue_Venue" Association="PerfV100Model.FK_PhotoVenue_Venue">
-      <End Role="Venue" EntitySet="Venues" />
-      <End Role="PhotoVenue" EntitySet="PhotoVenues" />
-    </AssociationSet>
     <AssociationSet Name="FK_PieceArtist_Piece" Association="PerfV100Model.FK_PieceArtist_Piece">
       <End Role="Piece" EntitySet="Pieces" />
       <End Role="PieceArtist" EntitySet="PieceArtists" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PieceComment_Piece" Association="PerfV100Model.FK_PieceComment_Piece">
-      <End Role="Piece" EntitySet="Pieces" />
-      <End Role="PieceComment" EntitySet="PieceComments" />
     </AssociationSet>
     <AssociationSet Name="FK_Production_Piece" Association="PerfV100Model.FK_Production_Piece">
       <End Role="Piece" EntitySet="Pieces" />
@@ -329,10 +231,6 @@
     <AssociationSet Name="FK_ProductionArtist_Production" Association="PerfV100Model.FK_ProductionArtist_Production">
       <End Role="Production" EntitySet="Productions" />
       <End Role="ProductionArtist" EntitySet="ProductionArtists" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductionComment_Production" Association="PerfV100Model.FK_ProductionComment_Production">
-      <End Role="Production" EntitySet="Productions" />
-      <End Role="ProductionComment" EntitySet="ProductionComments" />
     </AssociationSet>
     <AssociationSet Name="FK_ReviewProduction_Production" Association="PerfV100Model.FK_ReviewProduction_Production">
       <End Role="Production" EntitySet="Productions" />
@@ -366,10 +264,6 @@
       <End Role="StateProvince" EntitySet="StateProvinces" />
       <End Role="Venue" EntitySet="Venues" />
     </AssociationSet>
-    <AssociationSet Name="FK_VenueComment_Venue" Association="PerfV100Model.FK_VenueComment_Venue">
-      <End Role="Venue" EntitySet="Venues" />
-      <End Role="VenueComment" EntitySet="VenueComments" />
-    </AssociationSet>
     <AssociationSet Name="FK_VenueUser_Venue" Association="PerfV100Model.FK_VenueUser_Venue">
       <End Role="Venue" EntitySet="Venues" />
       <End Role="VenueUser" EntitySet="VenueUsers" />
@@ -394,6 +288,124 @@
       <End Role="vPerformanceArtist_RoleCount" EntitySet="vPerformanceArtist_RoleCount" />
       <End Role="Role" EntitySet="Roles" />
     </AssociationSet>
+    <AssociationSet Name="FK_webpages_OAuthMembership_User" Association="PerfV100Model.FK_webpages_OAuthMembership_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="webpages_OAuthMembership" EntitySet="webpages_OAuthMembership" />
+    </AssociationSet>
+    <EntitySet Name="Comments" EntityType="PerfV100Model.Comment" />
+    <AssociationSet Name="FK_Comment_User" Association="PerfV100Model.FK_Comment_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <EntitySet Name="AgentComments" EntityType="PerfV100Model.AgentComment" />
+    <EntitySet Name="AgentPhotoes" EntityType="PerfV100Model.AgentPhoto" />
+    <EntitySet Name="ArtistComments" EntityType="PerfV100Model.ArtistComment" />
+    <EntitySet Name="ArtistPhotoes" EntityType="PerfV100Model.ArtistPhoto" />
+    <EntitySet Name="BandComments" EntityType="PerfV100Model.BandComment" />
+    <EntitySet Name="BandPhotoes" EntityType="PerfV100Model.BandPhoto" />
+    <EntitySet Name="EventComments" EntityType="PerfV100Model.EventComment" />
+    <EntitySet Name="EventPhotoes" EntityType="PerfV100Model.EventPhoto" />
+    <EntitySet Name="PerformanceComments" EntityType="PerfV100Model.PerformanceComment" />
+    <EntitySet Name="PerformancePhotoes" EntityType="PerfV100Model.PerformancePhoto" />
+    <EntitySet Name="PieceComments" EntityType="PerfV100Model.PieceComment" />
+    <EntitySet Name="PiecePhotoes" EntityType="PerfV100Model.PiecePhoto" />
+    <EntitySet Name="ProductionPhotoes" EntityType="PerfV100Model.ProductionPhoto" />
+    <EntitySet Name="ReviewComments" EntityType="PerfV100Model.ReviewComment" />
+    <EntitySet Name="ReviewPhotoes" EntityType="PerfV100Model.ReviewPhoto" />
+    <EntitySet Name="RoleComments" EntityType="PerfV100Model.RoleComment" />
+    <EntitySet Name="RolePhotoes" EntityType="PerfV100Model.RolePhoto" />
+    <EntitySet Name="VenueComments" EntityType="PerfV100Model.VenueComment" />
+    <EntitySet Name="VenuePhotoes" EntityType="PerfV100Model.VenuePhoto" />
+    <AssociationSet Name="FK_AgentComment_Agent" Association="PerfV100Model.FK_AgentComment_Agent">
+      <End Role="Agent" EntitySet="Agents" />
+      <End Role="AgentComment" EntitySet="AgentComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgentComment_Comment" Association="PerfV100Model.FK_AgentComment_Comment">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="AgentComment" EntitySet="AgentComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArtistComment_Artist" Association="PerfV100Model.FK_ArtistComment_Artist">
+      <End Role="Artist" EntitySet="Artists" />
+      <End Role="ArtistComment" EntitySet="ArtistComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArtistComment_Comment" Association="PerfV100Model.FK_ArtistComment_Comment">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="ArtistComment" EntitySet="ArtistComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BandComment_Band" Association="PerfV100Model.FK_BandComment_Band">
+      <End Role="Band" EntitySet="Bands" />
+      <End Role="BandComment" EntitySet="BandComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BandComment_Comment" Association="PerfV100Model.FK_BandComment_Comment">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="BandComment" EntitySet="BandComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventComment_Comment" Association="PerfV100Model.FK_EventComment_Comment">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="EventComment" EntitySet="EventComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PerformanceComment_Comment" Association="PerfV100Model.FK_PerformanceComment_Comment">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="PerformanceComment" EntitySet="PerformanceComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PieceComment_Comment" Association="PerfV100Model.FK_PieceComment_Comment">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="PieceComment" EntitySet="PieceComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReviewComment_Comment" Association="PerfV100Model.FK_ReviewComment_Comment">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="ReviewComment" EntitySet="ReviewComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleComment_Comment" Association="PerfV100Model.FK_RoleComment_Comment">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="RoleComment" EntitySet="RoleComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VenueComment_Comment" Association="PerfV100Model.FK_VenueComment_Comment">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="VenueComment" EntitySet="VenueComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventComment_Event" Association="PerfV100Model.FK_EventComment_Event">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="EventComment" EntitySet="EventComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PerformanceComment_Performance" Association="PerfV100Model.FK_PerformanceComment_Performance">
+      <End Role="Performance" EntitySet="Performances" />
+      <End Role="PerformanceComment" EntitySet="PerformanceComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PieceComment_Piece" Association="PerfV100Model.FK_PieceComment_Piece">
+      <End Role="Piece" EntitySet="Pieces" />
+      <End Role="PieceComment" EntitySet="PieceComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReviewComment_Review" Association="PerfV100Model.FK_ReviewComment_Review">
+      <End Role="Review" EntitySet="Reviews" />
+      <End Role="ReviewComment" EntitySet="ReviewComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleComment_Role" Association="PerfV100Model.FK_RoleComment_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="RoleComment" EntitySet="RoleComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VenueComment_Venue" Association="PerfV100Model.FK_VenueComment_Venue">
+      <End Role="Venue" EntitySet="Venues" />
+      <End Role="VenueComment" EntitySet="VenueComments" />
+    </AssociationSet>
+    <EntitySet Name="PhotoComments" EntityType="PerfV100Model.PhotoComment" />
+    <EntitySet Name="ProductionComments" EntityType="PerfV100Model.ProductionComment" />
+    <AssociationSet Name="FK_PhotoComment_Comment" Association="PerfV100Model.FK_PhotoComment_Comment">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="PhotoComment" EntitySet="PhotoComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductionComment_Comment" Association="PerfV100Model.FK_ProductionComment_Comment">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="ProductionComment" EntitySet="ProductionComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhotoComment_Photo" Association="PerfV100Model.FK_PhotoComment_Photo">
+      <End Role="Photo" EntitySet="Photos" />
+      <End Role="PhotoComment" EntitySet="PhotoComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductionComment_Production" Association="PerfV100Model.FK_ProductionComment_Production">
+      <End Role="Production" EntitySet="Productions" />
+      <End Role="ProductionComment" EntitySet="ProductionComments" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Agent">
     <Key>
@@ -410,7 +422,7 @@
     <Property Name="Agent_CreatedDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Artists" Relationship="PerfV100Model.FK_Artist_Agent" FromRole="Agent" ToRole="Artist" />
     <NavigationProperty Name="Bands" Relationship="PerfV100Model.FK_Band_Agent" FromRole="Agent" ToRole="Band" />
-    <NavigationProperty Name="PhotoAgents" Relationship="PerfV100Model.FK_PhotoAgent_Agent" FromRole="Agent" ToRole="PhotoAgent" />
+    <NavigationProperty Name="AgentComments" Relationship="PerfV100Model.FK_AgentComment_Agent" FromRole="Agent" ToRole="AgentComment" />
   </EntityType>
   <EntityType Name="Artist">
     <Key>
@@ -444,17 +456,16 @@
     <NavigationProperty Name="StateProvince" Relationship="PerfV100Model.FK_Artist_StateProvince" FromRole="Artist" ToRole="StateProvince" />
     <NavigationProperty Name="Type" Relationship="PerfV100Model.FK_Artist_Type" FromRole="Artist" ToRole="Type" />
     <NavigationProperty Name="ArtistBands" Relationship="PerfV100Model.FK_ArtistBand_Artist" FromRole="Artist" ToRole="ArtistBand" />
-    <NavigationProperty Name="ArtistComments" Relationship="PerfV100Model.FK_ArtistComment_Artist" FromRole="Artist" ToRole="ArtistComment" />
     <NavigationProperty Name="ArtistMedias" Relationship="PerfV100Model.FK_ArtistMedia_Artist" FromRole="Artist" ToRole="ArtistMedia" />
     <NavigationProperty Name="ArtistTypes" Relationship="PerfV100Model.FK_ArtistType_Artist" FromRole="Artist" ToRole="ArtistType" />
     <NavigationProperty Name="ArtistUsers" Relationship="PerfV100Model.FK_ArtistUser_Artist" FromRole="Artist" ToRole="ArtistUser" />
     <NavigationProperty Name="PerformanceArtists" Relationship="PerfV100Model.FK_PerformanceArtist_Artist" FromRole="Artist" ToRole="PerformanceArtist" />
-    <NavigationProperty Name="PhotoArtists" Relationship="PerfV100Model.FK_PhotoArtist_Artist" FromRole="Artist" ToRole="PhotoArtist" />
     <NavigationProperty Name="PieceArtists" Relationship="PerfV100Model.FK_PieceArtist_Artist" FromRole="Artist" ToRole="PieceArtist" />
     <NavigationProperty Name="ProductionArtists" Relationship="PerfV100Model.FK_ProductionArtist_Artist" FromRole="Artist" ToRole="ProductionArtist" />
     <NavigationProperty Name="Users" Relationship="PerfV100Model.FK_User_Artist" FromRole="Artist" ToRole="User" />
     <Property Type="String" Name="Artist_Wiki" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="vPerformanceArtist_RoleCount" Relationship="PerfV100Model.vPerformanceArtist_RoleCountArtist" FromRole="Artist" ToRole="vPerformanceArtist_RoleCount" />
+    <NavigationProperty Name="ArtistComments" Relationship="PerfV100Model.FK_ArtistComment_Artist" FromRole="Artist" ToRole="ArtistComment" />
   </EntityType>
   <EntityType Name="ArtistBand">
     <Key>
@@ -467,18 +478,6 @@
     <Property Name="ArtistBand_EndDate" Type="DateTime" Precision="0" />
     <NavigationProperty Name="Artist" Relationship="PerfV100Model.FK_ArtistBand_Artist" FromRole="ArtistBand" ToRole="Artist" />
     <NavigationProperty Name="Band" Relationship="PerfV100Model.FK_ArtistBand_Band" FromRole="ArtistBand" ToRole="Band" />
-  </EntityType>
-  <EntityType Name="ArtistComment">
-    <Key>
-      <PropertyRef Name="ArtistComment_Id" />
-    </Key>
-    <Property Name="ArtistComment_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="ArtistComment_ArtistId" Type="Int32" Nullable="false" />
-    <Property Name="ArtistComment_UserId" Type="Int32" Nullable="false" />
-    <Property Name="ArtistComment_Comment" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="ArtistComment_DateTime" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Artist" Relationship="PerfV100Model.FK_ArtistComment_Artist" FromRole="ArtistComment" ToRole="Artist" />
-    <NavigationProperty Name="User" Relationship="PerfV100Model.FK_ArtistComment_User" FromRole="ArtistComment" ToRole="User" />
   </EntityType>
   <EntityType Name="ArtistMedia">
     <Key>
@@ -552,7 +551,7 @@
     <NavigationProperty Name="Venue" Relationship="PerfV100Model.FK_Band_Venue" FromRole="Band" ToRole="Venue" />
     <NavigationProperty Name="BandUsers" Relationship="PerfV100Model.FK_BandUser_Band" FromRole="Band" ToRole="BandUser" />
     <NavigationProperty Name="Events" Relationship="PerfV100Model.FK_Event_Band" FromRole="Band" ToRole="Event" />
-    <NavigationProperty Name="PhotoBands" Relationship="PerfV100Model.FK_PhotoBand_Band" FromRole="Band" ToRole="PhotoBand" />
+    <NavigationProperty Name="BandComments" Relationship="PerfV100Model.FK_BandComment_Band" FromRole="Band" ToRole="BandComment" />
   </EntityType>
   <EntityType Name="BandType">
     <Key>
@@ -620,22 +619,10 @@
     <NavigationProperty Name="Band" Relationship="PerfV100Model.FK_Event_Band" FromRole="Event" ToRole="Band" />
     <NavigationProperty Name="Genre" Relationship="PerfV100Model.FK_Event_Genre" FromRole="Event" ToRole="Genre" />
     <NavigationProperty Name="Venue" Relationship="PerfV100Model.FK_Event_Venue" FromRole="Event" ToRole="Venue" />
-    <NavigationProperty Name="EventComments" Relationship="PerfV100Model.FK_EventComment_Event" FromRole="Event" ToRole="EventComment" />
     <NavigationProperty Name="EventUsers" Relationship="PerfV100Model.FK_EventUser_Event" FromRole="Event" ToRole="EventUser" />
     <NavigationProperty Name="Performances" Relationship="PerfV100Model.FK_Performance_Event" FromRole="Event" ToRole="Performance" />
-    <NavigationProperty Name="PhotoEvents" Relationship="PerfV100Model.FK_PhotoEvent_Event" FromRole="Event" ToRole="PhotoEvent" />
     <NavigationProperty Name="Reviews" Relationship="PerfV100Model.FK_Review_Event" FromRole="Event" ToRole="Review" />
-  </EntityType>
-  <EntityType Name="EventComment">
-    <Key>
-      <PropertyRef Name="EventComment_Id" />
-    </Key>
-    <Property Name="EventComment_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="EventComment_EventId" Type="Int32" Nullable="false" />
-    <Property Name="EventComment_UserId" Type="Int32" Nullable="false" />
-    <Property Name="EventComment_Comment" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="EventComment_DateTime" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Event" Relationship="PerfV100Model.FK_EventComment_Event" FromRole="EventComment" ToRole="Event" />
+    <NavigationProperty Name="EventComments" Relationship="PerfV100Model.FK_EventComment_Event" FromRole="Event" ToRole="EventComment" />
   </EntityType>
   <EntityType Name="EventUser">
     <Key>
@@ -709,9 +696,8 @@
     <NavigationProperty Name="Piece" Relationship="PerfV100Model.FK_Performance_Piece" FromRole="Performance" ToRole="Piece" />
     <NavigationProperty Name="Production" Relationship="PerfV100Model.FK_Performance_Production" FromRole="Performance" ToRole="Production" />
     <NavigationProperty Name="PerformanceArtists" Relationship="PerfV100Model.FK_PerformanceArtist_Performance" FromRole="Performance" ToRole="PerformanceArtist" />
-    <NavigationProperty Name="PerformanceComments" Relationship="PerfV100Model.FK_PerformanceComment_Performance" FromRole="Performance" ToRole="PerformanceComment" />
-    <NavigationProperty Name="PhotoPerformances" Relationship="PerfV100Model.FK_PhotoPerformance_Performance" FromRole="Performance" ToRole="PhotoPerformance" />
     <NavigationProperty Name="ReviewPerformances" Relationship="PerfV100Model.FK_ReviewPerformance_Performance" FromRole="Performance" ToRole="ReviewPerformance" />
+    <NavigationProperty Name="PerformanceComments" Relationship="PerfV100Model.FK_PerformanceComment_Performance" FromRole="Performance" ToRole="PerformanceComment" />
   </EntityType>
   <EntityType Name="PerformanceArtist">
     <Key>
@@ -741,17 +727,6 @@
     <Property Name="PerformanceArtistUser_Rating" Type="Int32" />
     <NavigationProperty Name="PerformanceArtist" Relationship="PerfV100Model.FK_PerformanceArtistUser_Performance" FromRole="PerformanceArtistUser" ToRole="PerformanceArtist" />
   </EntityType>
-  <EntityType Name="PerformanceComment">
-    <Key>
-      <PropertyRef Name="PerformanceComment_Id" />
-    </Key>
-    <Property Name="PerformanceComment_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="PerformanceComment_PerformanceId" Type="Int32" Nullable="false" />
-    <Property Name="PerformanceComment_UserId" Type="Int32" Nullable="false" />
-    <Property Name="PerformanceComment_Comment" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="PerformanceComment_DateTime" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Performance" Relationship="PerfV100Model.FK_PerformanceComment_Performance" FromRole="PerformanceComment" ToRole="Performance" />
-  </EntityType>
   <EntityType Name="Photo">
     <Key>
       <PropertyRef Name="Photo_Id" />
@@ -763,94 +738,7 @@
     <Property Name="Photo_Caption" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="Photo_CreatedBy" Type="Int32" />
     <Property Name="Photo_CreatedDate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="PhotoAgents" Relationship="PerfV100Model.FK_PhotoAgent_Photo" FromRole="Photo" ToRole="PhotoAgent" />
-    <NavigationProperty Name="PhotoArtists" Relationship="PerfV100Model.FK_PhotoArtist_Photo" FromRole="Photo" ToRole="PhotoArtist" />
-    <NavigationProperty Name="PhotoBands" Relationship="PerfV100Model.FK_PhotoBand_Photo" FromRole="Photo" ToRole="PhotoBand" />
-    <NavigationProperty Name="PhotoEvents" Relationship="PerfV100Model.FK_PhotoEvent_Photo" FromRole="Photo" ToRole="PhotoEvent" />
-    <NavigationProperty Name="PhotoPerformances" Relationship="PerfV100Model.FK_PhotoPerformance_Photo" FromRole="Photo" ToRole="PhotoPerformance" />
-    <NavigationProperty Name="PhotoProductions" Relationship="PerfV100Model.FK_PhotoProduction_Photo" FromRole="Photo" ToRole="PhotoProduction" />
-    <NavigationProperty Name="PhotoReviews" Relationship="PerfV100Model.FK_PhotoReview_Photo" FromRole="Photo" ToRole="PhotoReview" />
-    <NavigationProperty Name="PhotoVenues" Relationship="PerfV100Model.FK_PhotoVenue_Photo" FromRole="Photo" ToRole="PhotoVenue" />
-  </EntityType>
-  <EntityType Name="PhotoAgent">
-    <Key>
-      <PropertyRef Name="PhotoAgent_Id" />
-    </Key>
-    <Property Name="PhotoAgent_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="PhotoAgent_PhotoId" Type="Int32" Nullable="false" />
-    <Property Name="PhotoAgent_AgentId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Agent" Relationship="PerfV100Model.FK_PhotoAgent_Agent" FromRole="PhotoAgent" ToRole="Agent" />
-    <NavigationProperty Name="Photo" Relationship="PerfV100Model.FK_PhotoAgent_Photo" FromRole="PhotoAgent" ToRole="Photo" />
-  </EntityType>
-  <EntityType Name="PhotoArtist">
-    <Key>
-      <PropertyRef Name="PhotoArtist_Id" />
-    </Key>
-    <Property Name="PhotoArtist_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="PhotoArtist_PhotoId" Type="Int32" Nullable="false" />
-    <Property Name="PhotoArtist_ArtistId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Artist" Relationship="PerfV100Model.FK_PhotoArtist_Artist" FromRole="PhotoArtist" ToRole="Artist" />
-    <NavigationProperty Name="Photo" Relationship="PerfV100Model.FK_PhotoArtist_Photo" FromRole="PhotoArtist" ToRole="Photo" />
-  </EntityType>
-  <EntityType Name="PhotoBand">
-    <Key>
-      <PropertyRef Name="PhotoBand_Id" />
-    </Key>
-    <Property Name="PhotoBand_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="PhotoBand_PhotoId" Type="Int32" Nullable="false" />
-    <Property Name="PhotoBand_BandId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Band" Relationship="PerfV100Model.FK_PhotoBand_Band" FromRole="PhotoBand" ToRole="Band" />
-    <NavigationProperty Name="Photo" Relationship="PerfV100Model.FK_PhotoBand_Photo" FromRole="PhotoBand" ToRole="Photo" />
-  </EntityType>
-  <EntityType Name="PhotoEvent">
-    <Key>
-      <PropertyRef Name="PhotoEvent_Id" />
-    </Key>
-    <Property Name="PhotoEvent_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="PhotoEvent_PhotoId" Type="Int32" Nullable="false" />
-    <Property Name="PhotoEvent_EventId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Event" Relationship="PerfV100Model.FK_PhotoEvent_Event" FromRole="PhotoEvent" ToRole="Event" />
-    <NavigationProperty Name="Photo" Relationship="PerfV100Model.FK_PhotoEvent_Photo" FromRole="PhotoEvent" ToRole="Photo" />
-  </EntityType>
-  <EntityType Name="PhotoPerformance">
-    <Key>
-      <PropertyRef Name="PhotoPerformance_Id" />
-    </Key>
-    <Property Name="PhotoPerformance_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="PhotoPerformance_PhotoId" Type="Int32" Nullable="false" />
-    <Property Name="PhotoPerformance_PerformanceId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Performance" Relationship="PerfV100Model.FK_PhotoPerformance_Performance" FromRole="PhotoPerformance" ToRole="Performance" />
-    <NavigationProperty Name="Photo" Relationship="PerfV100Model.FK_PhotoPerformance_Photo" FromRole="PhotoPerformance" ToRole="Photo" />
-  </EntityType>
-  <EntityType Name="PhotoProduction">
-    <Key>
-      <PropertyRef Name="PhotoProduction_Id" />
-    </Key>
-    <Property Name="PhotoProduction_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="PhotoProduction_PhotoId" Type="Int32" Nullable="false" />
-    <Property Name="PhotoProduction_ProductionId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Photo" Relationship="PerfV100Model.FK_PhotoProduction_Photo" FromRole="PhotoProduction" ToRole="Photo" />
-    <NavigationProperty Name="Production" Relationship="PerfV100Model.FK_PhotoProduction_Production" FromRole="PhotoProduction" ToRole="Production" />
-  </EntityType>
-  <EntityType Name="PhotoReview">
-    <Key>
-      <PropertyRef Name="PhotoReview_Id" />
-    </Key>
-    <Property Name="PhotoReview_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="PhotoReview_PhotoId" Type="Int32" Nullable="false" />
-    <Property Name="PhotoReview_ReviewId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Photo" Relationship="PerfV100Model.FK_PhotoReview_Photo" FromRole="PhotoReview" ToRole="Photo" />
-    <NavigationProperty Name="Review" Relationship="PerfV100Model.FK_PhotoReview_Review" FromRole="PhotoReview" ToRole="Review" />
-  </EntityType>
-  <EntityType Name="PhotoVenue">
-    <Key>
-      <PropertyRef Name="PhotoVenue_Id" />
-    </Key>
-    <Property Name="PhotoVenue_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="PhotoVenue_PhotoId" Type="Int32" Nullable="false" />
-    <Property Name="PhotoVenue_VenueId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Photo" Relationship="PerfV100Model.FK_PhotoVenue_Photo" FromRole="PhotoVenue" ToRole="Photo" />
-    <NavigationProperty Name="Venue" Relationship="PerfV100Model.FK_PhotoVenue_Venue" FromRole="PhotoVenue" ToRole="Venue" />
+    <NavigationProperty Name="PhotoComments" Relationship="PerfV100Model.FK_PhotoComment_Photo" FromRole="Photo" ToRole="PhotoComment" />
   </EntityType>
   <EntityType Name="Piece">
     <Key>
@@ -869,10 +757,10 @@
     <NavigationProperty Name="Genre" Relationship="PerfV100Model.FK_Piece_Genre" FromRole="Piece" ToRole="Genre" />
     <NavigationProperty Name="Performances" Relationship="PerfV100Model.FK_Performance_Piece" FromRole="Piece" ToRole="Performance" />
     <NavigationProperty Name="PieceArtists" Relationship="PerfV100Model.FK_PieceArtist_Piece" FromRole="Piece" ToRole="PieceArtist" />
-    <NavigationProperty Name="PieceComments" Relationship="PerfV100Model.FK_PieceComment_Piece" FromRole="Piece" ToRole="PieceComment" />
     <NavigationProperty Name="Productions" Relationship="PerfV100Model.FK_Production_Piece" FromRole="Piece" ToRole="Production" />
     <NavigationProperty Name="Roles" Relationship="PerfV100Model.FK_Role_Piece" FromRole="Piece" ToRole="Role" />
     <Property Type="String" Name="Piece_Wiki" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PieceComments" Relationship="PerfV100Model.FK_PieceComment_Piece" FromRole="Piece" ToRole="PieceComment" />
   </EntityType>
   <EntityType Name="PieceArtist">
     <Key>
@@ -895,17 +783,6 @@
     <Property Name="PieceArtistType_Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="PieceArtists" Relationship="PerfV100Model.FK_PieceArtist_PieceArtistType" FromRole="PieceArtistType" ToRole="PieceArtist" />
   </EntityType>
-  <EntityType Name="PieceComment">
-    <Key>
-      <PropertyRef Name="PieceComment_Id" />
-    </Key>
-    <Property Name="PieceComment_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="PieceComment_PieceId" Type="Int32" Nullable="false" />
-    <Property Name="PieceComment_UserId" Type="Int32" Nullable="false" />
-    <Property Name="PieceComment_Comment" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="PieceComment_DateTime" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Piece" Relationship="PerfV100Model.FK_PieceComment_Piece" FromRole="PieceComment" ToRole="Piece" />
-  </EntityType>
   <EntityType Name="Production">
     <Key>
       <PropertyRef Name="Production_Id" />
@@ -918,11 +795,10 @@
     <Property Name="Production_PhotoFileName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
     <Property Name="Production_PhotoMimeType" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Performances" Relationship="PerfV100Model.FK_Performance_Production" FromRole="Production" ToRole="Performance" />
-    <NavigationProperty Name="PhotoProductions" Relationship="PerfV100Model.FK_PhotoProduction_Production" FromRole="Production" ToRole="PhotoProduction" />
     <NavigationProperty Name="Piece" Relationship="PerfV100Model.FK_Production_Piece" FromRole="Production" ToRole="Piece" />
     <NavigationProperty Name="ProductionArtists" Relationship="PerfV100Model.FK_ProductionArtist_Production" FromRole="Production" ToRole="ProductionArtist" />
-    <NavigationProperty Name="ProductionComments" Relationship="PerfV100Model.FK_ProductionComment_Production" FromRole="Production" ToRole="ProductionComment" />
     <NavigationProperty Name="ReviewProductions" Relationship="PerfV100Model.FK_ReviewProduction_Production" FromRole="Production" ToRole="ReviewProduction" />
+    <NavigationProperty Name="ProductionComments" Relationship="PerfV100Model.FK_ProductionComment_Production" FromRole="Production" ToRole="ProductionComment" />
   </EntityType>
   <EntityType Name="ProductionArtist">
     <Key>
@@ -935,17 +811,6 @@
     <Property Name="ProductionArtist_Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="Artist" Relationship="PerfV100Model.FK_ProductionArtist_Artist" FromRole="ProductionArtist" ToRole="Artist" />
     <NavigationProperty Name="Production" Relationship="PerfV100Model.FK_ProductionArtist_Production" FromRole="ProductionArtist" ToRole="Production" />
-  </EntityType>
-  <EntityType Name="ProductionComment">
-    <Key>
-      <PropertyRef Name="ProductionComment_Id" />
-    </Key>
-    <Property Name="ProductionComment_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="ProductionComment_ProductionId" Type="Int32" Nullable="false" />
-    <Property Name="ProductionComment_UserId" Type="Int32" Nullable="false" />
-    <Property Name="ProductionComment_Comment" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="ProductionComment_DateTime" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Production" Relationship="PerfV100Model.FK_ProductionComment_Production" FromRole="ProductionComment" ToRole="Production" />
   </EntityType>
   <EntityType Name="Review">
     <Key>
@@ -963,11 +828,11 @@
     <Property Name="Review_CreatedBy" Type="Int32" />
     <Property Name="Review_CreatedDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Event" Relationship="PerfV100Model.FK_Review_Event" FromRole="Review" ToRole="Event" />
-    <NavigationProperty Name="PhotoReviews" Relationship="PerfV100Model.FK_PhotoReview_Review" FromRole="Review" ToRole="PhotoReview" />
     <NavigationProperty Name="ReviewPerformance" Relationship="PerfV100Model.FK_ReviewPerformance_Review" FromRole="Review" ToRole="ReviewPerformance" />
     <NavigationProperty Name="ReviewPerformanceArtists" Relationship="PerfV100Model.FK_ReviewPerformanceArtist_Review" FromRole="Review" ToRole="ReviewPerformanceArtist" />
     <NavigationProperty Name="ReviewProductions" Relationship="PerfV100Model.FK_ReviewProduction_Review" FromRole="Review" ToRole="ReviewProduction" />
     <NavigationProperty Name="ReviewVenues" Relationship="PerfV100Model.FK_ReviewVenue_Review" FromRole="Review" ToRole="ReviewVenue" />
+    <NavigationProperty Name="ReviewComments" Relationship="PerfV100Model.FK_ReviewComment_Review" FromRole="Review" ToRole="ReviewComment" />
   </EntityType>
   <EntityType Name="ReviewPerformance">
     <Key>
@@ -1033,6 +898,7 @@
     <NavigationProperty Name="Piece" Relationship="PerfV100Model.FK_Role_Piece" FromRole="Role" ToRole="Piece" />
     <NavigationProperty Name="Type" Relationship="PerfV100Model.FK_Role_Type" FromRole="Role" ToRole="Type" />
     <NavigationProperty Name="vPerformanceArtist_RoleCount" Relationship="PerfV100Model.vPerformanceArtist_RoleCountRole" FromRole="Role" ToRole="vPerformanceArtist_RoleCount" />
+    <NavigationProperty Name="RoleComments" Relationship="PerfV100Model.FK_RoleComment_Role" FromRole="Role" ToRole="RoleComment" />
   </EntityType>
   <EntityType Name="StateProvince">
     <Key>
@@ -1075,7 +941,6 @@
     <Property Name="User_CountryId" Type="Int32" />
     <Property Name="User_FacebookId" Type="Int32" />
     <NavigationProperty Name="Artist" Relationship="PerfV100Model.FK_User_Artist" FromRole="User" ToRole="Artist" />
-    <NavigationProperty Name="ArtistComments" Relationship="PerfV100Model.FK_ArtistComment_User" FromRole="User" ToRole="ArtistComment" />
     <NavigationProperty Name="ArtistUsers" Relationship="PerfV100Model.FK_ArtistUser_User" FromRole="User" ToRole="ArtistUser" />
     <NavigationProperty Name="CountryRegion" Relationship="PerfV100Model.FK_User_CountryRegion" FromRole="User" ToRole="CountryRegion" />
     <NavigationProperty Name="Language" Relationship="PerfV100Model.FK_User_Language" FromRole="User" ToRole="Language" />
@@ -1083,6 +948,8 @@
     <Property Type="String" Name="User_Name" MaxLength="57" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="User_MiddleNames" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="EventUsers" Relationship="PerfV100Model.FK_EventUser_User" FromRole="User" ToRole="EventUser" />
+    <NavigationProperty Name="webpages_OAuthMembership" Relationship="PerfV100Model.FK_webpages_OAuthMembership_User" FromRole="User" ToRole="webpages_OAuthMembership" />
+    <NavigationProperty Name="Comments" Relationship="PerfV100Model.FK_Comment_User" FromRole="User" ToRole="Comment" />
   </EntityType>
   <EntityType Name="UserFriend">
     <Key>
@@ -1120,22 +987,10 @@
     <NavigationProperty Name="Bands" Relationship="PerfV100Model.FK_Band_Venue" FromRole="Venue" ToRole="Band" />
     <NavigationProperty Name="CountryRegion" Relationship="PerfV100Model.FK_Venue_CountryRegion" FromRole="Venue" ToRole="CountryRegion" />
     <NavigationProperty Name="Events" Relationship="PerfV100Model.FK_Event_Venue" FromRole="Venue" ToRole="Event" />
-    <NavigationProperty Name="PhotoVenues" Relationship="PerfV100Model.FK_PhotoVenue_Venue" FromRole="Venue" ToRole="PhotoVenue" />
     <NavigationProperty Name="ReviewVenues" Relationship="PerfV100Model.FK_ReviewVenue_Venue" FromRole="Venue" ToRole="ReviewVenue" />
     <NavigationProperty Name="StateProvince" Relationship="PerfV100Model.FK_Venue_StateProvince" FromRole="Venue" ToRole="StateProvince" />
-    <NavigationProperty Name="VenueComments" Relationship="PerfV100Model.FK_VenueComment_Venue" FromRole="Venue" ToRole="VenueComment" />
     <NavigationProperty Name="VenueUsers" Relationship="PerfV100Model.FK_VenueUser_Venue" FromRole="Venue" ToRole="VenueUser" />
-  </EntityType>
-  <EntityType Name="VenueComment">
-    <Key>
-      <PropertyRef Name="VenueComment_Id" />
-    </Key>
-    <Property Name="VenueComment_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="VenueComment_VenueId" Type="Int32" Nullable="false" />
-    <Property Name="VenueComment_UserId" Type="Int32" Nullable="false" />
-    <Property Name="VenueComment_Comment" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="VenueComment_DateTime" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Venue" Relationship="PerfV100Model.FK_VenueComment_Venue" FromRole="VenueComment" ToRole="Venue" />
+    <NavigationProperty Name="VenueComments" Relationship="PerfV100Model.FK_VenueComment_Venue" FromRole="Venue" ToRole="VenueComment" />
   </EntityType>
   <EntityType Name="VenueUser">
     <Key>
@@ -1170,18 +1025,6 @@
       </Principal>
       <Dependent Role="Band">
         <PropertyRef Name="Band_AgentId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhotoAgent_Agent">
-    <End Role="Agent" Type="PerfV100Model.Agent" Multiplicity="1" />
-    <End Role="PhotoAgent" Type="PerfV100Model.PhotoAgent" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Agent">
-        <PropertyRef Name="Agent_Id" />
-      </Principal>
-      <Dependent Role="PhotoAgent">
-        <PropertyRef Name="PhotoAgent_AgentId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1235,18 +1078,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ArtistComment_Artist">
-    <End Role="Artist" Type="PerfV100Model.Artist" Multiplicity="1" />
-    <End Role="ArtistComment" Type="PerfV100Model.ArtistComment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Artist">
-        <PropertyRef Name="Artist_Id" />
-      </Principal>
-      <Dependent Role="ArtistComment">
-        <PropertyRef Name="ArtistComment_ArtistId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ArtistMedia_Artist">
     <End Role="Artist" Type="PerfV100Model.Artist" Multiplicity="1" />
     <End Role="ArtistMedia" Type="PerfV100Model.ArtistMedia" Multiplicity="*" />
@@ -1292,18 +1123,6 @@
       </Principal>
       <Dependent Role="PerformanceArtist">
         <PropertyRef Name="PerformanceArtist_ArtistId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhotoArtist_Artist">
-    <End Role="Artist" Type="PerfV100Model.Artist" Multiplicity="1" />
-    <End Role="PhotoArtist" Type="PerfV100Model.PhotoArtist" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Artist">
-        <PropertyRef Name="Artist_Id" />
-      </Principal>
-      <Dependent Role="PhotoArtist">
-        <PropertyRef Name="PhotoArtist_ArtistId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1354,18 +1173,6 @@
       </Principal>
       <Dependent Role="ArtistBand">
         <PropertyRef Name="ArtistBand_BandId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ArtistComment_User">
-    <End Role="User" Type="PerfV100Model.User" Multiplicity="1" />
-    <End Role="ArtistComment" Type="PerfV100Model.ArtistComment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="User_Id" />
-      </Principal>
-      <Dependent Role="ArtistComment">
-        <PropertyRef Name="ArtistComment_UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1477,18 +1284,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_PhotoBand_Band">
-    <End Role="Band" Type="PerfV100Model.Band" Multiplicity="1" />
-    <End Role="PhotoBand" Type="PerfV100Model.PhotoBand" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Band">
-        <PropertyRef Name="Band_Id" />
-      </Principal>
-      <Dependent Role="PhotoBand">
-        <PropertyRef Name="PhotoBand_BandId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_StateProvince_CountryRegion">
     <End Role="CountryRegion" Type="PerfV100Model.CountryRegion" Multiplicity="0..1" />
     <End Role="StateProvince" Type="PerfV100Model.StateProvince" Multiplicity="*" />
@@ -1549,20 +1344,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_EventComment_Event">
-    <End Role="Event" Type="PerfV100Model.Event" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="EventComment" Type="PerfV100Model.EventComment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Event">
-        <PropertyRef Name="Event_Id" />
-      </Principal>
-      <Dependent Role="EventComment">
-        <PropertyRef Name="EventComment_EventId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_EventUser_Event">
     <End Role="Event" Type="PerfV100Model.Event" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -1588,18 +1369,6 @@
       </Principal>
       <Dependent Role="Performance">
         <PropertyRef Name="Performance_EventId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhotoEvent_Event">
-    <End Role="Event" Type="PerfV100Model.Event" Multiplicity="1" />
-    <End Role="PhotoEvent" Type="PerfV100Model.PhotoEvent" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Event">
-        <PropertyRef Name="Event_Id" />
-      </Principal>
-      <Dependent Role="PhotoEvent">
-        <PropertyRef Name="PhotoEvent_EventId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1713,32 +1482,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_PerformanceComment_Performance">
-    <End Role="Performance" Type="PerfV100Model.Performance" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="PerformanceComment" Type="PerfV100Model.PerformanceComment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Performance">
-        <PropertyRef Name="Performance_Id" />
-      </Principal>
-      <Dependent Role="PerformanceComment">
-        <PropertyRef Name="PerformanceComment_PerformanceId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhotoPerformance_Performance">
-    <End Role="Performance" Type="PerfV100Model.Performance" Multiplicity="1" />
-    <End Role="PhotoPerformance" Type="PerfV100Model.PhotoPerformance" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Performance">
-        <PropertyRef Name="Performance_Id" />
-      </Principal>
-      <Dependent Role="PhotoPerformance">
-        <PropertyRef Name="PhotoPerformance_PerformanceId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ReviewPerformance_Performance">
     <End Role="Performance" Type="PerfV100Model.Performance" Multiplicity="1" />
     <End Role="ReviewPerformance" Type="PerfV100Model.ReviewPerformance" Multiplicity="*" />
@@ -1789,138 +1532,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_PhotoAgent_Photo">
-    <End Role="Photo" Type="PerfV100Model.Photo" Multiplicity="1" />
-    <End Role="PhotoAgent" Type="PerfV100Model.PhotoAgent" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Photo">
-        <PropertyRef Name="Photo_Id" />
-      </Principal>
-      <Dependent Role="PhotoAgent">
-        <PropertyRef Name="PhotoAgent_PhotoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhotoArtist_Photo">
-    <End Role="Photo" Type="PerfV100Model.Photo" Multiplicity="1" />
-    <End Role="PhotoArtist" Type="PerfV100Model.PhotoArtist" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Photo">
-        <PropertyRef Name="Photo_Id" />
-      </Principal>
-      <Dependent Role="PhotoArtist">
-        <PropertyRef Name="PhotoArtist_PhotoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhotoBand_Photo">
-    <End Role="Photo" Type="PerfV100Model.Photo" Multiplicity="1" />
-    <End Role="PhotoBand" Type="PerfV100Model.PhotoBand" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Photo">
-        <PropertyRef Name="Photo_Id" />
-      </Principal>
-      <Dependent Role="PhotoBand">
-        <PropertyRef Name="PhotoBand_PhotoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhotoEvent_Photo">
-    <End Role="Photo" Type="PerfV100Model.Photo" Multiplicity="1" />
-    <End Role="PhotoEvent" Type="PerfV100Model.PhotoEvent" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Photo">
-        <PropertyRef Name="Photo_Id" />
-      </Principal>
-      <Dependent Role="PhotoEvent">
-        <PropertyRef Name="PhotoEvent_PhotoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhotoPerformance_Photo">
-    <End Role="Photo" Type="PerfV100Model.Photo" Multiplicity="1" />
-    <End Role="PhotoPerformance" Type="PerfV100Model.PhotoPerformance" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Photo">
-        <PropertyRef Name="Photo_Id" />
-      </Principal>
-      <Dependent Role="PhotoPerformance">
-        <PropertyRef Name="PhotoPerformance_PhotoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhotoProduction_Photo">
-    <End Role="Photo" Type="PerfV100Model.Photo" Multiplicity="1" />
-    <End Role="PhotoProduction" Type="PerfV100Model.PhotoProduction" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Photo">
-        <PropertyRef Name="Photo_Id" />
-      </Principal>
-      <Dependent Role="PhotoProduction">
-        <PropertyRef Name="PhotoProduction_PhotoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhotoReview_Photo">
-    <End Role="Photo" Type="PerfV100Model.Photo" Multiplicity="1" />
-    <End Role="PhotoReview" Type="PerfV100Model.PhotoReview" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Photo">
-        <PropertyRef Name="Photo_Id" />
-      </Principal>
-      <Dependent Role="PhotoReview">
-        <PropertyRef Name="PhotoReview_PhotoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhotoVenue_Photo">
-    <End Role="Photo" Type="PerfV100Model.Photo" Multiplicity="1" />
-    <End Role="PhotoVenue" Type="PerfV100Model.PhotoVenue" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Photo">
-        <PropertyRef Name="Photo_Id" />
-      </Principal>
-      <Dependent Role="PhotoVenue">
-        <PropertyRef Name="PhotoVenue_PhotoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhotoProduction_Production">
-    <End Role="Production" Type="PerfV100Model.Production" Multiplicity="1" />
-    <End Role="PhotoProduction" Type="PerfV100Model.PhotoProduction" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Production">
-        <PropertyRef Name="Production_Id" />
-      </Principal>
-      <Dependent Role="PhotoProduction">
-        <PropertyRef Name="PhotoProduction_ProductionId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhotoReview_Review">
-    <End Role="Review" Type="PerfV100Model.Review" Multiplicity="1" />
-    <End Role="PhotoReview" Type="PerfV100Model.PhotoReview" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Review">
-        <PropertyRef Name="Review_Id" />
-      </Principal>
-      <Dependent Role="PhotoReview">
-        <PropertyRef Name="PhotoReview_ReviewId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PhotoVenue_Venue">
-    <End Role="Venue" Type="PerfV100Model.Venue" Multiplicity="1" />
-    <End Role="PhotoVenue" Type="PerfV100Model.PhotoVenue" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Venue">
-        <PropertyRef Name="Venue_Id" />
-      </Principal>
-      <Dependent Role="PhotoVenue">
-        <PropertyRef Name="PhotoVenue_VenueId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_PieceArtist_Piece">
     <End Role="Piece" Type="PerfV100Model.Piece" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -1932,18 +1543,6 @@
       </Principal>
       <Dependent Role="PieceArtist">
         <PropertyRef Name="PieceArtist_PieceId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PieceComment_Piece">
-    <End Role="Piece" Type="PerfV100Model.Piece" Multiplicity="1" />
-    <End Role="PieceComment" Type="PerfV100Model.PieceComment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Piece">
-        <PropertyRef Name="Piece_Id" />
-      </Principal>
-      <Dependent Role="PieceComment">
-        <PropertyRef Name="PieceComment_PieceId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1994,18 +1593,6 @@
       </Principal>
       <Dependent Role="ProductionArtist">
         <PropertyRef Name="ProductionArtist_ProductionId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProductionComment_Production">
-    <End Role="Production" Type="PerfV100Model.Production" Multiplicity="1" />
-    <End Role="ProductionComment" Type="PerfV100Model.ProductionComment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Production">
-        <PropertyRef Name="Production_Id" />
-      </Principal>
-      <Dependent Role="ProductionComment">
-        <PropertyRef Name="ProductionComment_ProductionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2105,18 +1692,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_VenueComment_Venue">
-    <End Role="Venue" Type="PerfV100Model.Venue" Multiplicity="1" />
-    <End Role="VenueComment" Type="PerfV100Model.VenueComment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Venue">
-        <PropertyRef Name="Venue_Id" />
-      </Principal>
-      <Dependent Role="VenueComment">
-        <PropertyRef Name="VenueComment_VenueId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_VenueUser_Venue">
     <End Role="Venue" Type="PerfV100Model.Venue" Multiplicity="1" />
     <End Role="VenueUser" Type="PerfV100Model.VenueUser" Multiplicity="*" />
@@ -2157,6 +1732,7 @@
     <Property Type="String" Name="Provider" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="ProviderUserId" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Type="Int32" Name="UserId" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="PerfV100Model.FK_webpages_OAuthMembership_User" FromRole="webpages_OAuthMembership" ToRole="User" />
   </EntityType>
   <EntityType Name="webpages_Roles">
     <Key>
@@ -2211,6 +1787,505 @@
       </Principal>
       <Dependent Role="vPerformanceArtist_RoleCount">
         <PropertyRef Name="PerformanceArtist_RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_webpages_OAuthMembership_User">
+    <End Type="PerfV100Model.User" Role="User" Multiplicity="1" />
+    <End Type="PerfV100Model.webpages_OAuthMembership" Role="webpages_OAuthMembership" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_Id" />
+      </Principal>
+      <Dependent Role="webpages_OAuthMembership">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Comment_Id" />
+    </Key>
+    <Property Type="Int64" Name="Comment_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Comment_Text" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Comment_UserId" Nullable="false" />
+    <Property Type="DateTime" Name="Comment_DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="PerfV100Model.FK_Comment_User" FromRole="Comment" ToRole="User" />
+    <NavigationProperty Name="AgentComments" Relationship="PerfV100Model.FK_AgentComment_Comment" FromRole="Comment" ToRole="AgentComment" />
+    <NavigationProperty Name="ArtistComments" Relationship="PerfV100Model.FK_ArtistComment_Comment" FromRole="Comment" ToRole="ArtistComment" />
+    <NavigationProperty Name="BandComments" Relationship="PerfV100Model.FK_BandComment_Comment" FromRole="Comment" ToRole="BandComment" />
+    <NavigationProperty Name="EventComments" Relationship="PerfV100Model.FK_EventComment_Comment" FromRole="Comment" ToRole="EventComment" />
+    <NavigationProperty Name="PerformanceComments" Relationship="PerfV100Model.FK_PerformanceComment_Comment" FromRole="Comment" ToRole="PerformanceComment" />
+    <NavigationProperty Name="PieceComments" Relationship="PerfV100Model.FK_PieceComment_Comment" FromRole="Comment" ToRole="PieceComment" />
+    <NavigationProperty Name="ReviewComments" Relationship="PerfV100Model.FK_ReviewComment_Comment" FromRole="Comment" ToRole="ReviewComment" />
+    <NavigationProperty Name="RoleComments" Relationship="PerfV100Model.FK_RoleComment_Comment" FromRole="Comment" ToRole="RoleComment" />
+    <NavigationProperty Name="VenueComments" Relationship="PerfV100Model.FK_VenueComment_Comment" FromRole="Comment" ToRole="VenueComment" />
+    <NavigationProperty Name="PhotoComments" Relationship="PerfV100Model.FK_PhotoComment_Comment" FromRole="Comment" ToRole="PhotoComment" />
+    <NavigationProperty Name="ProductionComments" Relationship="PerfV100Model.FK_ProductionComment_Comment" FromRole="Comment" ToRole="ProductionComment" />
+  </EntityType>
+  <Association Name="FK_Comment_User">
+    <End Type="PerfV100Model.User" Role="User" Multiplicity="1" />
+    <End Type="PerfV100Model.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="Comment_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AgentComment">
+    <Key>
+      <PropertyRef Name="AgentComment_Id" />
+    </Key>
+    <Property Type="Int64" Name="AgentComment_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="AgentComment_CommentId" Nullable="false" />
+    <Property Type="Int32" Name="AgentComment_AgentId" Nullable="false" />
+    <NavigationProperty Name="Agent" Relationship="PerfV100Model.FK_AgentComment_Agent" FromRole="AgentComment" ToRole="Agent" />
+    <NavigationProperty Name="Comment" Relationship="PerfV100Model.FK_AgentComment_Comment" FromRole="AgentComment" ToRole="Comment" />
+  </EntityType>
+  <EntityType Name="AgentPhoto">
+    <Key>
+      <PropertyRef Name="AgentPhoto_Id" />
+    </Key>
+    <Property Type="Int64" Name="AgentPhoto_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="AgentPhoto_PhotoId" Nullable="false" />
+    <Property Type="Int64" Name="AgentPhoto_AgentId" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ArtistComment">
+    <Key>
+      <PropertyRef Name="ArtistComment_Id" />
+    </Key>
+    <Property Type="Int64" Name="ArtistComment_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="ArtistComment_CommentId" Nullable="false" />
+    <Property Type="Int32" Name="ArtistComment_ArtistId" Nullable="false" />
+    <NavigationProperty Name="Artist" Relationship="PerfV100Model.FK_ArtistComment_Artist" FromRole="ArtistComment" ToRole="Artist" />
+    <NavigationProperty Name="Comment" Relationship="PerfV100Model.FK_ArtistComment_Comment" FromRole="ArtistComment" ToRole="Comment" />
+  </EntityType>
+  <EntityType Name="ArtistPhoto">
+    <Key>
+      <PropertyRef Name="ArtistPhoto_Id" />
+    </Key>
+    <Property Type="Int64" Name="ArtistPhoto_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="ArtistPhoto_PhotoId" Nullable="false" />
+    <Property Type="Int64" Name="ArtistPhoto_ArtistId" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BandComment">
+    <Key>
+      <PropertyRef Name="BandComment_Id" />
+    </Key>
+    <Property Type="Int64" Name="BandComment_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="BandComment_CommentId" Nullable="false" />
+    <Property Type="Int32" Name="BandComment_BandId" Nullable="false" />
+    <NavigationProperty Name="Band" Relationship="PerfV100Model.FK_BandComment_Band" FromRole="BandComment" ToRole="Band" />
+    <NavigationProperty Name="Comment" Relationship="PerfV100Model.FK_BandComment_Comment" FromRole="BandComment" ToRole="Comment" />
+  </EntityType>
+  <EntityType Name="BandPhoto">
+    <Key>
+      <PropertyRef Name="BandPhoto_Id" />
+    </Key>
+    <Property Type="Int64" Name="BandPhoto_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="BandPhoto_PhotoId" Nullable="false" />
+    <Property Type="Int64" Name="BandPhoto_BandId" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EventComment">
+    <Key>
+      <PropertyRef Name="EventComment_Id" />
+    </Key>
+    <Property Type="Int64" Name="EventComment_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="EventComment_CommentId" Nullable="false" />
+    <Property Type="Int32" Name="EventComment_EventId" Nullable="false" />
+    <NavigationProperty Name="Comment" Relationship="PerfV100Model.FK_EventComment_Comment" FromRole="EventComment" ToRole="Comment" />
+    <NavigationProperty Name="Event" Relationship="PerfV100Model.FK_EventComment_Event" FromRole="EventComment" ToRole="Event" />
+  </EntityType>
+  <EntityType Name="EventPhoto">
+    <Key>
+      <PropertyRef Name="EventPhoto_Id" />
+    </Key>
+    <Property Type="Int64" Name="EventPhoto_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="EventPhoto_PhotoId" Nullable="false" />
+    <Property Type="Int64" Name="EventPhoto_EventId" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PerformanceComment">
+    <Key>
+      <PropertyRef Name="PerformanceComment_Id" />
+    </Key>
+    <Property Type="Int64" Name="PerformanceComment_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="PerformanceComment_CommentId" Nullable="false" />
+    <Property Type="Int32" Name="PerformanceComment_PerformanceId" Nullable="false" />
+    <NavigationProperty Name="Comment" Relationship="PerfV100Model.FK_PerformanceComment_Comment" FromRole="PerformanceComment" ToRole="Comment" />
+    <NavigationProperty Name="Performance" Relationship="PerfV100Model.FK_PerformanceComment_Performance" FromRole="PerformanceComment" ToRole="Performance" />
+  </EntityType>
+  <EntityType Name="PerformancePhoto">
+    <Key>
+      <PropertyRef Name="PerformancePhoto_Id" />
+    </Key>
+    <Property Type="Int64" Name="PerformancePhoto_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="PerformancePhoto_PhotoId" Nullable="false" />
+    <Property Type="Int64" Name="PerformancePhoto_PerformanceId" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PieceComment">
+    <Key>
+      <PropertyRef Name="PieceComment_Id" />
+    </Key>
+    <Property Type="Int64" Name="PieceComment_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="PieceComment_CommentId" Nullable="false" />
+    <Property Type="Int32" Name="PieceComment_PieceId" Nullable="false" />
+    <NavigationProperty Name="Comment" Relationship="PerfV100Model.FK_PieceComment_Comment" FromRole="PieceComment" ToRole="Comment" />
+    <NavigationProperty Name="Piece" Relationship="PerfV100Model.FK_PieceComment_Piece" FromRole="PieceComment" ToRole="Piece" />
+  </EntityType>
+  <EntityType Name="PiecePhoto">
+    <Key>
+      <PropertyRef Name="PiecePhoto_Id" />
+    </Key>
+    <Property Type="Int64" Name="PiecePhoto_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="PiecePhoto_PhotoId" Nullable="false" />
+    <Property Type="Int64" Name="PiecePhoto_PieceId" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductionPhoto">
+    <Key>
+      <PropertyRef Name="ProductionPhoto_Id" />
+    </Key>
+    <Property Type="Int64" Name="ProductionPhoto_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="ProductionPhoto_PhotoId" Nullable="false" />
+    <Property Type="Int64" Name="ProductionPhoto_ProductionId" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReviewComment">
+    <Key>
+      <PropertyRef Name="ReviewComment_Id" />
+    </Key>
+    <Property Type="Int64" Name="ReviewComment_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="ReviewComment_CommentId" Nullable="false" />
+    <Property Type="Int32" Name="ReviewComment_ReviewId" Nullable="false" />
+    <NavigationProperty Name="Comment" Relationship="PerfV100Model.FK_ReviewComment_Comment" FromRole="ReviewComment" ToRole="Comment" />
+    <NavigationProperty Name="Review" Relationship="PerfV100Model.FK_ReviewComment_Review" FromRole="ReviewComment" ToRole="Review" />
+  </EntityType>
+  <EntityType Name="ReviewPhoto">
+    <Key>
+      <PropertyRef Name="ReviewPhoto_Id" />
+    </Key>
+    <Property Type="Int64" Name="ReviewPhoto_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="ReviewPhoto_PhotoId" Nullable="false" />
+    <Property Type="Int64" Name="ReviewPhoto_ReviewId" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleComment">
+    <Key>
+      <PropertyRef Name="RoleComment_Id" />
+    </Key>
+    <Property Type="Int64" Name="RoleComment_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="RoleComment_CommentId" Nullable="false" />
+    <Property Type="Int32" Name="RoleComment_RoleId" Nullable="false" />
+    <NavigationProperty Name="Comment" Relationship="PerfV100Model.FK_RoleComment_Comment" FromRole="RoleComment" ToRole="Comment" />
+    <NavigationProperty Name="Role" Relationship="PerfV100Model.FK_RoleComment_Role" FromRole="RoleComment" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="RolePhoto">
+    <Key>
+      <PropertyRef Name="RolePhoto_Id" />
+    </Key>
+    <Property Type="Int64" Name="RolePhoto_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="RolePhoto_PhotoId" Nullable="false" />
+    <Property Type="Int64" Name="RolePhoto_RoleId" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VenueComment">
+    <Key>
+      <PropertyRef Name="VenueComment_Id" />
+    </Key>
+    <Property Type="Int64" Name="VenueComment_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="VenueComment_CommentId" Nullable="false" />
+    <Property Type="Int32" Name="VenueComment_VenueId" Nullable="false" />
+    <NavigationProperty Name="Comment" Relationship="PerfV100Model.FK_VenueComment_Comment" FromRole="VenueComment" ToRole="Comment" />
+    <NavigationProperty Name="Venue" Relationship="PerfV100Model.FK_VenueComment_Venue" FromRole="VenueComment" ToRole="Venue" />
+  </EntityType>
+  <EntityType Name="VenuePhoto">
+    <Key>
+      <PropertyRef Name="VenuePhoto_Id" />
+    </Key>
+    <Property Type="Int64" Name="VenuePhoto_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="VenuePhoto_PhotoId" Nullable="false" />
+    <Property Type="Int64" Name="VenuePhoto_VenueId" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AgentComment_Agent">
+    <End Type="PerfV100Model.Agent" Role="Agent" Multiplicity="1" />
+    <End Type="PerfV100Model.AgentComment" Role="AgentComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agent">
+        <PropertyRef Name="Agent_Id" />
+      </Principal>
+      <Dependent Role="AgentComment">
+        <PropertyRef Name="AgentComment_AgentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgentComment_Comment">
+    <End Type="PerfV100Model.Comment" Role="Comment" Multiplicity="1" />
+    <End Type="PerfV100Model.AgentComment" Role="AgentComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="Comment_Id" />
+      </Principal>
+      <Dependent Role="AgentComment">
+        <PropertyRef Name="AgentComment_CommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArtistComment_Artist">
+    <End Type="PerfV100Model.Artist" Role="Artist" Multiplicity="1" />
+    <End Type="PerfV100Model.ArtistComment" Role="ArtistComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artist">
+        <PropertyRef Name="Artist_Id" />
+      </Principal>
+      <Dependent Role="ArtistComment">
+        <PropertyRef Name="ArtistComment_ArtistId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArtistComment_Comment">
+    <End Type="PerfV100Model.Comment" Role="Comment" Multiplicity="1" />
+    <End Type="PerfV100Model.ArtistComment" Role="ArtistComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="Comment_Id" />
+      </Principal>
+      <Dependent Role="ArtistComment">
+        <PropertyRef Name="ArtistComment_CommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BandComment_Band">
+    <End Type="PerfV100Model.Band" Role="Band" Multiplicity="1" />
+    <End Type="PerfV100Model.BandComment" Role="BandComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Band">
+        <PropertyRef Name="Band_Id" />
+      </Principal>
+      <Dependent Role="BandComment">
+        <PropertyRef Name="BandComment_BandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BandComment_Comment">
+    <End Type="PerfV100Model.Comment" Role="Comment" Multiplicity="1" />
+    <End Type="PerfV100Model.BandComment" Role="BandComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="Comment_Id" />
+      </Principal>
+      <Dependent Role="BandComment">
+        <PropertyRef Name="BandComment_CommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventComment_Comment">
+    <End Type="PerfV100Model.Comment" Role="Comment" Multiplicity="1" />
+    <End Type="PerfV100Model.EventComment" Role="EventComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="Comment_Id" />
+      </Principal>
+      <Dependent Role="EventComment">
+        <PropertyRef Name="EventComment_CommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PerformanceComment_Comment">
+    <End Type="PerfV100Model.Comment" Role="Comment" Multiplicity="1" />
+    <End Type="PerfV100Model.PerformanceComment" Role="PerformanceComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="Comment_Id" />
+      </Principal>
+      <Dependent Role="PerformanceComment">
+        <PropertyRef Name="PerformanceComment_CommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PieceComment_Comment">
+    <End Type="PerfV100Model.Comment" Role="Comment" Multiplicity="1" />
+    <End Type="PerfV100Model.PieceComment" Role="PieceComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="Comment_Id" />
+      </Principal>
+      <Dependent Role="PieceComment">
+        <PropertyRef Name="PieceComment_CommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReviewComment_Comment">
+    <End Type="PerfV100Model.Comment" Role="Comment" Multiplicity="1" />
+    <End Type="PerfV100Model.ReviewComment" Role="ReviewComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="Comment_Id" />
+      </Principal>
+      <Dependent Role="ReviewComment">
+        <PropertyRef Name="ReviewComment_CommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleComment_Comment">
+    <End Type="PerfV100Model.Comment" Role="Comment" Multiplicity="1" />
+    <End Type="PerfV100Model.RoleComment" Role="RoleComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="Comment_Id" />
+      </Principal>
+      <Dependent Role="RoleComment">
+        <PropertyRef Name="RoleComment_CommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VenueComment_Comment">
+    <End Type="PerfV100Model.Comment" Role="Comment" Multiplicity="1" />
+    <End Type="PerfV100Model.VenueComment" Role="VenueComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="Comment_Id" />
+      </Principal>
+      <Dependent Role="VenueComment">
+        <PropertyRef Name="VenueComment_CommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventComment_Event">
+    <End Type="PerfV100Model.Event" Role="Event" Multiplicity="1" />
+    <End Type="PerfV100Model.EventComment" Role="EventComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Event_Id" />
+      </Principal>
+      <Dependent Role="EventComment">
+        <PropertyRef Name="EventComment_EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PerformanceComment_Performance">
+    <End Type="PerfV100Model.Performance" Role="Performance" Multiplicity="1" />
+    <End Type="PerfV100Model.PerformanceComment" Role="PerformanceComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Performance">
+        <PropertyRef Name="Performance_Id" />
+      </Principal>
+      <Dependent Role="PerformanceComment">
+        <PropertyRef Name="PerformanceComment_PerformanceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PieceComment_Piece">
+    <End Type="PerfV100Model.Piece" Role="Piece" Multiplicity="1" />
+    <End Type="PerfV100Model.PieceComment" Role="PieceComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Piece">
+        <PropertyRef Name="Piece_Id" />
+      </Principal>
+      <Dependent Role="PieceComment">
+        <PropertyRef Name="PieceComment_PieceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReviewComment_Review">
+    <End Type="PerfV100Model.Review" Role="Review" Multiplicity="1" />
+    <End Type="PerfV100Model.ReviewComment" Role="ReviewComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Review">
+        <PropertyRef Name="Review_Id" />
+      </Principal>
+      <Dependent Role="ReviewComment">
+        <PropertyRef Name="ReviewComment_ReviewId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleComment_Role">
+    <End Type="PerfV100Model.Role" Role="Role" Multiplicity="1" />
+    <End Type="PerfV100Model.RoleComment" Role="RoleComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Role_Id" />
+      </Principal>
+      <Dependent Role="RoleComment">
+        <PropertyRef Name="RoleComment_RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VenueComment_Venue">
+    <End Type="PerfV100Model.Venue" Role="Venue" Multiplicity="1" />
+    <End Type="PerfV100Model.VenueComment" Role="VenueComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venue">
+        <PropertyRef Name="Venue_Id" />
+      </Principal>
+      <Dependent Role="VenueComment">
+        <PropertyRef Name="VenueComment_VenueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PhotoComment">
+    <Key>
+      <PropertyRef Name="PhotoComment_Id" />
+    </Key>
+    <Property Type="Int64" Name="PhotoComment_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="PhotoComment_CommentId" Nullable="false" />
+    <Property Type="Int32" Name="PhotoComment_PhotoId" Nullable="false" />
+    <NavigationProperty Name="Comment" Relationship="PerfV100Model.FK_PhotoComment_Comment" FromRole="PhotoComment" ToRole="Comment" />
+    <NavigationProperty Name="Photo" Relationship="PerfV100Model.FK_PhotoComment_Photo" FromRole="PhotoComment" ToRole="Photo" />
+  </EntityType>
+  <EntityType Name="ProductionComment">
+    <Key>
+      <PropertyRef Name="ProductionComment_Id" />
+    </Key>
+    <Property Type="Int64" Name="ProductionComment_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="ProductionComment_CommentId" Nullable="false" />
+    <Property Type="Int32" Name="ProductionComment_ProductionId" Nullable="false" />
+    <NavigationProperty Name="Comment" Relationship="PerfV100Model.FK_ProductionComment_Comment" FromRole="ProductionComment" ToRole="Comment" />
+    <NavigationProperty Name="Production" Relationship="PerfV100Model.FK_ProductionComment_Production" FromRole="ProductionComment" ToRole="Production" />
+  </EntityType>
+  <Association Name="FK_PhotoComment_Comment">
+    <End Type="PerfV100Model.Comment" Role="Comment" Multiplicity="1" />
+    <End Type="PerfV100Model.PhotoComment" Role="PhotoComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="Comment_Id" />
+      </Principal>
+      <Dependent Role="PhotoComment">
+        <PropertyRef Name="PhotoComment_CommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductionComment_Comment">
+    <End Type="PerfV100Model.Comment" Role="Comment" Multiplicity="1" />
+    <End Type="PerfV100Model.ProductionComment" Role="ProductionComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="Comment_Id" />
+      </Principal>
+      <Dependent Role="ProductionComment">
+        <PropertyRef Name="ProductionComment_CommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhotoComment_Photo">
+    <End Type="PerfV100Model.Photo" Role="Photo" Multiplicity="1" />
+    <End Type="PerfV100Model.PhotoComment" Role="PhotoComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photo">
+        <PropertyRef Name="Photo_Id" />
+      </Principal>
+      <Dependent Role="PhotoComment">
+        <PropertyRef Name="PhotoComment_PhotoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductionComment_Production">
+    <End Type="PerfV100Model.Production" Role="Production" Multiplicity="1" />
+    <End Type="PerfV100Model.ProductionComment" Role="ProductionComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Production">
+        <PropertyRef Name="Production_Id" />
+      </Principal>
+      <Dependent Role="ProductionComment">
+        <PropertyRef Name="ProductionComment_ProductionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

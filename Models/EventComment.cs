@@ -14,12 +14,11 @@ namespace PerfV400.Models
     
     public partial class EventComment
     {
-        public int EventComment_Id { get; set; }
+        public long EventComment_Id { get; set; }
+        public long EventComment_CommentId { get; set; }
         public int EventComment_EventId { get; set; }
-        public int EventComment_UserId { get; set; }
-        public string EventComment_Comment { get; set; }
-        public Nullable<System.DateTime> EventComment_DateTime { get; set; }
     
+        public virtual Comment Comment { get; set; }
         public virtual Event Event { get; set; }
     }
 }

@@ -16,14 +16,7 @@ namespace PerfV400.Models
     {
         public Photo()
         {
-            this.PhotoAgents = new HashSet<PhotoAgent>();
-            this.PhotoArtists = new HashSet<PhotoArtist>();
-            this.PhotoBands = new HashSet<PhotoBand>();
-            this.PhotoEvents = new HashSet<PhotoEvent>();
-            this.PhotoPerformances = new HashSet<PhotoPerformance>();
-            this.PhotoProductions = new HashSet<PhotoProduction>();
-            this.PhotoReviews = new HashSet<PhotoReview>();
-            this.PhotoVenues = new HashSet<PhotoVenue>();
+            this.PhotoComments = new HashSet<PhotoComment>();
         }
     
         public int Photo_Id { get; set; }
@@ -34,13 +27,6 @@ namespace PerfV400.Models
         public Nullable<int> Photo_CreatedBy { get; set; }
         public Nullable<System.DateTime> Photo_CreatedDate { get; set; }
     
-        public virtual ICollection<PhotoAgent> PhotoAgents { get; set; }
-        public virtual ICollection<PhotoArtist> PhotoArtists { get; set; }
-        public virtual ICollection<PhotoBand> PhotoBands { get; set; }
-        public virtual ICollection<PhotoEvent> PhotoEvents { get; set; }
-        public virtual ICollection<PhotoPerformance> PhotoPerformances { get; set; }
-        public virtual ICollection<PhotoProduction> PhotoProductions { get; set; }
-        public virtual ICollection<PhotoReview> PhotoReviews { get; set; }
-        public virtual ICollection<PhotoVenue> PhotoVenues { get; set; }
+        public virtual ICollection<PhotoComment> PhotoComments { get; set; }
     }
 }

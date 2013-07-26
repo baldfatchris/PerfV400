@@ -1,6 +1,26 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
+
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# amovada: http://ogp.me/ns/fb/amovada#">
+        <meta property="fb:app_id" content="219955008083494" /> 
+    @if (ViewBag.fbogtype != null)
+    {
+        <meta property="og:type"   content="@ViewBag.fbogtype" /> 
+    }
+    @if (ViewBag.fbogurl != null)
+    {
+        <meta property="og:url" content="@ViewBag.fbogurl" /> 
+    }
+    @if (ViewBag.Title != null)
+    {
+        <meta property="og:title" content="@ViewBag.Title" /> 
+    }
+    @if (ViewBag.fbogimage != null)
+    {
+        <meta property="og:image" content="@ViewBag.fbogimage" /> 
+    }
+
+
         <meta charset="utf-8" />
         <title>@ViewBag.Title - Amovada</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />

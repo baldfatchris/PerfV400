@@ -23,6 +23,9 @@ namespace PerfV400.Controllers
 
         public ActionResult Index()
         {
+            // sort out the return url
+            ViewBag.ReturnUrl = Url.Action("Index", "Piece");
+
             // sort out the paging
             ViewBag.page = 0;
             ViewBag.PageSize = PageSize;
@@ -305,6 +308,9 @@ namespace PerfV400.Controllers
         public ActionResult Details(int id = 0)
         {
             Piece Piece = db.Pieces.Single(v => v.Piece_Id == id);
+
+            // sort out the return url
+            ViewBag.ReturnUrl = Url.Action(string.Format("Details/{0}", id), "Piece");
 
             // sort out the paging
             ViewBag.page = 0;

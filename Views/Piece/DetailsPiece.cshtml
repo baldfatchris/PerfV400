@@ -8,48 +8,41 @@
 
          <div id="@string.Format("PhotoPiece{0}",Model.Piece_Id)">
             <img class="pic" src="@Url.Action("GetPieceImage", "Piece", new { id = Model.Piece_Id })" alt="@Html.DisplayFor(e => e.Piece_Name)" border="0" style="border:0"/>
-                
-            <script type="text/javascript">
-                $(function () {
-                    $('.EditPhotoDiv').hover(function () {
-                        $(this).removeClass('toggle-upload');
-                    }, function () {
-                        $(this).addClass('toggle-upload');
-                    });
-                });
-            </script>
         </div>
-       
-        @using (Html.BeginForm("EditPiecePhoto", "Piece", FormMethod.Post,
-            new { enctype = "multipart/form-data", id = string.Format("EditPhotoFormPiece{0}", Model.Piece_Id), target = string.Format("EditPhotoTargetPiece{0}", Model.Piece_Id) }))
-        {
-            @Html.HiddenFor(model => model.Piece_Id)
-            <input type="file" name="imageFile" onchange="EditPhoto('Piece',@Model.Piece_Id);" />
-        }
-        <iframe id="@string.Format("EditPhotoTargetPiece{0}", Model.Piece_Id)" name="@string.Format("EditPhotoTargetPiece{0}", Model.Piece_Id)" onload="EditPhotoComplete('Piece',@Model.Piece_Id);" 
-            style="position: absolute; left: -999em; top: -999em;"></iframe>
 
-        <script type="text/javascript">
-            var isFirstLoad = true;
-        </script>
- 
+        @if (Session["UserID"] != null){
+       
+            using (Html.BeginForm("EditPiecePhoto", "Piece", FormMethod.Post,
+                new { enctype = "multipart/form-data", id = string.Format("EditPhotoFormPiece{0}", Model.Piece_Id), target = string.Format("EditPhotoTargetPiece{0}", Model.Piece_Id) }))
+            {
+                @Html.HiddenFor(model => model.Piece_Id)
+                <input type="file" name="imageFile" onchange="EditPhoto('Piece',@Model.Piece_Id);" />
+            }
+            <iframe id="@string.Format("EditPhotoTargetPiece{0}", Model.Piece_Id)" name="@string.Format("EditPhotoTargetPiece{0}", Model.Piece_Id)" onload="EditPhotoComplete('Piece',@Model.Piece_Id);" 
+                style="position: absolute; left: -999em; top: -999em;"></iframe>
+
+            <script type="text/javascript">
+                var isFirstLoad = true;
+            </script>
+        } 
     </div>
 
+    <div class="display-details">
 
+        <div class="display-label">@Html.DisplayNameFor(model => model.Piece_Name)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Piece_Name)</div>
 
-    <div class="display-label">@Html.DisplayNameFor(model => model.Piece_Name)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Piece_Name)</div>
+        <div class="display-label">@Html.DisplayNameFor(model => model.Genre.Genre_Name)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Genre.Genre_Name)</div>
 
-    <div class="display-label">@Html.DisplayNameFor(model => model.Genre.Genre_Name)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Genre.Genre_Name)</div>
+        <div class="display-label">@Html.DisplayNameFor(model => model.Piece_Year)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Piece_Year)</div>
 
-    <div class="display-label">@Html.DisplayNameFor(model => model.Piece_Year)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Piece_Year)</div>
+        <div class="display-label">@Html.DisplayNameFor(model => model.Piece_Description)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Piece_Description)</div>
 
-    <div class="display-label">@Html.DisplayNameFor(model => model.Piece_Description)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Piece_Description)</div>
+        <div class="display-label">@Html.DisplayNameFor(model => model.Piece_Wiki)</div>
+        <div class="display-field">@Html.DisplayFor(model => model.Piece_Wiki)</div>
 
-    <div class="display-label">@Html.DisplayNameFor(model => model.Piece_Wiki)</div>
-    <div class="display-field">@Html.DisplayFor(model => model.Piece_Wiki)</div>
-
+    </div>
 </div>

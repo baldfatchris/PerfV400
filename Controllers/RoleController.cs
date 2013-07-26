@@ -38,6 +38,9 @@ namespace PerfV400.Controllers
                 return HttpNotFound();
             }
 
+            // sort out the return url
+            ViewBag.ReturnUrl = Url.Action(string.Format("Details/{0}", id), "Role");
+
             // sort out the paging
             ViewBag.page = 0;
             ViewBag.PageSize = PageSize;

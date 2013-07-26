@@ -11,39 +11,28 @@ namespace PerfV400.Models
 {
     using System;
     using System.Collections.Generic;
-
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Agent
     {
         public Agent()
         {
             this.Artists = new HashSet<Artist>();
             this.Bands = new HashSet<Band>();
-            this.PhotoAgents = new HashSet<PhotoAgent>();
+            this.AgentComments = new HashSet<AgentComment>();
         }
-
+    
         public int Agent_Id { get; set; }
-
-        [Required]
-        [Display(Name = "Agent")]
         public string Agent_Name { get; set; }
-
-        [Display(Name = "Description")]
         public string Agent_Description { get; set; }
-
-        [Display(Name = "Website")]
         public string Agent_Url { get; set; }
-
         public byte[] Agent_Photo { get; set; }
         public string Agent_PhotoFileName { get; set; }
         public string Agent_PhotoMimeType { get; set; }
-
         public Nullable<int> Agent_CreatedBy { get; set; }
         public Nullable<System.DateTime> Agent_CreatedDate { get; set; }
-
+    
         public virtual ICollection<Artist> Artists { get; set; }
         public virtual ICollection<Band> Bands { get; set; }
-        public virtual ICollection<PhotoAgent> PhotoAgents { get; set; }
+        public virtual ICollection<AgentComment> AgentComments { get; set; }
     }
 }

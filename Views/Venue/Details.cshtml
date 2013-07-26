@@ -7,104 +7,142 @@
 
 <div id="VenueDetails">
 
-    <fieldset>
+    <fieldset class="main">
         <legend>Venue</legend>
 
         <ul class="toolbar">
             <li class="edit">@Html.ActionLink("Edit Venue Details", "EditVenue", new { id = Model.Venue_Id }, htmlAttributes: new { @class = "editLink", data_dialog_title = "Edit Venue Details" })</li>
         </ul>
         @Html.Partial("DetailsVenue")
-    </fieldset>
+
 
 
 @if (Model.Events.Count > 0)
 {
-<fieldset>
-    <legend>Performances</legend>
+        <fieldset>
+            <legend>Performances</legend>
 
 
-@using (Ajax.BeginForm("MoreVenueEvents", "Venue",
-    new { page = 0 },
-    new AjaxOptions
-    {
-        InsertionMode = InsertionMode.Replace,
-        HttpMethod = "GET",
-        OnFailure = "searchFailed",
-        LoadingElementId = "ajax-loader",
-        UpdateTargetId = "venueeventsearchresults"
-    }))
-{
+        @using (Ajax.BeginForm("MoreVenueEvents", "Venue",
+            new { page = 0 },
+            new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "GET",
+                OnFailure = "searchFailed",
+                LoadingElementId = "ajax-loader",
+                UpdateTargetId = "venueeventsearchresults"
+            }))
+        {
 
-    <div class="filter">
 
-    @Html.Hidden("filter_Venue_Id", Model.Venue_Id)
+        @Html.Hidden("filter_Venue_Id", Model.Venue_Id)
 
-    <table>
-        <tr>
-            <td class="filter-label">
-                Search
-            </td>
-            <td class="filter-field">
+
+        <div class="filter">
+            <div class="filter-label">
+                Event Name
+            </div>
+            <div class="filter-field">
                 @Html.TextBox("filter_search", null)
-                <input id="fs" type="submit" value="Search" />
-            </td>
-        </tr>
-        <tr>
-            <td class="filter-label">
+            </div>
+
+            <div class="filter-label">
                 Genre
-            </td>
-            <td class="filter-field">
-                @Html.DropDownList("filter_Event_GenreId", (IEnumerable<SelectListItem>)ViewBag.Genres, "All Genres", new { onchange = "$(\"#fs\").click();" }) 
-            </td>
-        </tr>
-        <tr>
-            <td class="filter-label">
+            </div>
+            <div class="filter-field">
+                @Html.DropDownList("filter_Event_GenreId", (IEnumerable<SelectListItem>)ViewBag.Genres, "All Genres") 
+            </div>
+
+            <div class="filter-label">
                 Piece
-            </td>
-            <td class="filter-field">
-                @Html.DropDownList("filter_Performance_Piece", (IEnumerable<SelectListItem>)ViewBag.Pieces, "All Pieces", new { onchange = "$(\"#fs\").click();" }) 
-            </td>
-        </tr>
-        <tr>
-            <td class="filter-label">
+            </div>
+            <div class="filter-field">
+                @Html.DropDownList("filter_Performance_Piece", (IEnumerable<SelectListItem>)ViewBag.Pieces, "All Pieces") 
+            </div>
+
+            <div class="filter-label">
                 Date
-            </td>
-            <td class="filter-field">
-                @Html.TextBox("filter_From_Event_Date", null, new { onchange = "$(\"#fs\").click();", @class = "datepicker", @style = "width:8em" })
+            </div>
+            <div class="filter-field">
+                @Html.TextBox("filter_From_Event_Date", null, new { @class = "datepicker", @style = "width:8em" })
                 to
-                @Html.TextBox("filter_To_Event_Date", null, new { onchange = "$(\"#fs\").click();", @class = "datepicker", @style = "width:8em" })
-            </td>
-            <td class="filter-field">
-            </td>
-        </tr>
+                @Html.TextBox("filter_To_Event_Date", null, new { @class = "datepicker", @style = "width:8em" })
+            </div>
 
-    </table>
-
-</div>
+            <div class="filter-label">
+                &nbsp;
+            </div>
+            <div class="filter-field">
+                <input id="fs" type="submit" value="Filter" />
+            </div>
+        </div>
+            
 
     
-<img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
+        <img id="ajax-loader" alt="loading" src="@Url.Content("~/Content/loading_lg.gif")" style="display:none" />
 
-<div id="venueeventsearchresults">
+        <div id="venueeventsearchresults">
     
-    @{
-    ViewBag.Venue_Id = Model.Venue_Id;
-    IEnumerable<PerfV400.Models.Event> events = ViewBag.events;
-    }
-    @Html.Partial("_MoreVenueEvents", events)
+            @{
+            ViewBag.Venue_Id = Model.Venue_Id;
+            IEnumerable<PerfV400.Models.Event> events = ViewBag.events;
+            }
+            @Html.Partial("_MoreVenueEvents", events)
 
-</div>
+        </div>
     
-}    
+        }    
 
 
 
 
         
 
-</fieldset>       
+        </fieldset>              
 }
 
-   
+   </fieldset>
+
+    <fieldset class="comments">
+        <legend>Comments</legend>
+
+        @foreach (PerfV400.Models.VenueComment venueComment in Model.VenueComments)
+        {
+            string imgSrc = string.Format("http://graph.facebook.com/{0}/picture?width=30&height=30", venueComment.Comment.User.User_FacebookId.ToString());
+            
+            <div class="display-comment">
+                <div class="display-user-icon">
+                    <img src="@imgSrc" />
+                </div>
+                <div class="display-comment-text">
+                    @venueComment.Comment.Comment_Text
+                </div>
+            </div>
+        }
+        
+        @if (Session["UserFacebookId"] != null && Session["UserFacebookId"].ToString().Length != 0)
+        {
+            string myImgSrc = string.Format("http://graph.facebook.com/{0}/picture?width=30&height=30", Session["UserFacebookId"]);
+
+            <div class="display-comment">
+                <div class="display-user-icon">
+
+                    <img src="@myImgSrc" />
+                </div>
+                <div class="display-comment-text">
+                    @Html.TextArea("NewComment")
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="display-comment">
+                @Html.Action("ExternalLoginsList","Account", new { ReturnUrl = ViewBag.ReturnUrl })
+            </div>
+           
+        }
+
+    </fieldset>
     
 </div>

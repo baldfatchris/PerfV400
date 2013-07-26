@@ -17,5 +17,7 @@ namespace PerfV400.Models
         public string Provider { get; set; }
         public string ProviderUserId { get; set; }
         public int UserId { get; set; }
+    
+        public virtual User User { get; set; }
     }
 }

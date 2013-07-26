@@ -1,12 +1,8 @@
 ﻿@if (Request.IsAuthenticated) {
-    if (Session["UserID"] == null)
-    {
-        Session["UserID"] = 0; // Membership.GetUser().ProviderUserKey;
-    }   
-        
+    
 
     <text>
-        @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" }) (@Session["UserID"])
+        @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" }) (@Session["UserID"] / @Session["UserFacebookId"])
         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
             @Html.AntiForgeryToken()
             <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>

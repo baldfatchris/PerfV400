@@ -11,9 +11,7 @@ namespace PerfV400.Models
 {
     using System;
     using System.Collections.Generic;
-
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class CountryRegion
     {
         public CountryRegion()
@@ -24,14 +22,11 @@ namespace PerfV400.Models
             this.Users = new HashSet<User>();
             this.Venues = new HashSet<Venue>();
         }
-
+    
         public int CountryRegion_Id { get; set; }
         public string CountryRegion_Code { get; set; }
-
-        [Required]
-        [Display(Name = "Country")]
         public string CountryRegion_Name { get; set; }
-
+    
         public virtual ICollection<Artist> Artists { get; set; }
         public virtual ICollection<Band> Bands { get; set; }
         public virtual ICollection<StateProvince> StateProvinces { get; set; }

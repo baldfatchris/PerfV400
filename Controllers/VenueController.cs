@@ -119,6 +119,9 @@ namespace PerfV400.Controllers
         {
             Venue venue = db.Venues.Single(v => v.Venue_Id == id);
 
+            // sort out the return url
+            ViewBag.ReturnUrl = Url.Action(string.Format("Details/{0}", id), "Venue");
+
             // sort out the paging
             ViewBag.page = 0;
             ViewBag.PageSize = PageSize;

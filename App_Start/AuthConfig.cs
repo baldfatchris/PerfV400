@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Web.WebPages.OAuth;
 using PerfV400.Models;
+using MVCScopedClients;
 
 namespace PerfV400
 {
@@ -22,14 +23,23 @@ namespace PerfV400
             //    consumerKey: "",
             //    consumerSecret: "");
 
-            OAuthWebSecurity.RegisterFacebookClient(
+            // OAuthWebSecurity.RegisterFacebookClient(
                 // Amovada
                 //appId: "219955008083494",
                 //appSecret: "92f8af70f21b76bcaf829685630326ac");
 
                 // LEDB
-                appId: "318328708209008",
-                appSecret: "b3cfb8ffc2016c80b1ee4ec4ddac4791");
+                //appId: "318328708209008",
+                //appSecret: "b3cfb8ffc2016c80b1ee4ec4ddac4791");
+
+            OAuthWebSecurity.RegisterClient(
+                    new FacebookScopedClient(
+                            "219955008083494",
+                            "92f8af70f21b76bcaf829685630326ac",
+                            "publish_actions, publish_stream"), 
+                       "Facebook", null);
+
+
 
             //OAuthWebSecurity.RegisterGoogleClient();
         }

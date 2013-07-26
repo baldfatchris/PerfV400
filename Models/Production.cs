@@ -11,40 +11,29 @@ namespace PerfV400.Models
 {
     using System;
     using System.Collections.Generic;
-
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Production
     {
         public Production()
         {
             this.Performances = new HashSet<Performance>();
-            this.PhotoProductions = new HashSet<PhotoProduction>();
             this.ProductionArtists = new HashSet<ProductionArtist>();
-            this.ProductionComments = new HashSet<ProductionComment>();
             this.ReviewProductions = new HashSet<ReviewProduction>();
+            this.ProductionComments = new HashSet<ProductionComment>();
         }
-
+    
         public int Production_Id { get; set; }
         public int Production_PieceId { get; set; }
-
-        [Required]
-        [Display(Name = "Production")]
         public string Production_Name { get; set; }
-
-        [DataType(DataType.Date)]
-        [Display(Name = "Production Date")]
         public Nullable<System.DateTime> Production_Date { get; set; }
-
         public byte[] Production_Photo { get; set; }
         public string Production_PhotoFileName { get; set; }
         public string Production_PhotoMimeType { get; set; }
-
+    
         public virtual ICollection<Performance> Performances { get; set; }
-        public virtual ICollection<PhotoProduction> PhotoProductions { get; set; }
         public virtual Piece Piece { get; set; }
         public virtual ICollection<ProductionArtist> ProductionArtists { get; set; }
-        public virtual ICollection<ProductionComment> ProductionComments { get; set; }
         public virtual ICollection<ReviewProduction> ReviewProductions { get; set; }
+        public virtual ICollection<ProductionComment> ProductionComments { get; set; }
     }
 }

@@ -34,7 +34,7 @@
             Genre
         </div>
         <div class="filter-field">
-            @Html.DropDownList("filter_Piece_GenreId", (IEnumerable<SelectListItem>)ViewBag.Genres, "All Genres", new { onchange = "$(\"#fs\").click();" })
+            @Html.DropDownList("filter_Piece_GenreId", (IEnumerable<SelectListItem>)ViewBag.Genres, "All Genres")
         </div>
     </div>
 
@@ -43,7 +43,7 @@
             Artist
         </div>
         <div class="filter-field">
-            @Html.TextBox("filter_Artist_FullName", null, new { onchange = "$(\"#fs\").click();" })
+            @Html.TextBox("filter_Artist_FullName", null)
         </div>
     </div>
  

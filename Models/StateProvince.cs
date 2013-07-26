@@ -11,9 +11,7 @@ namespace PerfV400.Models
 {
     using System;
     using System.Collections.Generic;
-
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class StateProvince
     {
         public StateProvince()
@@ -22,15 +20,13 @@ namespace PerfV400.Models
             this.Bands = new HashSet<Band>();
             this.Venues = new HashSet<Venue>();
         }
-
+    
         public int StateProvince_Id { get; set; }
         public Nullable<int> StateProvince_CountryRegionId { get; set; }
         public string StateProvince_Code { get; set; }
         public bool StateProvince_IsOnlyStateProvinceFlag { get; set; }
-
-        [Display(Name = "State/Province")]
         public string StateProvince_Name { get; set; }
-
+    
         public virtual ICollection<Artist> Artists { get; set; }
         public virtual ICollection<Band> Bands { get; set; }
         public virtual CountryRegion CountryRegion { get; set; }

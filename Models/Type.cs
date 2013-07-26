@@ -11,9 +11,7 @@ namespace PerfV400.Models
 {
     using System;
     using System.Collections.Generic;
-
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Type
     {
         public Type()
@@ -22,12 +20,10 @@ namespace PerfV400.Models
             this.ArtistTypes = new HashSet<ArtistType>();
             this.Roles = new HashSet<Role>();
         }
-
+    
         public int Type_Id { get; set; }
-
-        [Display(Name = "Type")]
         public string Type_Name { get; set; }
-
+    
         public virtual ICollection<Artist> Artists { get; set; }
         public virtual ICollection<ArtistType> ArtistTypes { get; set; }
         public virtual ICollection<Role> Roles { get; set; }

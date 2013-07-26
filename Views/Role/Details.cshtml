@@ -6,7 +6,7 @@
 
 <div id="RoleDetails">
     
-    <fieldset>
+    <fieldset class="main">
         <legend>Role</legend>
 
         <ul class="toolbar">
@@ -64,6 +64,47 @@
         
     }
 
+
+    <fieldset class="comments">
+        <legend>Comments</legend>
+
+        @foreach (PerfV400.Models.RoleComment roleComment in Model.RoleComments)
+        {
+            string imgSrc = string.Format("http://graph.facebook.com/{0}/picture?width=30&height=30", roleComment.Comment.User.User_FacebookId.ToString());
+            
+            <div class="display-comment">
+                <div class="display-user-icon">
+                    <img src="@imgSrc" />
+                </div>
+                <div class="display-comment-text">
+                    @roleComment.Comment.Comment_Text
+                </div>
+            </div>
+        }
+        
+        @if (Session["UserFacebookId"] != null && Session["UserFacebookId"].ToString().Length != 0)
+        {
+            string myImgSrc = string.Format("http://graph.facebook.com/{0}/picture?width=30&height=30", Session["UserFacebookId"]);
+
+            <div class="display-comment">
+                <div class="display-user-icon">
+
+                    <img src="@myImgSrc" />
+                </div>
+                <div class="display-comment-text">
+                    @Html.TextArea("NewComment")
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="display-comment">
+                @Html.Action("ExternalLoginsList","Account", new { ReturnUrl = ViewBag.ReturnUrl })
+            </div>
+           
+        }
+
+    </fieldset>
 
 </div>
 

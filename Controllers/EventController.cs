@@ -23,10 +23,16 @@ namespace PerfV400.Controllers
 
         public ActionResult Index()
         {
+            // sort out the facebook metadata
+            ViewBag.fbogtype = "amovada:event";
+            // ViewBag.fbogurl = ""
+            // ViewBag.fbogimage = ""
+
+            ViewBag.Title = "Events";
 
             if (Session["UserID"] != null)
             {
-//                ViewBag.UserId = Session["UserID"];
+               ViewBag.UserId = Session["UserID"];
             }
 
             // sort out the paging
@@ -274,6 +280,17 @@ namespace PerfV400.Controllers
             {
                 return HttpNotFound();
             }
+
+            // sort out the facebook metadata
+            ViewBag.fbogtype = "amovada:event";
+            ViewBag.fbogurl = "http://amovada.azurewebsites.net/Event/Details/" + id;
+            ViewBag.fbogimage = "http://amovada.azurewebsites.net/Event/GetEventImage/" + id;
+
+            ViewBag.Title = "Events";
+
+
+            // sort out the return url
+            ViewBag.ReturnUrl = Url.Action(string.Format("Details/{0}", id), "Event");
 
             // sort out the paging
             ViewBag.page = 0;
@@ -702,6 +719,9 @@ namespace PerfV400.Controllers
 
                 }
 
+                // set the creation details
+                eventX.Event_CreatedBy = (int)Session["UserID"];
+                eventX.Event_CreatedDate = DateTime.Now;
 
                 db.Events.Add(eventX);
                 db.SaveChanges();

@@ -14,12 +14,11 @@ namespace PerfV400.Models
     
     public partial class PieceComment
     {
-        public int PieceComment_Id { get; set; }
+        public long PieceComment_Id { get; set; }
+        public long PieceComment_CommentId { get; set; }
         public int PieceComment_PieceId { get; set; }
-        public int PieceComment_UserId { get; set; }
-        public string PieceComment_Comment { get; set; }
-        public Nullable<System.DateTime> PieceComment_DateTime { get; set; }
     
+        public virtual Comment Comment { get; set; }
         public virtual Piece Piece { get; set; }
     }
 }
